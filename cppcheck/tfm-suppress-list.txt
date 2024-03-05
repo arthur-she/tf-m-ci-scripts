@@ -49,7 +49,6 @@ missingInclude:*/tfm_secure_api.h:11
 *:*/tools/*
 *:*/bl2/ext/*
 *:*/platform/ext/accelerator/*
-*:*/platform/ext/cmsis/*
 *:*/platform/ext/driver/*
 *:*/platform/ext/target/*
 *:*/mcuboot/*
