@@ -23,6 +23,7 @@ __version__ = "1.4.0"
 import xmlrpc.client
 import os
 import time
+import json
 import yaml
 import requests
 import shutil
@@ -74,6 +75,14 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
         cmd = "self.%s(%s)" % (cmd, params if params else "")
         return eval(cmd)
 
+    @staticmethod
+    def is_tux_id(job_id):
+        job_id = str(job_id)
+        if job_id.isdigit() and len(job_id) < 22:
+            return False
+        else:
+            return True
+
     def ls_cmd(self):
         """ Return a list of supported commands """
 
@@ -90,12 +99,22 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
                 shutil.copyfileobj(r.raw, f)
         return(out_file)
 
-    def get_job_results(self, job_id, yaml_out_file):
-        results_url = "{}/yaml".format(self.server_results_prefix % job_id)
+    def get_job_results(self, job_id, job_info, yaml_out_file):
+        if self.is_tux_id(job_id):
+            results_url = job_info["extra"]["download_url"] + "lava-results.yaml"
+        else:
+            results_url = "{}/yaml".format(self.server_results_prefix % job_id)
         return(self.fetch_file(results_url, yaml_out_file))
 
-    def get_job_definition(self, job_id, yaml_out_file=None):
-        job_def = self.scheduler.jobs.definition(job_id)
+    def get_job_definition(self, job_id, job_info, yaml_out_file=None):
+        if self.is_tux_id(job_id):
+            url = job_info["extra"]["download_url"] + job_info["extra"]["job_definition"]
+            with requests.get(url) as r:
+                r.raise_for_status()
+                job_def = r.text
+        else:
+            job_def = self.scheduler.jobs.definition(job_id)
+
         if yaml_out_file:
             with open(yaml_out_file, "w") as F:
                 F.write(str(job_def))
@@ -103,10 +122,16 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
         return def_o
 
     def get_job_log(self, job_id, target_out_file):
-        auth_headers = {"Authorization": "Token %s" % self.token}
-        log_url = "{server_url}/jobs/{job_id}/logs/".format(
-            server_url=self.server_api, job_id=job_id
-        )
+        if self.is_tux_id(job_id):
+            auth_headers = {}
+            log_url = "https://storage.tuxsuite.com/public/tfc/ci/tests/{job_id}/lava-logs.yaml".format(
+                job_id=job_id
+            )
+        else:
+            auth_headers = {"Authorization": "Token %s" % self.token}
+            log_url = "{server_url}/jobs/{job_id}/logs/".format(
+                server_url=self.server_api, job_id=job_id
+            )
         with requests.get(log_url, stream=True, headers=auth_headers) as r:
             r.raise_for_status()
             log_list = yaml.load(r.content, Loader=yaml.SafeLoader)
@@ -125,10 +150,26 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
                             target_out.write("{}\n".format(msg))
 
     def get_job_config(self, job_id, config_out_file):
+        if self.is_tux_id(job_id):
+            return
+
         config_url = "{}/configuration".format(self.server_job_prefix % job_id)
         self.fetch_file(config_url, config_out_file)
 
     def get_job_info(self, job_id, yaml_out_file=None):
+        if self.is_tux_id(job_id):
+            assert yaml_out_file is None
+            job_info = subprocess.check_output(
+                "python3 -u -m tuxsuite test get --json %s" % job_id,
+                shell=True,
+            )
+            job_info = json.loads(job_info.decode())
+            # Convert values to match LAVA output, as expected by
+            # the rest of code.
+            job_info["state"] = job_info["state"].capitalize()
+            job_info["health"] = {"pass": "Complete"}.get(job_info["result"], job_info["result"])
+            return job_info
+
         job_info = self.scheduler.jobs.show(job_id)
         if yaml_out_file:
             with open(yaml_out_file, "w") as F:
