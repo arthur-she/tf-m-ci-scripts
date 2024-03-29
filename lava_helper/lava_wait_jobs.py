@@ -118,6 +118,9 @@ def fetch_artifacts_for_job(job_id, info, user_args, lava):
             results_file = os.path.join(job_dir, 'results.yaml')
             definition = lava.get_job_definition(job_id, info, def_path)
             info['metadata'] = definition.get('metadata', {})
+            # Fill in device type for Tux jobs
+            if 'device_type' not in info:
+                info['device_type'] = definition.get('device_type')
             time.sleep(0.2) # be friendly to LAVA
             lava.get_job_log(job_id, target_log)
             time.sleep(0.2)
