@@ -244,7 +244,7 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
 
         device_type = self.device_type_from_def(job_data)
 
-        if device_type == "fvp" and os.environ.get("USE_TUXSUITE_FVP", "0") == "1":
+        if device_type == "fvp" and os.environ.get("USE_TUXSUITE_FVP", "1") != "0":
             output = subprocess.check_output(
                 "python3 -u -m tuxsuite test submit --no-wait --device fvp-lava --job-definition %s" % job_definition,
                 shell=True,
