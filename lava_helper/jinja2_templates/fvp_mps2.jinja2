@@ -33,14 +33,14 @@ actions:
     namespace: docker
     method: fvp
     docker:
-      name: {{ docker_prefix }}/fvp:fvp_mps2_aemv8m_11.16_16
+      name: {{ docker_prefix }}/fvp:fvp_arm_std_library_11.22_14
       local: true
     prompts:
     - 'root@lava '
 {%- if enable_code_coverage %}
     image: /usr/bin/stdout-flush-wrapper.sh
 {%- else %}
-    image: /opt/model/FVP_MPS2_AEMv8M/models/Linux64_GCC-6.4/FVP_MPS2_AEMv8M
+    image: /opt/model/FVP_ARM_Std_Library/FVP_MPS2/FVP_MPS2_AEMv8M
 {%- endif %}
     timeout:
       minutes: 10
@@ -54,7 +54,7 @@ actions:
     license_variable: '{{ license_variable }}'
     arguments:
 {%- if enable_code_coverage %}
-    -  "/opt/model/FVP_MPS2_AEMv8M/models/Linux64_GCC-6.4/FVP_MPS2_AEMv8M"
+    -  "/opt/model/FVP_ARM_Std_Library/FVP_MPS2/FVP_MPS2_AEMv8M"
 {%- endif %}
     -  "--simlimit 900"
     -  "--application cpu0={APP}"
