@@ -5,7 +5,7 @@
 
 __copyright__ = """
 /*
- * Copyright (c) 2022-2023, Arm Limited. All rights reserved.
+ * Copyright (c) 2022-2024, Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -23,6 +23,7 @@ mapPlatform = {
     "arm/musca_b1"                       : "MUSCA_B1",
     "arm/musca_s1"                       : "MUSCA_S1",
     "arm/corstone1000"                   : "corstone1000",
+    "arm/mps4/corstone315"               : "corstone315",
     "arm/mps3/corstone310/fvp"           : "corstone310",
     "arm/rse/tc"                         : "RSE_TC",
     "arm/rse/rdfremont"                  : "RSE_RDFremont",

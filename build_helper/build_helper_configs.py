@@ -8,7 +8,7 @@ from __future__ import print_function
 
 __copyright__ = """
 /*
- * Copyright (c) 2018-2023, Arm Limited. All rights reserved.
+ * Copyright (c) 2018-2024, Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -836,6 +836,21 @@ config_corstone310 = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_corstone315 = {"seed_params": {
+                "tfm_platform":     ["arm/mps4/corstone315"],
+                "compiler":         ["GCC_10_3", "ARMCLANG_6_21"],
+                "isolation_level":  ["1"],
+                "test_regression":  ["OFF"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Debug", "Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     [""]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 config_rse = {"seed_params": {
                 "tfm_platform":     ["arm/rse/tc"],
                 "compiler":         ["GCC_10_3"],
@@ -1169,6 +1184,7 @@ _builtin_configs = {
                     "nightly_cs300_an552": config_cs300_an552,
                     "nightly_cs300_fvp": config_cs300_fvp,
                     "nightly_corstone310": config_corstone310,
+                    "nightly_corstone315": config_corstone315,
                     "nightly_corstone1000": config_corstone1000,
                     "nightly_rse": config_rse,
                     "nightly_rse_rdfremont": config_rse_rdfremont,
@@ -1194,6 +1210,7 @@ _builtin_configs = {
                     "release_cs300_an552": config_cs300_an552,
                     "release_cs300_fvp": config_cs300_fvp,
                     "release_corstone310": config_corstone310,
+                    "release_corstone315": config_corstone315,
                     "release_rse": config_rse,
                     "release_rse_rdfremont": config_rse_rdfremont,
                     "release_psoc64": config_psoc64,
@@ -1225,6 +1242,7 @@ _builtin_configs = {
                     "musca_b1": config_musca_b1,
                     "musca_s1": config_musca_s1,
                     "corstone310": config_corstone310,
+                    "corstone315": config_corstone315,
                     "rse": config_rse,
                     "rse_rdfremont": config_rse_rdfremont,
                     "cypress_psoc64": config_psoc64,
