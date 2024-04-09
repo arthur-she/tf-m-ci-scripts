@@ -880,7 +880,7 @@ config_corstone315 = {"seed_params": {
                 "tfm_platform":     ["arm/mps4/corstone315"],
                 "compiler":         ["GCC_10_3", "ARMCLANG_6_21"],
                 "isolation_level":  ["1"],
-                "test_regression":  ["OFF"],
+                "test_regression":  ["OFF", "RegBL2, RegS, RegNS"],
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],

@@ -147,6 +147,44 @@ fvp_mps3_cs300_bl2 = {
     }
 }
 
+# FVP with BL1 and BL2 bootloader for Corstone315
+fvp_mps4_cs315_bl1_bl2 = {
+    "templ": "fvp_mps4.jinja2",
+    "job_name": "fvp_mps4_cs315_bl1_bl2",
+    "device_type": "fvp",
+    "job_timeout": 15,
+    "action_timeout": 10,
+    "monitor_timeout": 15,
+    "poweroff_timeout": 1,
+    "platforms": {"arm/mps4/corstone315": ""},
+    "binaries": {
+        "bl1": {
+            "data": "spe/bin/bl1_1.bin",
+            "offset": "0x11000000",
+        },
+        "bl2": {
+            "data": "spe/bin/bl2_signed.bin",
+            "offset": "0x12031400",
+        },
+        "cm_prov": {
+            "data": "spe/bin/cm_provisioning_bundle.bin",
+            "offset": "0x12024000",
+        },
+        "dm_prov": {
+            "data": "spe/bin/dm_provisioning_bundle.bin",
+            "offset": "0x1202aa00",
+        },
+        "tfm_s_ns_img": {
+            "data": "nspe/tfm_s_ns_signed.bin",
+            "offset": "0x38000000",
+        }
+    },
+    "monitors": {
+        'no_reg_tests': no_reg_tests_monitors,
+        'reg_tests': reg_tests_monitors,
+    }
+}
+
 # FVP with BL1 and BL2 bootloader for Corstone1000
 fvp_corstone1000 = {
     "templ": "fvp_corstone1000.jinja2",
@@ -411,6 +449,7 @@ lava_gen_config_map_bl2 = {
     "fvp_mps3_cs300_bl2": fvp_mps3_cs300_bl2,
     "fvp_mps2_an521_bl2": fvp_mps2_an521_bl2,
     "fvp_mps2_an519_bl2": fvp_mps2_an519_bl2,
+    "fvp_mps4_cs315_bl1_bl2": fvp_mps4_cs315_bl1_bl2,
     "fvp_corstone1000": fvp_corstone1000,
     "fvp_rse_tc": fvp_rse_tc,
     "qemu_mps2_bl2": qemu_mps2_bl2,
