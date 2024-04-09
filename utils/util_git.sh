@@ -13,8 +13,8 @@ GIT_CLONE_PARAMS="--no-checkout"
 
 function git_clone() {
     # Parse the repo elements
-    REPO_URL=$1
-    REPO_PATH=$2
+    local REPO_URL=$1
+    local REPO_PATH=$2
 
     # In case repository is not defined, just skip it
     if [ -z "${REPO_URL}" ]; then
@@ -29,8 +29,9 @@ function git_clone() {
 
 function git_checkout() {
     # Parse the repo elements
-    REPO_PATH=$1
-    REPO_REFSPEC=$2
+    local REPO_PATH=$1
+    local REPO_REFSPEC=$2
+    local SYNC_CMD=$3
 
     # Checkout if repo exits
     if [ -d ${REPO_PATH} ]; then
@@ -51,6 +52,11 @@ function git_checkout() {
             git checkout ${REPO_FETCH_HEAD}
         else
             git checkout ${REPO_REFSPEC}
+        fi
+
+        if [ "${SYNC_CMD}" = "SYNC_ALL_SUBMODULES" ]; then
+            # Make sure that any submodule is also inited and updated if present
+            git submodule update --init --recursive
         fi
 
         echo -e "Share Folder ${REPO_PATH} $(git rev-parse --short HEAD)\n"

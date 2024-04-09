@@ -33,11 +33,12 @@ set -ex
 . $(dirname $0)/utils/util_parse_version.sh
 
 function clone_repo_to_share_folder() {
-    REPO_URL=$1
-    REPO_NAME=$2
-    REPO_REFSPEC=$3
+    local REPO_URL=$1
+    local REPO_NAME=$2
+    local REPO_REFSPEC=$3
+    local SYNC_CMD=$4
 
-    echo "Repo: $REPO_URL $REPO_NAME $REPO_REFSPEC"
+    echo "Repo: $REPO_URL $REPO_NAME $REPO_REFSPEC $SYNC_CMD"
 
     # In case repository is not defined, just skip it
     if [ -z "${REPO_URL}" ]; then
@@ -47,7 +48,7 @@ function clone_repo_to_share_folder() {
 
     if [ ! -d "${SHARE_FOLDER}/${REPO_NAME}" ]; then
         git_clone $REPO_URL "${SHARE_FOLDER}/${REPO_NAME}"
-        git_checkout "${SHARE_FOLDER}/${REPO_NAME}" $REPO_REFSPEC
+        git_checkout "${SHARE_FOLDER}/${REPO_NAME}" $REPO_REFSPEC $SYNC_CMD
     else
         cd "${SHARE_FOLDER}/${REPO_NAME}"
         echo -e "Share Folder ${REPO_NAME} $(git rev-parse --short HEAD)\n"
@@ -134,7 +135,11 @@ for repo in ${dependency_repos[@]}; do
     REPO_NAME="$(echo "${repo}" | awk -F ';' '{print $2}')"
     REPO_REFSPEC="$(echo "${repo}" | awk -F ';' '{print $3}')"
 
-    clone_repo_to_share_folder "${REPO_URL}" "${REPO_NAME}" "${REPO_REFSPEC}"
+    if [[ "${REPO_NAME}" = "${MBEDTLS_NAME}" ]]; then
+        clone_repo_to_share_folder "${REPO_URL}" "${REPO_NAME}" "${REPO_REFSPEC}" "SYNC_ALL_SUBMODULES"
+    else
+        clone_repo_to_share_folder "${REPO_URL}" "${REPO_NAME}" "${REPO_REFSPEC}"
+    fi
 done
 
 PSA_ARCH_TESTS_PROJECT="${PSA_ARCH_TESTS_URL:-}"
