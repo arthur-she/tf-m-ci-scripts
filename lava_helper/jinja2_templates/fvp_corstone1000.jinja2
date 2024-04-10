@@ -37,7 +37,7 @@ actions:
     timeout:
       minutes: 5
     console_string: 'secenc_terminal: Listening for serial connection on port (?P<PORT>\d+)'
-#    license_variable: '{{ license_variable }}'
+    license_variable: '{{ license_variable }}'
     use_telnet: True
     arguments:
     -  "-C se.trustedBootROMloader.fname=\"{APP}\""
