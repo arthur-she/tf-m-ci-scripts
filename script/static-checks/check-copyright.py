@@ -33,15 +33,38 @@ VALID_FILE_EXTENSIONS = ('.c', '.conf', '.dts', '.dtsi', '.editorconfig',
 # Paths inside the tree to ignore. Hidden folders and files are always ignored.
 # They mustn't end in '/'.
 IGNORED_FOLDERS = (
-    'platform/ext',
     'bl2/ext',
     'docs',
+    'interface/include/mbedtls',
     'lib',
+    'platform/ext',
     'tools'
 )
 
 # List of ignored files in folders that aren't ignored
-IGNORED_FILES = ()
+IGNORED_FILES = (
+    'interface/include/psa/build_info.h',
+    'interface/include/psa/crypto.h',
+    'interface/include/psa/crypto_adjust_auto_enabled.h',
+    'interface/include/psa/crypto_adjust_config_key_pair_types.h',
+    'interface/include/psa/crypto_adjust_config_synonyms.h',
+    'interface/include/psa/crypto_builtin_composites.h',
+    'interface/include/psa/crypto_builtin_key_derivation.h',
+    'interface/include/psa/crypto_builtin_primitives.h',
+    'interface/include/psa/crypto_compat.h',
+    'interface/include/psa/crypto_driver_common.h',
+    'interface/include/psa/crypto_driver_contexts_composites.h',
+    'interface/include/psa/crypto_driver_contexts_key_derivation.h',
+    'interface/include/psa/crypto_driver_contexts_primitives.h',
+    'interface/include/psa/crypto_extra.h',
+    'interface/include/psa/crypto_legacy.h',
+    'interface/include/psa/crypto_platform.h',
+    'interface/include/psa/crypto_se_driver.h',
+    'interface/include/psa/crypto_sizes.h',
+    'interface/include/psa/crypto_struct.h',
+    'interface/include/psa/crypto_types.h',
+    'interface/include/psa/crypto_values.h'
+)
 
 # Supported comment styles (Python regex)
 COMMENT_PATTERN = '(\*|/\*|\#|//)'
@@ -55,8 +78,9 @@ LINE_START = '^' + SPACING + COMMENT_PATTERN + SPACING
 # Line end with optional spacing
 EOL = SPACING + '$'
 
-# Year or period as YYYY or YYYY-YYYY
-TIME_PERIOD = '[0-9]{4}(-[0-9]{4})?'
+# Year or period as YYYY or YYYY-YYYY, or nothing as per the
+# Linux Foundation copyright notice recommendation
+TIME_PERIOD = '([0-9]{4}(-[0-9]{4})?)?'
 
 # Any string with valid license ID, don't allow adding postfix
 LICENSE_ID = '.*(BSD-3-Clause|BSD-2-Clause-FreeBSD)([ ,.\);].*)?'
