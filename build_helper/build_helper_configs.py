@@ -142,20 +142,13 @@ _common_tfm_builder_cfg = {
                                           "image_signing/scripts/tfm_ns_signed.bin ;"
                                           "popd"),
                    "nxp/lpcxpresso55s69": ("echo 'LPCXpresso55S69 board post process\n';"
-                                            "if [ -f \"%(ci_build_root_dir)s/spe/bin/bl2.hex\" ]; then FLASH_FILE='flash_bl2_JLink.py'; else FLASH_FILE='flash_JLink.py'; fi;"
-                                            "mkdir -p %(codebase_root_dir)s/build/bin ;"
-                                            # Workaround for flash_JLink.py
-                                            "cp %(ci_build_root_dir)s/spe/bin/tfm_s.hex %(codebase_root_dir)s/build/bin ;"
-                                            "cp %(ci_build_root_dir)s/nspe/bin/tfm_ns.hex %(codebase_root_dir)s/build/bin ;"
-                                            "pushd %(codebase_root_dir)s/platform/ext/target/nxp/lpcxpresso55s69/scripts;"
-                                            "LN=$(grep -n 'JLinkExe' ${FLASH_FILE}|awk -F: '{print $1}');"
-                                            "sed -i \"${LN}s/.*/    print('flash.jlink generated')/\" ${FLASH_FILE};"
-                                            "python3 ./${FLASH_FILE};"
-                                            "cd %(codebase_root_dir)s/build/bin;"
-                                            "BIN_FILES=$(grep loadfile flash.jlink | awk '{print $2}');"
-                                            "tar jcf lpcxpresso55s69-tfm.tar.bz2 flash.jlink ${BIN_FILES};"
-                                            "mv lpcxpresso55s69-tfm.tar.bz2 %(ci_build_root_dir)s/nspe/bin ;"
-                                            "popd"),
+                                           "pyocd erase --mass -t LPC55S69 ;"
+                                           "if [ -f \"%(ci_build_root_dir)s/spe/bin/bl2.hex\" ]; then"
+                                           "pyocd flash %(ci_build_root_dir)s/spe/bin/bl2.hex -t LPC55S69;"
+                                           "pyocd flash %(ci_build_root_dir)s/nspe/bin/tfm_s_ns_signed.bin --base-address 0x8000 -t LPC55S69;"
+                                           "else"
+                                           "pyocd flash %(ci_build_root_dir)s/spe/bin/tfm_s.hex %(ci_build_root_dir)s/nspe/bin/tfm_ns.hex -t LPC55S69;"
+                                           "fi;"),
                    "cypress/psoc64": ("echo 'Sign binaries for Cypress PSoC64 platform';"
                                        "pushd %(codebase_root_dir)s/;"
                                        "sudo /usr/local/bin/cysecuretools "
