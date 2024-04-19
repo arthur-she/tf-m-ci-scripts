@@ -67,7 +67,7 @@ def get_finished_jobs(job_list, user_args, lava):
     finished_jobs = lava.block_wait_for_jobs(job_list, user_args.dispatch_timeout, 5, callback=inline_fetch_artifacts)
     unfinished_jobs = [item for item in job_list if item not in finished_jobs]
     for job in unfinished_jobs:
-        _log.info("Cancelling unfinished job %d because of timeout.", job)
+        _log.info("Cancelling unfinished job {} because of timeout.".format(job))
         lava.cancel_job(job)
     if len(unfinished_jobs) > 0:
         _log.info("Job fails because some test jobs have been cancelled.")
