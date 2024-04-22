@@ -139,6 +139,21 @@ _common_tfm_builder_cfg = {
                                     "-o %(ci_build_root_dir)s/"
                                     "spe/bin/tfm.hex -Intel;"
                                     "fi;"),
+                    "arm/rse/tc": ("srec_cat "
+                                   "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
+                                   "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
+                                   "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
+                                   "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fiptool https://downloads.trustedfirmware.org/tf-m/rse/tc/fiptool;"
+                                   "chmod 755 fiptool;"
+                                   "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fip.bin https://downloads.trustedfirmware.org/tf-m/rse/tc/fip.bin;"
+                                   "./fiptool update "
+                                   "--align 8192 --rss-bl2 %(ci_build_root_dir)s/spe/bin/bl2_signed.bin "
+                                   "--align 8192 --rss-s %(ci_build_root_dir)s/spe/bin/tfm_s_encrypted.bin "
+                                   "--align 8192 --rss-ns %(ci_build_root_dir)s/nspe/bin/tfm_ns_encrypted.bin "
+                                   "--align 8192 --rss-sic-tables-s %(ci_build_root_dir)s/spe/bin/tfm_s_sic_tables_signed.bin "
+                                   "--align 8192 --rss-sic-tables-ns %(ci_build_root_dir)s/nspe/bin/tfm_ns_sic_tables_signed.bin "
+                                   "--out %(ci_build_root_dir)s/spe/bin/host_flash.bin "
+                                   "fip.bin"),
                    "stm/stm32l562e_dk": ("echo 'STM32L562E-DK board post process';"
                                           "%(ci_build_root_dir)s/spe/api_ns/postbuild.sh;"
                                           "pushd %(ci_build_root_dir)s/spe/api_ns;"
@@ -233,7 +248,12 @@ _common_tfm_builder_cfg = {
                            "%(ci_build_root_dir)s/spe/bin/"
                            "bl2.bin",
                            "%(ci_build_root_dir)s/spe/bin/"
-                           "tfm_sign.bin"]
+                           "tfm_sign.bin"],
+                           "arm/rse/tc": [
+                           "%(ci_build_root_dir)s/spe/bin/rom.bin",
+                           "%(ci_build_root_dir)s/spe/bin/encrypted_cm_provisioning_bundle_0.bin",
+                           "%(ci_build_root_dir)s/spe/bin/encrypted_dm_provisioning_bundle_0.bin",
+                           "%(ci_build_root_dir)s/spe/bin/host_flash.bin"]
                            }
 }
 
@@ -350,12 +370,12 @@ config_pp_test = {"seed_params": {
                     # MUSCA_S1_GCC_1_RegBL2_RegS_RegNS_Release_BL2_CC_DRIVER_PSA
                     ("arm/musca_s1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CC_DRIVER_PSA"),
-                    # RSE_TC_GCC_2_Release_BL2_PSOFF
+                    # RSE_TC_GCC_2_RegS_RegNS_Release_BL2
                     ("arm/rse/tc", "GCC_10_3", "2",
-                     "RegS, RegNS", "OFF", "Release", True, "", "PSOFF"),
-                    # RSE_RDFremont_GCC_2_Release_BL2_NSOFF_PSOFF_CFG0
+                     "RegS, RegNS", "OFF", "Release", True, "", ""),
+                    # RSE_RDFremont_GCC_2_Release_BL2_NSOFF_CFG0
                     ("arm/rse/rdfremont", "GCC_10_3", "2",
-                     "OFF", "OFF", "Release", True, "", "NSOFF, PSOFF, CFG0"),
+                     "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
                     # stm32l562e_dk_ARMCLANG_1_RegS_RegNS_Release_BL2_CRYPTO_OFF
                     ("stm/stm32l562e_dk", "ARMCLANG_6_21", "1",
                      "RegS, RegNS", "OFF", "Release", True, "", "CRYPTO_OFF"),
@@ -896,12 +916,12 @@ config_rse = {"seed_params": {
                 "tfm_platform":     ["arm/rse/tc"],
                 "compiler":         ["GCC_10_3"],
                 "isolation_level":  ["1", "2"],
-                "test_regression":  ["OFF", "RegBL2, RegS, RegNS"],
+                "test_regression":  ["OFF", "RegS, RegNS"],
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["PSOFF"]
+                "extra_params":     [""]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + [
@@ -920,7 +940,7 @@ config_rse_rdfremont = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["NSOFF, PSOFF, CFG0"]
+                "extra_params":     ["NSOFF, CFG0"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []

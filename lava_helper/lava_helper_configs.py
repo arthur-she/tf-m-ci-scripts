@@ -8,7 +8,7 @@ from __future__ import print_function
 
 __copyright__ = """
 /*
- * Copyright (c) 2018-2023, Arm Limited. All rights reserved.
+ * Copyright (c) 2018-2024, Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -206,6 +206,27 @@ fvp_mps2_an519_bl2 = {
     }
 }
 
+# RSE on TC FVP
+fvp_rse_tc = {
+    "templ": "fvp_rse_tc.jinja2",
+    "job_name": "fvp_rse_tc",
+    "device_type": "fvp",
+    "job_timeout": 15,
+    "action_timeout": 10,
+    "monitor_timeout": 15,
+    "poweroff_timeout": 1,
+    "platforms": {"arm/rse/tc": ""},
+    "binaries": {
+        "rom": "spe/bin/rom.bin",
+        "cm_provisioning_bundle": "spe/bin/encrypted_cm_provisioning_bundle_0.bin",
+        "dm_provisioning_bundle": "spe/bin/encrypted_dm_provisioning_bundle_0.bin",
+        "flash": "spe/bin/host_flash.bin"
+    },
+    "monitors": {
+        'no_reg_tests': no_reg_tests_monitors,
+        'reg_tests': reg_tests_monitors,
+    }
+}
 
 # QEMU for AN521 with BL2 bootloader
 qemu_mps2_bl2 = {
@@ -349,6 +370,7 @@ lava_gen_config_map_bl2 = {
     "fvp_mps2_an521_bl2": fvp_mps2_an521_bl2,
     "fvp_mps2_an519_bl2": fvp_mps2_an519_bl2,
     "fvp_corstone1000": fvp_corstone1000,
+    "fvp_rse_tc": fvp_rse_tc,
     "qemu_mps2_bl2": qemu_mps2_bl2,
     "musca_b1": musca_b1_bl2,
     "stm32l562e_dk": stm32l562e_dk,
