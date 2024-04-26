@@ -399,9 +399,8 @@ class TFM_Build_Manager(structuredTask):
         # these also need to be substituted
         overwrite_params["extra_params"] = self.map_params(i.extra_params, mapExtraParams) % overwrite_params
 
-        # Print more cmake command details to debug issue in Isolation Level 3
-        if i.isolation_level == "3":
-            overwrite_params["extra_params"] += " -DCMAKE_VERBOSE_MAKEFILE=ON"
+        # Print more cmake command details to debug any issues
+        overwrite_params["extra_params"] += " -DCMAKE_VERBOSE_MAKEFILE=ON"
 
         if i.test_psa_api == "IPC":
             overwrite_params["test_psa_api"] += " -DINCLUDE_PANIC_TESTS=1"
