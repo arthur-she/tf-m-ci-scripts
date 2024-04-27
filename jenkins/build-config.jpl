@@ -41,6 +41,9 @@ timestamps {
         sh "tf-m-ci-scripts/run-build.sh"
       }
       stage("Post") {
+        // Temporary, for debugging https://linaro.atlassian.net/browse/TFC-615
+        archiveArtifacts artifacts: 'ci_build/**', allowEmptyArchive: true
+
         archiveArtifacts 'ci_build/spe/bin/**'
         archiveArtifacts 'ci_build/spe/api_ns/bin/**'
         archiveArtifacts 'ci_build/spe/api_ns/interface/**'
