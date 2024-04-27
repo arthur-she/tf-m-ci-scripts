@@ -66,6 +66,7 @@ timestamps {
         }
       }
     } catch (Exception e) {
+      println("Archiving all build files due to build error (to allow investigate it)")
       archiveArtifacts artifacts: 'ci_build/**', allowEmptyArchive: true
       manager.buildFailure()
       verify = -1
