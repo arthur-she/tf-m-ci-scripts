@@ -429,7 +429,6 @@ class TFM_Build_Manager(structuredTask):
         if "NSOFF" in i.extra_params:
             build_cfg["nspe_config_template"] = ""
             build_cfg["nspe_cmake_build"] = ""
-            build_cfg["post_build"]=""
 
         return build_cfg
 
