@@ -879,6 +879,21 @@ config_corstone310 = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_corstone310_pacbti = {"seed_params": {
+                "tfm_platform":     ["arm/mps3/corstone310/fvp"],
+                "compiler":         ["GCC_13_2"],
+                "isolation_level":  ["1"],
+                "test_regression":  ["OFF"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Debug"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     ["PACBTI_STD"]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 config_corstone315 = {"seed_params": {
                 "tfm_platform":     ["arm/mps4/corstone315"],
                 "compiler":         ["GCC_10_3", "ARMCLANG_6_21"],
@@ -1242,6 +1257,7 @@ _builtin_configs = {
                     "nightly_cs300_an552": config_cs300_an552,
                     "nightly_cs300_fvp": config_cs300_fvp,
                     "nightly_corstone310": config_corstone310,
+                    "nightly_corstone310_pacbti" : config_corstone310_pacbti,
                     "nightly_corstone315": config_corstone315,
                     "nightly_corstone1000": config_corstone1000,
                     "nightly_rse": config_rse,
