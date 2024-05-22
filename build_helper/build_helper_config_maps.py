@@ -27,6 +27,7 @@ mapPlatform = {
     "arm/mps3/corstone310/fvp"           : "corstone310",
     "arm/rse/tc"                         : "RSE_TC",
     "arm/rse/rdfremont"                  : "RSE_RDFremont",
+    "arm/rse/automotive_rd/rd1ae"        : "RSE_RD1AE",
     "cypress/psoc64"                     : "psoc64",
     "lairdconnectivity/bl5340_dvk_cpuapp": "BL5340",
     "nordic_nrf/nrf5340dk_nrf5340_cpuapp": "nrf5340dk",
