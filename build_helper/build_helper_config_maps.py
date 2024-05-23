@@ -98,6 +98,10 @@ mapExtraParams = {
                       "-DTEST_S_IPC=OFF "
                       "-DEXTRA_S_TEST_SUITE_PATH=%(codebase_root_dir)s/platform/ext/target/arm/corstone1000/ci_regression_tests/ "),
 
+    # PAC/BTI Support
+    "PACBTI_STD"   : "-DCONFIG_TFM_BRANCH_PROTECTION_FEAT=BRANCH_PROTECTION_STANDARD",
+    "PACBTI_NONE"  : "-DCONFIG_TFM_BRANCH_PROTECTION_FEAT=BRANCH_PROTECTION_NONE",
+
     # Platform Variants Support
     "CFG0"         : "-DTFM_PLATFORM_VARIANT=0",
 

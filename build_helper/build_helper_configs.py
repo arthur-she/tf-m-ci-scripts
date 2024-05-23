@@ -325,6 +325,9 @@ config_pp_test = {"seed_params": {
                     # CS300_FVP_GNUARM_2_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/mps3/corstone300/fvp", "GCC_10_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
+                    # CS310_FVP_GNUARM_1_Debug_BL2_PACBTI_STD
+                    ("arm/mps3/corstone300/fvp", "GCC_13_2", "1",
+                     "OFF", "OFF", "Debug", True, "", "PACBTI_STD"),
                     # corstone1000_GCC_2_RegS_Debug_BL2_NSOFF_CS1K_TEST_FVP
                     ("arm/corstone1000", "GCC_10_3", "2",
                      "RegS", "OFF", "Debug", True, "", "NSOFF, CS1K_TEST, FVP"),
