@@ -1,5 +1,5 @@
 {#------------------------------------------------------------------------------
-# Copyright (c) 2018-2023, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2018-2024, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -20,10 +20,14 @@ actions:
     namespace: docker
     to: fvp
     images:
-      app:
-        url: {{ application_url }}
-      data:
-        url: {{ data_url }}
+{% for name, img in binaries.items() %}
+      {{ name }}:
+    {% if img.application is defined %}
+        url: {{ data_url_prefix }}/{{ img.application }}
+    {% else %}
+        url: {{ data_url_prefix }}/{{ img.data }}
+    {% endif %}
+{% endfor %}
 {%- if enable_code_coverage %}
       cc:
         url: {{ coverage_trace_plugin }}
@@ -45,8 +49,13 @@ actions:
     use_telnet: False
     arguments:
     -  "--simlimit 900"
-    -  "--application cpu0={APP}"
-    -  "--data cpu0={DATA}@{{ data_bin_offset }}"
+{% for name, img in binaries.items() %}
+    {% if img.application is defined %}
+    -  "--application cpu0={{ '{' ~ name.upper() ~ '}' }}"
+    {% else %}
+    -  "--data cpu0={{ '{' ~ name.upper() ~ '}' }}@{{ img.offset }}"
+    {% endif %}
+{% endfor %}
     -  "--parameter mps3_board.platform_type=1"
     -  "--parameter cpu0.INITSVTOR={{ cpu0_initvtor_s }}"
     -  "--parameter cpu0.semihosting-enable=0"

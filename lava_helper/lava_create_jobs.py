@@ -4,7 +4,7 @@ from __future__ import print_function
 
 __copyright__ = """
 /*
- * Copyright (c) 2020-2022, Arm Limited. All rights reserved.
+ * Copyright (c) 2020-2024, Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -77,22 +77,16 @@ def generate_test_definitions(config, work_dir, user_args):
             "monitors": config['monitors'].get(monitor_name, []),
             "platform": platform,
             "recovery_image_url": recovery_image_url,
-            "data_bin_offset": config.get('data_bin_offset', ''),
             "docker_prefix": vars(user_args).get('docker_prefix', ''),
             "license_variable": vars(user_args).get('license_variable', ''),
             "enable_code_coverage": user_args.enable_code_coverage == "TRUE",
             "coverage_trace_plugin": coverage_trace_plugin,
-            "build_job_url": os.getenv("BUILD_URL"),
             "cpu0_baseline": config.get("cpu0_baseline", 0),
             "cpu0_initvtor_s": config.get("cpu0_initvtor_s", "0x10000000"),
             "psa_api_suite": os.getenv("TEST_PSA_API") if os.getenv("TEST_PSA_API") == "IPC" else "",
+            "binaries": config.get('binaries', []),
+            "data_url_prefix": "{}/artifact/ci_build".format(os.getenv("BUILD_URL"))
         }
-        for binary_type, binary_name in config["binaries"].items():
-            params.update(
-                {
-                    "{}_url".format(binary_type): "{}/artifact/ci_build/{}".format(params["build_job_url"], binary_name)
-                }
-            )
 
         if len(params["monitors"]) == 0:
             break

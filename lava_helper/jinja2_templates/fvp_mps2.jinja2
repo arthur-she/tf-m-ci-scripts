@@ -1,5 +1,5 @@
 {#------------------------------------------------------------------------------
-# Copyright (c) 2018-2022, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2018-2024, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -20,10 +20,14 @@ actions:
     namespace: docker
     to: fvp
     images:
-      app:
-        url: {{ application_url }}
-      data:
-        url: {{ data_url }}
+{% for name, img in binaries.items() %}
+      {{ name }}:
+    {% if img.application is defined %}
+        url: {{ data_url_prefix }}/{{ img.application }}
+    {% else %}
+        url: {{ data_url_prefix }}/{{ img.data }}
+    {% endif %}
+{% endfor %}
 {%- if enable_code_coverage %}
       cc:
         url: {{ coverage_trace_plugin }}
@@ -57,8 +61,13 @@ actions:
     -  "/opt/model/FVP_ARM_Std_Library/FVP_MPS2/FVP_MPS2_AEMv8M"
 {%- endif %}
     -  "--simlimit 900"
-    -  "--application cpu0={APP}"
-    -  "--data cpu0={DATA}@{{ data_bin_offset }}"
+{% for name, img in binaries.items() %}
+    {% if img.application is defined %}
+    -  "--application cpu0={{ '{' ~ name.upper() ~ '}' }}"
+    {% else %}
+    -  "--data cpu0={{ '{' ~ name.upper() ~ '}' }}@{{ img.offset }}"
+    {% endif %}
+{% endfor %}
     -  "--parameter fvp_mps2.platform_type=2"
     -  "--parameter cpu0.baseline={{ cpu0_baseline }}"
     -  "--parameter cpu0.INITVTOR_S={{ cpu0_initvtor_s }}"

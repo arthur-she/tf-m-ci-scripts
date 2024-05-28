@@ -1,5 +1,5 @@
 {#------------------------------------------------------------------------------
-# Copyright (c) 2019-2022, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2019-2024, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -7,8 +7,11 @@
 actions:
 - deploy:
     images:
-      mcuboot: {image_arg: '-device loader,file={mcuboot},addr=0x10000000', url: '{{ bootloader_url }}'}
-      tfm: {image_arg: '-device loader,file={tfm},addr=0x10080000', url: '{{ firmware_url }}'}
+{% for name, img in binaries.items() %}
+      {{ name }}:
+        image_arg: "{{ '-device loader,file={' ~ name ~ '},addr=' ~ img.offset }}"
+        url: {{ data_url_prefix }}/{{ img.data }}
+{% endfor %}
     to: tmpfs
 - boot:
     docker: {binary: /usr/bin/qemu-system-arm, image: 'trustedfirmware/ci-amd64-tf-m-qemu-debian:bullseye'}

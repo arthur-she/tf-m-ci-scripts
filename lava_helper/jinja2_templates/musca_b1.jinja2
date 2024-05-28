@@ -1,5 +1,5 @@
 {#------------------------------------------------------------------------------
-# Copyright (c) 2020-2022, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2020-2024, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -12,8 +12,10 @@ actions:
           minutes: 12
         to: musca
         images:
-          test_binary:
-            url: {{ firmware_url }}
+{% for name, img in binaries.items() %}
+          {{ name }}:
+            url: {{ data_url_prefix }}/{{ img.data }}
+{% endfor %}
 
     - boot:
         method: musca

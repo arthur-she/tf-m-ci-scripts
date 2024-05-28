@@ -1,5 +1,5 @@
 {#------------------------------------------------------------------------------
-# Copyright (c) 2018-2022, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2018-2024, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -20,10 +20,14 @@ actions:
     namespace: docker
     to: fvp
     images:
-      app:
-        url: {{ application_url }}
-      data:
-        url: {{ data_url }}
+{% for name, img in binaries.items() %}
+      {{ name }}:
+    {% if img.application is defined %}
+        url: {{ data_url_prefix }}/{{ img.application }}
+    {% else %}
+        url: {{ data_url_prefix }}/{{ img.data }}
+    {% endif %}
+{% endfor %}
 - boot:
     failure_retry: 3
     namespace: docker
@@ -40,14 +44,19 @@ actions:
     license_variable: '{{ license_variable }}'
     use_telnet: True
     arguments:
-    -  "-C se.trustedBootROMloader.fname=\"{APP}\""
+{% for name, img in binaries.items() %}
+    {% if img.application is defined %}
+    -  "-C se.trustedBootROMloader.fname=\"{{ '{' ~ name.upper() ~ '}' }}\""
+    {% else %}
+    -  "--data board.flash0={{ '{' ~ name.upper() ~ '}' }}@{{ img.offset }}"
+    {% endif %}
+{% endfor %}
     -  "-C board.flashloader0.fname=\"none\""
     -  "-C board.xnvm_size=64"
     -  "-C se.trustedSRAM_config=6"
     -  "-C se.BootROM_config=\"3\""
     -  "-C board.smsc_91c111.enabled=0"
     -  "-C board.hostbridge.userNetworking=true"
-    -  "--data board.flash0={DATA}@{{ data_bin_offset }}"
     -  "-C diagnostics=4"
     -  "-C disable_visualisation=true"
     -  "-C board.se_flash_size=8192"

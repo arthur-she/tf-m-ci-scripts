@@ -1,5 +1,5 @@
 {#------------------------------------------------------------------------------
-# Copyright (c) 2018-2022, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2018-2024, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -21,10 +21,10 @@ actions:
       recovery_image:
         url: {{ recovery_image_url }}
         compression: gz
-      test_binary_1:
-        url: {{ firmware_url }}
-      test_binary_2:
-        url: {{ bootloader_url }}
+{% for name, img in binaries.items() %}
+      {{ name }}:
+        url: {{ data_url_prefix }}/{{ img.data }}
+{% endfor %}
     namespace: target
 
 - boot:
