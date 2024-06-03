@@ -607,7 +607,7 @@ config_example_vad = {"seed_params": {
                 "cmake_build_type": ["Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["EXAMPLE_VAD"]
+                "extra_params":     ["EXTRAS_EXAMPLE_VAD"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []
@@ -621,8 +621,8 @@ config_example_dma350_clcd = {"seed_params": {
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Release"],
                 "with_bl2":         [True],
-                "profile":          [""],
-                "extra_params":     ["EXAMPLE_DMA350_CLCD"]
+                "profile":          ["profile_medium"],
+                "extra_params":     ["EXTRAS_EXAMPLE_DMA350_CLCD"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []
@@ -632,12 +632,12 @@ config_example_dma350_s = {"seed_params": {
                 "tfm_platform":     ["arm/mps3/corstone310/fvp"],
                 "compiler":         ["GCC_10_3"],
                 "isolation_level":  ["1"],
-                "test_regression":  ["OFF"],
+                "test_regression":  ["RegS"],
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["EXAMPLE_DMA350_S"]
+                "extra_params":     ["EXTRAS_EXAMPLE_DMA350_S"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []
@@ -647,12 +647,12 @@ config_example_dma350_ns = {"seed_params": {
                 "tfm_platform":     ["arm/mps3/corstone310/fvp"],
                 "compiler":         ["GCC_10_3"],
                 "isolation_level":  ["1"],
-                "test_regression":  ["OFF"],
+                "test_regression":  ["RegS, RegNS"],
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["EXAMPLE_DMA350_NS"]
+                "extra_params":     ["EXTRAS_EXAMPLE_DMA350_NS"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []
@@ -666,8 +666,8 @@ config_example_dma350_trigger = {"seed_params": {
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Release"],
                 "with_bl2":         [True],
-                "profile":          [""],
-                "extra_params":     ["EXAMPLE_DMA350_TRIGGER"]
+                "profile":          ["profile_medium"],
+                "extra_params":     ["EXTRAS_EXAMPLE_DMA350_TRIGGER"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []

@@ -9,7 +9,7 @@ from json import tool
 
 __copyright__ = """
 /*
- * Copyright (c) 2018-2022, Arm Limited. All rights reserved.
+ * Copyright (c) 2018-2024, Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -416,6 +416,8 @@ class TFM_Build_Manager(structuredTask):
         elif "PROF" in i.extra_params:
             overwrite_params["spe_root_dir"] = build_cfg["codebase_root_dir"] + "/../tf-m-tests/tests_reg/spe"
             overwrite_params["nspe_root_dir"] = build_cfg["codebase_root_dir"] + "/../tf-m-tests/tests_reg"
+        elif "EXTRAS_" in i.extra_params and "OFF" == i.test_regression:
+            overwrite_params["nspe_root_dir"] = build_cfg["codebase_root_dir"] + "/../tf-m-extras/" + mapTfmExtrasExamplePaths[i.extra_params]
 
         # Overwrite commands for building TF-M image
         build_cfg["spe_config_template"] %= overwrite_params

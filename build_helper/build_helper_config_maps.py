@@ -108,20 +108,29 @@ mapExtraParams = {
     "PROF"         : ("-DTFM_EXTRA_CONFIG_PATH=%(codebase_root_dir)s/../tf-m-tools/profiling/profiling_cases/prof_psa_client_api/partitions/config_spe.cmake "),
 
     # tf-m-extras example support
-    "EXAMPLE_VAD"             : ("-DNS_EVALUATION_APP_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/vad_an552/ns_side "
-                                "-DTFM_EXTRA_PARTITION_PATHS=%(codebase_root_dir)s/../tf-m-extras/partitions/vad_an552_sp/ "
-                                "-DTFM_EXTRA_MANIFEST_LIST_FILES=%(codebase_root_dir)s/../tf-m-extras/partitions/vad_an552_sp/extra_manifest_list.yaml "
-                                "-DPROJECT_CONFIG_HEADER_FILE=%(codebase_root_dir)s/../tf-m-extras/examples/vad_an552/ns_side/project_config.h "
-                                "-DTFM_PARTITION_FIRMWARE_UPDATE=ON -DMCUBOOT_DATA_SHARING=ON "
-                                "-DMCUBOOT_UPGRADE_STRATEGY=SWAP_USING_SCRATCH "
-                                "-DMCUBOOT_IMAGE_NUMBER=1 -DMCUBOOT_SIGNATURE_KEY_LEN=2048 "
-                                "-DCONFIG_TFM_ENABLE_MVE=ON -DCONFIG_TFM_SPM_BACKEND=IPC "
-                                "-DPLATFORM_HAS_FIRMWARE_UPDATE_SUPPORT=ON -DTFM_PARTITION_PLATFORM=ON "
-                                "-DTFM_PARTITION_CRYPTO=ON -DTFM_PARTITION_INTERNAL_TRUSTED_STORAGE=ON "
-                                "-DTFM_PARTITION_PROTECTED_STORAGE=ON  -DMCUBOOT_CONFIRM_IMAGE=ON "),
-    "EXAMPLE_DMA350_TRIGGER"  : ("-DNS_EVALUATION_APP_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/corstone310_fvp_dma/triggering_example "),
-    "EXAMPLE_DMA350_CLCD"     : ("-DDEFAULT_NS_SCATTER=OFF -DPLATFORM_SVC_HANDLERS=ON "
-                                "-DNS_EVALUATION_APP_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/corstone310_fvp_dma/clcd_example "),
-    "EXAMPLE_DMA350_S"        : "-DEXTRA_S_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/corstone310_fvp_dma/dma350_s",
-    "EXAMPLE_DMA350_NS"       : "-DEXTRA_NS_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/corstone310_fvp_dma/dma350_ns"
+    "EXTRAS_EXAMPLE_VAD"    : ("-DNS_EVALUATION_APP_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/vad_an552/ns_side "
+                               "-DTFM_EXTRA_PARTITION_PATHS=%(codebase_root_dir)s/../tf-m-extras/partitions/vad_an552_sp/ "
+                               "-DTFM_EXTRA_MANIFEST_LIST_FILES=%(codebase_root_dir)s/../tf-m-extras/partitions/vad_an552_sp/extra_manifest_list.yaml "
+                               "-DPROJECT_CONFIG_HEADER_FILE=%(codebase_root_dir)s/../tf-m-extras/examples/vad_an552/ns_side/project_config.h "
+                               "-DTFM_PARTITION_FIRMWARE_UPDATE=ON -DMCUBOOT_DATA_SHARING=ON "
+                               "-DMCUBOOT_UPGRADE_STRATEGY=SWAP_USING_SCRATCH "
+                               "-DMCUBOOT_IMAGE_NUMBER=1 -DMCUBOOT_SIGNATURE_KEY_LEN=2048 "
+                               "-DCONFIG_TFM_ENABLE_MVE=ON -DCONFIG_TFM_SPM_BACKEND=IPC "
+                               "-DPLATFORM_HAS_FIRMWARE_UPDATE_SUPPORT=ON -DTFM_PARTITION_PLATFORM=ON "
+                               "-DTFM_PARTITION_CRYPTO=ON -DTFM_PARTITION_INTERNAL_TRUSTED_STORAGE=ON "
+                               "-DTFM_PARTITION_PROTECTED_STORAGE=ON  -DMCUBOOT_CONFIRM_IMAGE=ON "),
+
+    "EXTRAS_EXAMPLE_DMA350_TRIGGER" : "",
+    "EXTRAS_EXAMPLE_DMA350_CLCD"    : "-DDEFAULT_NS_SCATTER=OFF -DPLATFORM_SVC_HANDLERS=ON ",
+
+    "EXTRAS_EXAMPLE_DMA350_S"       : "-DEXTRA_S_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/corstone310_fvp_dma/dma350_s",
+    "EXTRAS_EXAMPLE_DMA350_NS"      : "-DEXTRA_NS_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/corstone310_fvp_dma/dma350_ns"
+}
+
+mapTfmExtrasExamplePaths = {
+    "EXTRAS_EXAMPLE_VAD"            : "examples/vad_an552/ns_side",
+    "EXTRAS_EXAMPLE_DMA350_TRIGGER" : "examples/corstone310_fvp_dma/triggering_example",
+    "EXTRAS_EXAMPLE_DMA350_CLCD"    : "examples/corstone310_fvp_dma/clcd_example",
+    "EXTRAS_EXAMPLE_DMA350_S"       : "examples/corstone310_fvp_dma/dma350_s",
+    "EXTRAS_EXAMPLE_DMA350_NS"      : "examples/corstone310_fvp_dma/dma350_ns"
 }
