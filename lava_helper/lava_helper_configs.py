@@ -258,8 +258,8 @@ musca_b1_bl2 = {
     "device_type": "musca-b",
     "job_timeout": 40,
     "action_timeout": 20,
-    "monitor_timeout": 30,
-    "poweroff_timeout": 40,
+    "monitor_timeout": 10,
+    "poweroff_timeout": 5,
     "platforms": {"arm/musca_b1": ""},
     "binaries": {
         "firmware": "spe/bin/tfm.hex",
