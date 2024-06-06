@@ -370,9 +370,9 @@ config_pp_test = {"seed_params": {
                     # MUSCA_S1_GCC_1_RegBL2_RegS_RegNS_Release_BL2_CC_DRIVER_PSA
                     ("arm/musca_s1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CC_DRIVER_PSA"),
-                    # RSE_TC_GCC_2_RegS_RegNS_Release_BL2
+                    # RSE_TC_GCC_2_RegS_RegNS_Debug_BL2
                     ("arm/rse/tc", "GCC_10_3", "2",
-                     "RegS, RegNS", "OFF", "Release", True, "", ""),
+                     "RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # RSE_RDFremont_GCC_2_Release_BL2_NSOFF_CFG0
                     ("arm/rse/rdfremont", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
