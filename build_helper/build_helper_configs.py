@@ -115,10 +115,18 @@ _common_tfm_builder_cfg = {
                                     "-o %(ci_build_root_dir)s/"
                                     "spe/bin/tfm.hex -Intel; "
                                     "fi;"),
-                    "arm/rse/tc/tc2": ("srec_cat "
+                    "arm/rse/tc/tc2": ("if [ -f \"%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin\" ]; then "
+                                   "srec_cat "
+                                   "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
+                                   "%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin -Binary -offset 0x10000 "
+                                   "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
+                                   "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
+                                   "else "
+                                   "srec_cat "
                                    "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
                                    "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
                                    "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
+                                   "fi;"
                                    "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fiptool https://downloads.trustedfirmware.org/tf-m/rse/tc/fiptool;"
                                    "chmod 755 fiptool;"
                                    "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fip.bin https://downloads.trustedfirmware.org/tf-m/rse/tc/fip.bin;"
@@ -355,6 +363,9 @@ config_pp_test = {"seed_params": {
                     # RSE_TC2_GCC_2_RegS_RegNS_Debug_BL2
                     ("arm/rse/tc/tc2", "GCC_10_3", "2",
                      "RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # RSE_TC_GCC_2_RegBL1_1_RegBL1_2_Debug_BL2
+                    ("arm/rse/tc/tc2", "GCC_10_3", "2",
+                     "RegBL1_1", "OFF", "Debug", True, "", ""),
                     # RSE_RDFremont_GCC_2_Release_BL2_NSOFF_CFG0
                     ("arm/rse/rdfremont", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),

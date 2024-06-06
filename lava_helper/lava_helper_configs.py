@@ -65,6 +65,22 @@ ns_reg_tests_monitors_cfg = {
     'fixup': {"pass": "PASSED", "fail": "FAILED", "skip": "SKIPPED"},
 }
 
+bl1_1_reg_tests_monitors_cfg = {
+    'name': 'BL1_1_regression_suite',
+    'start': 'Execute test suites for the BL1_1 area',
+    'end': 'End of BL1_1 test suites',
+    'pattern': r"TEST: (?P<test_case_id>.+?) - (?P<result>(PASSED|FAILED|SKIPPED))",
+    'fixup': {"pass": "PASSED", "fail": "FAILED", "skip": "SKIPPED"},
+}
+
+bl1_2_reg_tests_monitors_cfg = {
+    'name': 'BL1_2_regression_suite',
+    'start': 'Execute test suites for the BL1_2 area',
+    'end': 'End of BL1_2 test suites',
+    'pattern': r"TEST: (?P<test_case_id>.+?) - (?P<result>(PASSED|FAILED|SKIPPED))",
+    'fixup': {"pass": "PASSED", "fail": "FAILED", "skip": "SKIPPED"},
+}
+
 arch_tests_monitors_cfg = {
     'name': 'psa_api_suite',
     'start': 'Running..',
@@ -81,7 +97,9 @@ no_reg_tests_monitors = [no_reg_tests_monitors_cfg]
 reg_tests_monitors = [] + \
                      ([mcuboot_tests_monitor_cfg] if "RegBL2" in os.getenv("TEST_REGRESSION") and os.getenv("BL2") == "True" else []) + \
                      ([s_reg_tests_monitors_cfg] if "RegS" in os.getenv("TEST_REGRESSION") else []) + \
-                     ([ns_reg_tests_monitors_cfg] if "RegNS" in os.getenv("TEST_REGRESSION") else [])
+                     ([ns_reg_tests_monitors_cfg] if "RegNS" in os.getenv("TEST_REGRESSION") else []) + \
+                     ([bl1_1_reg_tests_monitors_cfg] if "RegBL1_1" in os.getenv("TEST_REGRESSION") else []) + \
+                     ([bl1_2_reg_tests_monitors_cfg] if "RegBL1_2" in os.getenv("TEST_REGRESSION") else [])
 
 arch_tests_monitors = [arch_tests_monitors_cfg]
 

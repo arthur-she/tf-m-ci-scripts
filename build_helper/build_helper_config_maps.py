@@ -47,6 +47,8 @@ mapRegTest = {
     "RegBL2"    : "-DTEST_BL2=ON ",
     "RegS"      : "-DTEST_S=ON ",
     "RegNS"     : "-DTEST_NS=ON -DTEST_NS_FLIH_IRQ=OFF ",
+    "RegBL1_1"  : "-DTEST_BL1_1=ON ",
+    "RegBL1_2"  : "-DTEST_BL1_2=ON ",
 }
 
 # Map PSA Arch Tests to short format
