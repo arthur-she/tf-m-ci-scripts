@@ -374,7 +374,7 @@ lava_gen_config_map_bl2 = {
     "qemu_mps2_bl2": qemu_mps2_bl2,
     "musca_b1": musca_b1_bl2,
     "stm32l562e_dk": stm32l562e_dk,
-# disable platform temporarily being unstable    "b_u585i_iot02a": b_u585i_iot02a,
+    "b_u585i_iot02a": b_u585i_iot02a,
     "stm32h573i_dk": stm32h573i_dk
 }
 
