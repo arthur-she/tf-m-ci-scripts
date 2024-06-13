@@ -115,7 +115,7 @@ _common_tfm_builder_cfg = {
                                     "-o %(ci_build_root_dir)s/"
                                     "spe/bin/tfm.hex -Intel; "
                                     "fi;"),
-                    "arm/rse/tc": ("srec_cat "
+                    "arm/rse/tc/tc2": ("srec_cat "
                                    "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
                                    "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
                                    "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
@@ -225,7 +225,7 @@ _common_tfm_builder_cfg = {
                            "bl2.bin",
                            "%(ci_build_root_dir)s/spe/bin/"
                            "tfm_sign.bin"],
-                           "arm/rse/tc": [
+                           "arm/rse/tc/tc2": [
                            "%(ci_build_root_dir)s/spe/bin/rom.bin",
                            "%(ci_build_root_dir)s/spe/bin/encrypted_cm_provisioning_bundle_0.bin",
                            "%(ci_build_root_dir)s/spe/bin/encrypted_dm_provisioning_bundle_0.bin",
@@ -346,8 +346,8 @@ config_pp_test = {"seed_params": {
                     # MUSCA_S1_GCC_1_RegBL2_RegS_RegNS_Release_BL2_CC_DRIVER_PSA
                     ("arm/musca_s1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CC_DRIVER_PSA"),
-                    # RSE_TC_GCC_2_RegS_RegNS_Debug_BL2
-                    ("arm/rse/tc", "GCC_10_3", "2",
+                    # RSE_TC2_GCC_2_RegS_RegNS_Debug_BL2
+                    ("arm/rse/tc/tc2", "GCC_10_3", "2",
                      "RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # RSE_RDFremont_GCC_2_Release_BL2_NSOFF_CFG0
                     ("arm/rse/rdfremont", "GCC_10_3", "2",
@@ -892,7 +892,7 @@ config_corstone315 = {"seed_params": {
                 }
 
 config_rse = {"seed_params": {
-                "tfm_platform":     ["arm/rse/tc"],
+                "tfm_platform":     ["arm/rse/tc/tc2"],
                 "compiler":         ["GCC_10_3"],
                 "isolation_level":  ["1", "2"],
                 "test_regression":  ["OFF", "RegS, RegNS"],
@@ -905,7 +905,7 @@ config_rse = {"seed_params": {
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + [
                     # BL2 is too large for RSE in Debug builds with tests
-                    ("arm/rse/tc", "GCC_10_3", "*", "RegBL2, RegS, RegNS", "*",
+                    ("arm/rse/tc/tc2", "GCC_10_3", "*", "RegBL2, RegS, RegNS", "*",
                      "Debug", True, "*", "*"),
                 ]
                 }
