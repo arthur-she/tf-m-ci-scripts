@@ -33,7 +33,7 @@ actions:
     namespace: docker
     method: fvp
     docker:
-      name: {{ docker_prefix }}/fvp:fvp_tc2_0.0_8260_linux64
+      name: {{ docker_prefix }}/fvp:fvp_tc2_0.0_8294_linux64
       local: true
     prompts:
     - 'root@lava '
@@ -44,17 +44,16 @@ actions:
     license_variable: '{{ license_variable }}'
     use_telnet: True
     arguments:
-    -  "-M 1"
     -  "--simlimit 900"
-    -  "-C css.rss.rom.raw_image={ROM}"
-    -  "--data css.rss.sram0={CM_PROVISIONING_BUNDLE}@0x400"
-    -  "--data css.rss.sram1={DM_PROVISIONING_BUNDLE}@0x0"
+    -  "-C css.rse.rom.raw_image={ROM}"
+    -  "--data css.rse.sram0={CM_PROVISIONING_BUNDLE}@0x400"
+    -  "--data css.rse.sram1={DM_PROVISIONING_BUNDLE}@0x0"
     -  "-C board.flashloader0.fname={FLASH}"
     -  "-C displayController=2"
-    -  "-C css.rss.sic.SIC_AUTH_ENABLE=1"
-    -  "-C css.rss.sic.SIC_DECRYPT_ENABLE=1"
-    -  "-C css.rss.VMADDRWIDTH=16"
-    -  "-C css.rss.intchecker.ICBC_RESET_VALUE=0x0000011B"
+    -  "-C css.rse.sic.SIC_AUTH_ENABLE=1"
+    -  "-C css.rse.sic.SIC_DECRYPT_ENABLE=1"
+    -  "-C css.rse.VMADDRWIDTH=16"
+    -  "-C css.rse.intchecker.ICBC_RESET_VALUE=0x0000011B"
     -  "-C soc.pl011_uart1.shutdown_on_eot=1"
     -  "-C disable_visualisation=1"
 
