@@ -20,14 +20,10 @@ actions:
     namespace: docker
     to: fvp
     images:
-      rom:
-        url: {{ rom_url }}
-      cm_provisioning_bundle:
-        url: {{ cm_provisioning_bundle_url }}
-      dm_provisioning_bundle:
-        url: {{ dm_provisioning_bundle_url }}
-      flash:
-        url: {{ flash_url }}
+{% for name, img in binaries.items() %}
+      {{ name }}:
+        url: {{ data_url_prefix }}/{{ img.data }}
+{% endfor %}
 - boot:
     failure_retry: 3
     namespace: docker

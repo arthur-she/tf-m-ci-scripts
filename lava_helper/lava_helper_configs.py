@@ -277,10 +277,18 @@ fvp_rse_tc = {
     "poweroff_timeout": 1,
     "platforms": {"arm/rse/tc": ""},
     "binaries": {
-        "rom": "spe/bin/rom.bin",
-        "cm_provisioning_bundle": "spe/bin/encrypted_cm_provisioning_bundle_0.bin",
-        "dm_provisioning_bundle": "spe/bin/encrypted_dm_provisioning_bundle_0.bin",
-        "flash": "spe/bin/host_flash.bin"
+        "rom": {
+            "data": "spe/bin/rom.bin"
+        },
+        "cm_provisioning_bundle": {
+            "data": "spe/bin/encrypted_cm_provisioning_bundle_0.bin"
+        },
+        "dm_provisioning_bundle": {
+            "data": "spe/bin/encrypted_dm_provisioning_bundle_0.bin"
+        },
+        "flash": {
+            "data": "spe/bin/host_flash.bin"
+        }
     },
     "monitors": {
         'no_reg_tests': no_reg_tests_monitors,
