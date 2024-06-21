@@ -681,7 +681,7 @@ config_misra = {"seed_params": {
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Debug"],
                 "with_bl2":         [True],
-                "profile":          ["profile_small", "profile_medium_arotless"],
+                "profile":          ["profile_medium_arotless"],
                 "extra_params":     ["PSOFF"]
                 },
                 "common_params": _common_tfm_builder_cfg,
