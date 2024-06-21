@@ -331,6 +331,9 @@ config_pp_test = {"seed_params": {
                     # corstone1000_GCC_2_RegS_Debug_BL2_NSOFF_CS1K_TEST_FVP
                     ("arm/corstone1000", "GCC_10_3", "2",
                      "RegS", "OFF", "Debug", True, "", "NSOFF, CS1K_TEST, FVP"),
+                    # corstone315_ARMCLANG_1_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps4/corstone315", "ARMCLANG_6_21", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # MUSCA_B1_GCC_1_RegBL2_RegS_RegNS_Minsizerel_BL2
                     ("arm/musca_b1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "", ""),
