@@ -81,6 +81,7 @@ def generate_test_definitions(config, work_dir, user_args):
             "license_variable": vars(user_args).get('license_variable', ''),
             "enable_code_coverage": user_args.enable_code_coverage == "TRUE",
             "coverage_trace_plugin": coverage_trace_plugin,
+            "build_job_url": os.getenv("BUILD_URL"),
             "cpu0_baseline": config.get("cpu0_baseline", 0),
             "cpu0_initvtor_s": config.get("cpu0_initvtor_s", "0x10000000"),
             "psa_api_suite": os.getenv("TEST_PSA_API") if os.getenv("TEST_PSA_API") == "IPC" else "",
