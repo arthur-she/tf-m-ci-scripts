@@ -22,7 +22,7 @@ timestamps {
     stage("Init") {
       cleanWs()
       dir("tf-m-ci-scripts") {
-        checkout([$class: 'GitSCM', branches: [[name: '$CI_SCRIPTS_BRANCH']], userRemoteConfigs: [[credentialsId: 'GIT_SSH_KEY', url: '$CI_SCRIPTS_REPO']]])
+        tfgit.checkout_ci_scripts()
         sh "git rev-parse --short HEAD"
         // Clone TF-M repositories so share folder can be reused by downstream jobs
         sh "./clone.sh"

@@ -6,6 +6,8 @@
 //
 //-------------------------------------------------------------------------------
 
+@Library('trustedfirmware') _
+
 
 def trigger(job_name) {
   return {
@@ -39,7 +41,7 @@ timestamps {
     stage("Init") {
       cleanWs()
       dir("tf-m-ci-scripts") {
-        checkout([$class: 'GitSCM', branches: [[name: '$CI_SCRIPTS_BRANCH']], userRemoteConfigs: [[credentialsId: 'GIT_SSH_KEY', url: '$CI_SCRIPTS_REPO']]])
+        tfgit.checkout_ci_scripts()
         // Clone TF-M repositories so share folder can be reused by downstream jobs
         sh "./clone.sh"
       }

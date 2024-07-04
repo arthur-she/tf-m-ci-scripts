@@ -6,6 +6,9 @@
 //
 //-------------------------------------------------------------------------------
 
+@Library('trustedfirmware') _
+
+
 @NonCPS
 def isPerPatchJob() {
   def upstream_job = manager.build.getAction(hudson.model.CauseAction.class).getCauses()[0]
@@ -64,7 +67,7 @@ timestamps {
     stage("Init") {
       cleanWs()
       dir("tf-m-ci-scripts") {
-        checkout([$class: 'GitSCM', branches: [[name: '$CI_SCRIPTS_BRANCH']], userRemoteConfigs: [[credentialsId: 'GIT_SSH_KEY', url: '$CI_SCRIPTS_REPO']]])
+        tfgit.checkout_ci_scripts()
         withCredentials([string(credentialsId: 'TUXSUITE_TOKEN', variable: 'TUXSUITE_TOKEN')]) {
           sh "jenkins/tuxsuite-setup.sh"
         }
