@@ -17,6 +17,7 @@ def trigger(job_name) {
     params += string(name: 'GERRIT_PATCHSET_REVISION', value: env.GERRIT_PATCHSET_REVISION ?: '')
     params += string(name: 'MBEDTLS_VERSION', value: env.MBEDTLS_VERSION)
     params += string(name: 'CODE_REPO', value: env.CODE_REPO)
+    params += string(name: 'CI_SCRIPTS_REPO', value: env.CI_SCRIPTS_REPO)
     params += string(name: 'CI_SCRIPTS_BRANCH', value: env.CI_SCRIPTS_BRANCH)
     params += string(name: 'MCUBOOT_REFSPEC', value: env.MCUBOOT_REFSPEC)
     params += string(name: 'MCUBOOT_URL', value: env.MCUBOOT_URL)
