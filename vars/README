@@ -1,0 +1,5 @@
+This directory hosts Groovy "procedural" modules of the "trustedfirmware"
+library (while ../src/ hosts Groovy "class" modules).
+
+More info:
+https://www.jenkins.io/doc/book/pipeline/shared-libraries/
