@@ -7,11 +7,24 @@
 
 package org.trustedfirmware
 
+
+def checkout_ci_scripts() {
+    checkout([
+        $class: 'GitSCM',
+        branches: [[name: '$CI_SCRIPTS_BRANCH']],
+        userRemoteConfigs: [[
+            credentialsId: 'GIT_SSH_KEY',
+            url: '$CI_SCRIPTS_REPO',
+            refspec: '+refs/heads/*:refs/remotes/origin/* +refs/changes/*:refs/remotes/origin/refs/changes/*'
+        ]]
+    ])
+}
+
 def verifyStatus(value, verify_name, category) {
   node("docker-amd64-tf-m-jammy") {
     cleanWs()
     dir("tf-m-ci-scripts") {
-      checkout([$class: 'GitSCM', branches: [[name: '$CI_SCRIPTS_BRANCH']], userRemoteConfigs: [[credentialsId: 'GIT_SSH_KEY', url: '$CI_SCRIPTS_REPO']]])
+      checkout_ci_scripts()
     }
     verifyStatusInWorkspace(value, verify_name, category)
   }
@@ -39,7 +52,7 @@ def comment(comment) {
   node("docker-amd64-tf-m-jammy") {
     cleanWs()
     dir("tf-m-ci-scripts") {
-      checkout([$class: 'GitSCM', branches: [[name: '$CI_SCRIPTS_BRANCH']], userRemoteConfigs: [[credentialsId: 'GIT_SSH_KEY', url: '$CI_SCRIPTS_REPO']]])
+      checkout_ci_scripts()
     }
     commentInWorkspace(comment)
   }
