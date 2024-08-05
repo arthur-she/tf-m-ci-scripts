@@ -24,6 +24,7 @@ mapPlatform = {
     "arm/musca_s1"                       : "MUSCA_S1",
     "arm/corstone1000"                   : "corstone1000",
     "arm/mps4/corstone315"               : "corstone315",
+    "arm/mps4/corstone320"               : "corstone320",
     "arm/mps3/corstone310/fvp"           : "corstone310",
     "arm/rse/tc/tc3"                     : "RSE_TC3",
     "arm/rse/rdfremont"                  : "RSE_RDFremont",

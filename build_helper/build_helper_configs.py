@@ -333,6 +333,9 @@ config_pp_test = {"seed_params": {
                     # corstone315_ARMCLANG_1_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps4/corstone315", "ARMCLANG_6_21", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # corstone320_ARMCLANG_1_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps4/corstone320", "ARMCLANG_6_21", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # MUSCA_B1_GCC_1_RegBL2_RegS_RegNS_Minsizerel_BL2
                     ("arm/musca_b1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "", ""),
@@ -911,6 +914,21 @@ config_corstone315 = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_corstone320 = {"seed_params": {
+                "tfm_platform":     ["arm/mps4/corstone320"],
+                "compiler":         ["GCC_10_3", "ARMCLANG_6_21"],
+                "isolation_level":  ["1"],
+                "test_regression":  ["OFF", "RegBL2, RegS, RegNS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Debug", "Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     [""]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 config_rse_tc3 = {"seed_params": {
                 "tfm_platform":     ["arm/rse/tc/tc3"],
                 "compiler":         ["GCC_10_3"],
@@ -1261,6 +1279,7 @@ _builtin_configs = {
                     "nightly_corstone310": config_corstone310,
                     "nightly_corstone310_pacbti" : config_corstone310_pacbti,
                     "nightly_corstone315": config_corstone315,
+                    "nightly_corstone320": config_corstone320,
                     "nightly_corstone1000": config_corstone1000,
                     "nightly_rse_tc3": config_rse_tc3,
                     "nightly_rse_rdfremont": config_rse_rdfremont,
@@ -1288,6 +1307,7 @@ _builtin_configs = {
                     "release_cs300_fvp": config_cs300_fvp,
                     "release_corstone310": config_corstone310,
                     "release_corstone315": config_corstone315,
+                    "release_corstone320": config_corstone320,
                     "release_rse_tc3": config_rse_tc3,
                     "release_rse_rdfremont": config_rse_rdfremont,
                     "release_rse_rd1ae": config_rse_rd1ae,
@@ -1321,6 +1341,7 @@ _builtin_configs = {
                     "musca_s1": config_musca_s1,
                     "corstone310": config_corstone310,
                     "corstone315": config_corstone315,
+                    "corstone320": config_corstone320,
                     "rse_tc3": config_rse_tc3,
                     "rse_rdfremont": config_rse_rdfremont,
                     "rse_rd1ae": config_rse_rd1ae,
