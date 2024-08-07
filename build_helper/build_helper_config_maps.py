@@ -98,6 +98,7 @@ mapExtraParams = {
     "CS1K_TEST"    : ("-DTEST_S_PS=OFF "
                       "-DTEST_S_ITS=OFF "
                       "-DTEST_S_IPC=OFF "
+                      "-DTEST_S_ATTESTATION=OFF "
                       "-DEXTRA_S_TEST_SUITE_PATH=%(codebase_root_dir)s/platform/ext/target/arm/corstone1000/ci_regression_tests/ "),
 
     # PAC/BTI Support
