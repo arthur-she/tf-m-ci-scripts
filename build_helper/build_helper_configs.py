@@ -333,8 +333,8 @@ config_pp_test = {"seed_params": {
                     # CS300_FVP_GNUARM_2_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/mps3/corstone300/fvp", "GCC_10_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
-                    # CS310_FVP_GCC_1_Debug_BL2_PACBTI_STD
-                    ("arm/mps3/corstone310/fvp", "GCC_13_2", "1",
+                    # CS310_FVP_ARMCLANG_1_Debug_BL2_PACBTI_STD
+                    ("arm/mps3/corstone310/fvp", "ARMCLANG_6_21", "1",
                      "OFF", "OFF", "Debug", True, "", "PACBTI_STD"),
                     # corstone1000_GCC_2_RegS_Debug_BL2_NSOFF_CS1K_TEST_FVP
                     ("arm/corstone1000", "GCC_10_3", "2",
@@ -895,7 +895,7 @@ config_corstone310 = {"seed_params": {
 
 config_corstone310_pacbti = {"seed_params": {
                 "tfm_platform":     ["arm/mps3/corstone310/fvp"],
-                "compiler":         ["GCC_13_2"],
+                "compiler":         ["ARMCLANG_6_21"],
                 "isolation_level":  ["1"],
                 "test_regression":  ["OFF"],
                 "test_psa_api":     ["OFF"],
