@@ -279,9 +279,6 @@ config_pp_test = {"seed_params": {
                     # AN519_ARMCLANG_2_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/mps2/an519", "ARMCLANG_6_21", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "",  ""),
-                    # AN519_GCC_1_RegBL2_RegS_RegNS_Debug_BL2
-                    ("arm/mps2/an519", "GCC_10_3", "1",
-                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "",  ""),
                     # AN519_GCC_2_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/mps2/an519", "GCC_10_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
@@ -303,13 +300,10 @@ config_pp_test = {"seed_params": {
                     # AN521_ARMCLANG_3_RegBL2_RegS_RegNS_Minsizerel_BL2
                     ("arm/mps2/an521", "ARMCLANG_6_21", "3",
                      "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "", ""),
-                    # AN521_ARMCLANG_1_RegBL2_RegS_RegNS_Debug_BL2_SMALL_PSOFF
-                    ("arm/mps2/an521", "ARMCLANG_6_21", "1",
-                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "profile_small", "PSOFF"),
                     # AN521_GCC_1_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps2/an521", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
-                    # AN521_GCC_2_Debug_BL2_MEDIUM
+                    # AN521_GCC_2_RegBL2_RegS_RegNS_Debug_BL2_MEDIUM
                     ("arm/mps2/an521", "GCC_10_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "profile_medium", ""),
                     # AN521_GCC_2_RegBL2_RegS_RegNS_Release_BL2
@@ -318,22 +312,19 @@ config_pp_test = {"seed_params": {
                     # AN521_GCC_3_RegBL2_RegS_RegNS_Minsizerel_BL2
                     ("arm/mps2/an521", "GCC_10_3", "3",
                      "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "", ""),
-                    # AN521_GCC_1_RegBL2_RegS_RegNS_Debug_BL2
-                    ("arm/mps2/an521", "GCC_10_3", "1",
-                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # AN521_GCC_1_FF_Release_BL2
                     ("arm/mps2/an521", "GCC_10_3", "1",
                      "OFF", "IPC", "Release", True, "", ""),
                     # AN521_ARMCLANG_2_STORAGE_Debug_BL2
                     ("arm/mps2/an521", "ARMCLANG_6_21", "2",
                      "OFF", "STORAGE", "Debug", True, "", ""),
-                    # CS300_FVP_GNUARM_2_RegBL2_RegS_RegNS_Debug_BL2
+                    # CS300_FVP_GCC_2_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps3/corstone300/fvp", "GCC_10_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
-                    # CS300_FVP_GNUARM_2_RegBL2_RegS_RegNS_Release_BL2
+                    # CS300_FVP_GCC_2_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/mps3/corstone300/fvp", "GCC_10_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
-                    # CS310_FVP_ARMCLANG_1_Debug_BL2_PACBTI_STD
+                    # corstone310_ARMCLANG_1_Debug_BL2_PACBTI_STD
                     ("arm/mps3/corstone310/fvp", "ARMCLANG_6_21", "1",
                      "OFF", "OFF", "Debug", True, "", "PACBTI_STD"),
                     # corstone1000_GCC_2_RegS_Debug_BL2_NSOFF_CS1K_TEST_FVP
@@ -354,16 +345,13 @@ config_pp_test = {"seed_params": {
                     # MUSCA_S1_GCC_2_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/musca_s1", "GCC_10_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
-                    # MUSCA_S1_GCC_1_RegBL2_RegS_RegNS_Debug_BL2
-                    ("arm/musca_s1", "GCC_10_3", "1",
-                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # MUSCA_S1_GCC_1_RegBL2_RegS_RegNS_Release_BL2_CC_DRIVER_PSA
                     ("arm/musca_s1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CC_DRIVER_PSA"),
                     # RSE_TC2_GCC_2_RegS_RegNS_Debug_BL2
                     ("arm/rse/tc/tc2", "GCC_10_3", "2",
                      "RegS, RegNS", "OFF", "Debug", True, "", ""),
-                    # RSE_TC_GCC_2_RegBL1_1_RegBL1_2_Debug_BL2
+                    # RSE_TC2_GCC_2_RegBL1_1_Debug_BL2
                     ("arm/rse/tc/tc2", "GCC_10_3", "2",
                      "RegBL1_1", "OFF", "Debug", True, "", ""),
                     # RSE_RDFremont_GCC_2_Release_BL2_NSOFF_CFG0
@@ -378,7 +366,7 @@ config_pp_test = {"seed_params": {
                     # stm32l562e_dk_GCC_2_Release_BL2_CRYPTO_ON
                     ("stm/stm32l562e_dk", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "CRYPTO_ON"),
-                    # stm32l562e_dk_GCC_3_RegS_RegNS_Release_BL2_CRYPTO_OFF
+                    # stm32l562e_dk_GCC_3_RegBL2_RegS_RegNS_Release_BL2_CRYPTO_OFF
                     ("stm/stm32l562e_dk", "GCC_10_3", "3",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CRYPTO_OFF"),
                     # b_u585i_iot02a_GCC_1_RegS_RegNS_Release_BL2
