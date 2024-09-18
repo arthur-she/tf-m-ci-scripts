@@ -402,6 +402,11 @@ class TFM_Build_Manager(structuredTask):
         # Print more cmake command details to debug any issues
         overwrite_params["extra_params"] += " -DCMAKE_VERBOSE_MAKEFILE=ON"
 
+        if i.tfm_platform == "arm/musca_b1":
+            overwrite_params["extra_params"] += " -DPLATFORM_RAM_FS=ON"
+        if i.tfm_platform == "stm/stm32l562e_dk":
+            overwrite_params["extra_params"] += " -DPLATFORM_RAM_FS=ON"
+
         if i.test_psa_api == "IPC":
             overwrite_params["test_psa_api"] += " -DINCLUDE_PANIC_TESTS=1"
         if i.test_psa_api == "CRYPTO" and "musca" in i.tfm_platform:

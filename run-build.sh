@@ -1,6 +1,6 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
-# Copyright (c) 2020-2023, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2020-2024, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -99,10 +99,6 @@ if [ "$cnt" != "0" ] ; then
     git apply ../tf-m-tests/tests_psa_arch/fetch_repo/*.patch
     cd -
 fi
-
-cd trusted-firmware-m
-git apply ../tf-m-ci-scripts/build_helper/platform_settings/*.patch
-cd -
 
 rm -rf ci_build
 mkdir ci_build
