@@ -993,7 +993,7 @@ config_corstone1000 = {"seed_params": {
                 "isolation_level":  ["1", "2"],
                 "test_regression":  ["RegS"],
                 "test_psa_api":     ["OFF"],
-                "cmake_build_type": ["Debug"],
+                "cmake_build_type": ["Release"],    # previously Debug
                 "with_bl2":         [True],
                 "profile":          [""],
                 "extra_params":     ["NSOFF, CS1K_TEST, FVP", "NSOFF, CS1K_TEST, FPGA"]
