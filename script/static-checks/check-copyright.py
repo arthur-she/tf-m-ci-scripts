@@ -46,6 +46,7 @@ IGNORED_FILES = (
     'interface/include/psa/build_info.h',
     'interface/include/psa/crypto.h',
     'interface/include/psa/crypto_adjust_auto_enabled.h',
+    'interface/include/psa/crypto_adjust_config_dependencies.h',
     'interface/include/psa/crypto_adjust_config_key_pair_types.h',
     'interface/include/psa/crypto_adjust_config_synonyms.h',
     'interface/include/psa/crypto_builtin_composites.h',
