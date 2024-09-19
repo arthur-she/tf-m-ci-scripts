@@ -24,7 +24,7 @@
 ##
 #This is needed for Doxygen for now.
 #!string SKIP_PATHS;
-SKIP_PATHS='./build-\*:./platform/\*:*/tz_\*:./lib/\*:./platform/ext/\*:./bl2/ext/\*:./docs/\*:./tools/\*'
+SKIP_PATHS='./build-\*:./platform/\*:*/tz_\*:./lib/\*:./platform/ext/\*:./bl2/ext/\*:./docs/\*:./tools/\*:./interface/include/mbedtls/\*:./interface/include/psa/\*'
 
 ##@var TFM_DIRECTORY_NAME
 ##@brief Default path to tf-m source code.
