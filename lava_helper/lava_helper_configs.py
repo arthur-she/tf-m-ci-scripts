@@ -284,16 +284,16 @@ fvp_mps2_an519_bl2 = {
     }
 }
 
-# RSE on TC2 FVP
-fvp_rse_tc2 = {
-    "templ": "fvp_rse_tc2.jinja2",
-    "job_name": "fvp_rse_tc2",
+# RSE on TC3 FVP
+fvp_rse_tc3 = {
+    "templ": "fvp_rse_tc3.jinja2",
+    "job_name": "fvp_rse_tc3",
     "device_type": "fvp",
     "job_timeout": 15,
     "action_timeout": 10,
     "monitor_timeout": 15,
     "poweroff_timeout": 1,
-    "platforms": {"arm/rse/tc/tc2": ""},
+    "platforms": {"arm/rse/tc/tc3": ""},
     "binaries": {
         "rom": {
             "data": "spe/bin/rom.bin"
@@ -477,7 +477,7 @@ lava_gen_config_map_bl2 = {
     "fvp_mps2_an519_bl2": fvp_mps2_an519_bl2,
     "fvp_mps4_cs315_bl1_bl2": fvp_mps4_cs315_bl1_bl2,
     "fvp_corstone1000": fvp_corstone1000,
-    "fvp_rse_tc2": fvp_rse_tc2,
+    "fvp_rse_tc3": fvp_rse_tc3,
     "qemu_mps2_bl2": qemu_mps2_bl2,
     "musca_b1": musca_b1_bl2,
     "stm32l562e_dk": stm32l562e_dk,

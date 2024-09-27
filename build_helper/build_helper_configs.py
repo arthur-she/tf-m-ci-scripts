@@ -115,7 +115,7 @@ _common_tfm_builder_cfg = {
                                     "-o %(ci_build_root_dir)s/"
                                     "spe/bin/tfm.hex -Intel; "
                                     "fi;"),
-                    "arm/rse/tc/tc2": ("if [ -f \"%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin\" ]; then "
+                    "arm/rse/tc/tc3": ("if [ -f \"%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin\" ]; then "
                                    "srec_cat "
                                    "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
                                    "%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin -Binary -offset 0x10000 "
@@ -127,15 +127,15 @@ _common_tfm_builder_cfg = {
                                    "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
                                    "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
                                    "fi;"
-                                   "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fiptool https://downloads.trustedfirmware.org/tf-m/rse/tc/fiptool;"
+                                   "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fiptool https://downloads.trustedfirmware.org/tf-m/rse/tc/tc3/fiptool;"
                                    "chmod 755 fiptool;"
-                                   "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fip.bin https://downloads.trustedfirmware.org/tf-m/rse/tc/fip.bin;"
+                                   "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fip.bin https://downloads.trustedfirmware.org/tf-m/rse/tc/tc3/fip.bin;"
                                    "./fiptool update "
-                                   "--align 8192 --rss-bl2 %(ci_build_root_dir)s/spe/bin/bl2_signed.bin "
-                                   "--align 8192 --rss-s %(ci_build_root_dir)s/spe/bin/tfm_s_encrypted.bin "
-                                   "--align 8192 --rss-ns %(ci_build_root_dir)s/nspe/bin/tfm_ns_encrypted.bin "
-                                   "--align 8192 --rss-sic-tables-s %(ci_build_root_dir)s/spe/bin/tfm_s_sic_tables_signed.bin "
-                                   "--align 8192 --rss-sic-tables-ns %(ci_build_root_dir)s/nspe/bin/tfm_ns_sic_tables_signed.bin "
+                                   "--align 8192 --rse-bl2 %(ci_build_root_dir)s/spe/bin/bl2_signed.bin "
+                                   "--align 8192 --rse-s %(ci_build_root_dir)s/spe/bin/tfm_s_encrypted.bin "
+                                   "--align 8192 --rse-ns %(ci_build_root_dir)s/nspe/bin/tfm_ns_encrypted.bin "
+                                   "--align 8192 --rse-sic-tables-s %(ci_build_root_dir)s/spe/bin/tfm_s_sic_tables_signed.bin "
+                                   "--align 8192 --rse-sic-tables-ns %(ci_build_root_dir)s/nspe/bin/tfm_ns_sic_tables_signed.bin "
                                    "--out %(ci_build_root_dir)s/spe/bin/host_flash.bin "
                                    "fip.bin"),
                    "stm/stm32l562e_dk": ("echo 'STM32L562E-DK board post process';"
@@ -233,7 +233,7 @@ _common_tfm_builder_cfg = {
                            "bl2.bin",
                            "%(ci_build_root_dir)s/spe/bin/"
                            "tfm_sign.bin"],
-                           "arm/rse/tc/tc2": [
+                           "arm/rse/tc/tc3": [
                            "%(ci_build_root_dir)s/spe/bin/rom.bin",
                            "%(ci_build_root_dir)s/spe/bin/encrypted_cm_provisioning_bundle_0.bin",
                            "%(ci_build_root_dir)s/spe/bin/encrypted_dm_provisioning_bundle_0.bin",
@@ -348,11 +348,11 @@ config_pp_test = {"seed_params": {
                     # MUSCA_S1_GCC_1_RegBL2_RegS_RegNS_Release_BL2_CC_DRIVER_PSA
                     ("arm/musca_s1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CC_DRIVER_PSA"),
-                    # RSE_TC2_GCC_2_RegS_RegNS_Debug_BL2
-                    ("arm/rse/tc/tc2", "GCC_10_3", "2",
+                    # RSE_TC3_GCC_2_RegS_RegNS_Debug_BL2
+                    ("arm/rse/tc/tc3", "GCC_10_3", "2",
                      "RegS, RegNS", "OFF", "Debug", True, "", ""),
-                    # RSE_TC2_GCC_2_RegBL1_1_Debug_BL2
-                    ("arm/rse/tc/tc2", "GCC_10_3", "2",
+                    # RSE_TC3_GCC_2_RegBL1_1_Debug_BL2
+                    ("arm/rse/tc/tc3", "GCC_10_3", "2",
                      "RegBL1_1", "OFF", "Debug", True, "", ""),
                     # RSE_RDFremont_GCC_2_Release_BL2_NSOFF_CFG0
                     ("arm/rse/rdfremont", "GCC_10_3", "2",
@@ -911,8 +911,8 @@ config_corstone315 = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
-config_rse = {"seed_params": {
-                "tfm_platform":     ["arm/rse/tc/tc2"],
+config_rse_tc3 = {"seed_params": {
+                "tfm_platform":     ["arm/rse/tc/tc3"],
                 "compiler":         ["GCC_10_3"],
                 "isolation_level":  ["1", "2"],
                 "test_regression":  ["OFF", "RegS, RegNS"],
@@ -925,7 +925,7 @@ config_rse = {"seed_params": {
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + [
                     # BL2 is too large for RSE in Debug builds with tests
-                    ("arm/rse/tc/tc2", "GCC_10_3", "*", "RegBL2, RegS, RegNS", "*",
+                    ("arm/rse/tc/tc3", "GCC_10_3", "*", "RegBL2, RegS, RegNS", "*",
                      "Debug", True, "*", "*"),
                 ]
                 }
@@ -1262,7 +1262,7 @@ _builtin_configs = {
                     "nightly_corstone310_pacbti" : config_corstone310_pacbti,
                     "nightly_corstone315": config_corstone315,
                     "nightly_corstone1000": config_corstone1000,
-                    "nightly_rse": config_rse,
+                    "nightly_rse_tc3": config_rse_tc3,
                     "nightly_rse_rdfremont": config_rse_rdfremont,
                     "nightly_rse_rd1ae": config_rse_rd1ae,
                     "nightly_psoc64": config_psoc64,
@@ -1288,7 +1288,7 @@ _builtin_configs = {
                     "release_cs300_fvp": config_cs300_fvp,
                     "release_corstone310": config_corstone310,
                     "release_corstone315": config_corstone315,
-                    "release_rse": config_rse,
+                    "release_rse_tc3": config_rse_tc3,
                     "release_rse_rdfremont": config_rse_rdfremont,
                     "release_rse_rd1ae": config_rse_rd1ae,
                     "release_psoc64": config_psoc64,
@@ -1321,7 +1321,7 @@ _builtin_configs = {
                     "musca_s1": config_musca_s1,
                     "corstone310": config_corstone310,
                     "corstone315": config_corstone315,
-                    "rse": config_rse,
+                    "rse_tc3": config_rse_tc3,
                     "rse_rdfremont": config_rse_rdfremont,
                     "rse_rd1ae": config_rse_rd1ae,
                     "cypress_psoc64": config_psoc64,
