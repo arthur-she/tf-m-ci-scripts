@@ -357,9 +357,9 @@ config_pp_test = {"seed_params": {
                     # MUSCA_S1_GCC_1_RegBL2_RegS_RegNS_Release_BL2_CC_DRIVER_PSA
                     ("arm/musca_s1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CC_DRIVER_PSA"),
-                    # RSE_TC3_GCC_3_RegS_RegNS_Debug_BL2
+                    # RSE_TC3_GCC_3_RegS_RegNS_Debug_BL2_ATTESTATION_SCHEME_DPE
                     ("arm/rse/tc/tc3", "GCC_10_3", "3",
-                     "RegS, RegNS", "OFF", "Debug", True, "", ""),
+                     "RegS, RegNS", "OFF", "Debug", True, "", "ATTESTATION_SCHEME_DPE"),
                     # RSE_TC3_GCC_2_RegBL1_1_Debug_BL2
                     ("arm/rse/tc/tc3", "GCC_10_3", "2",
                      "RegBL1_1", "OFF", "Debug", True, "", ""),
@@ -944,7 +944,7 @@ config_rse_tc3 = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     [""]
+                "extra_params":     ["ATTESTATION_SCHEME_DPE"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + [

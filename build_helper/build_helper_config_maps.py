@@ -134,7 +134,10 @@ mapExtraParams = {
     "EXTRAS_EXAMPLE_DMA350_CLCD"    : "-DDEFAULT_NS_SCATTER=OFF -DPLATFORM_SVC_HANDLERS=ON ",
 
     "EXTRAS_EXAMPLE_DMA350_S"       : "-DEXTRA_S_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/corstone310_fvp_dma/dma350_s",
-    "EXTRAS_EXAMPLE_DMA350_NS"      : "-DEXTRA_NS_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/corstone310_fvp_dma/dma350_ns"
+    "EXTRAS_EXAMPLE_DMA350_NS"      : "-DEXTRA_NS_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/corstone310_fvp_dma/dma350_ns",
+
+    # Attestation scheme
+    "ATTESTATION_SCHEME_DPE"    : ("-DEXTRA_S_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/partitions/dice_protection_environment/test/secure ")
 }
 
 mapTfmExtrasExamplePaths = {
