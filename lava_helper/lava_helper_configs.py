@@ -352,6 +352,33 @@ fvp_rse_tc3 = {
     }
 }
 
+# QEMU for AN521 with BL2 bootloader
+qemu_mps2_bl2 = {
+    "templ": "qemu_mps2_bl2.jinja2",
+    "job_name": "qemu_mps2_bl2",
+    "device_type": "qemu",
+    "job_timeout": 30,
+    "action_timeout": 20,
+    "monitor_timeout": 20,
+    "poweroff_timeout": 1,
+    "platforms": {"arm/mps2/an521": ""},
+    "binaries": {
+        "mcuboot": {
+            "data": "spe/bin/bl2.bin",
+            "offset": "0x10000000"
+        },
+        "tfm": {
+            "data": "nspe/tfm_s_ns_signed.bin",
+            "offset": "0x10080000"
+        }
+    },
+    "monitors": {
+        # FPU test on AN521 qemu not supported yet
+        'reg_tests': (reg_tests_monitors if 'FPON' not in os.getenv("EXTRA_PARAMS") else [mcuboot_tests_monitor_cfg]),
+    }
+}
+
+
 # Musca-B1 with BL2 bootloader
 # unified hex file comprising of both bl2.bin and tfm_s_ns_signed.bin
 # srec_cat bin/bl2.bin -Binary -offset 0xA000000 bin/tfm_s_ns_signed.bin -Binary -offset 0xA020000 -o tfm.hex -Intel
@@ -490,6 +517,7 @@ lava_gen_config_map_bl2 = {
     "fvp_mps4_cs320_bl1_bl2": fvp_mps4_cs320_bl1_bl2,
     "fvp_corstone1000": fvp_corstone1000,
     "fvp_rse_tc3": fvp_rse_tc3,
+    "qemu_mps2_bl2": qemu_mps2_bl2,
     "musca_b1": musca_b1_bl2,
     "stm32l562e_dk": stm32l562e_dk,
     "b_u585i_iot02a": b_u585i_iot02a,
