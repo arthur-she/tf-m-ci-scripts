@@ -351,8 +351,8 @@ config_pp_test = {"seed_params": {
                     # MUSCA_S1_GCC_1_RegBL2_RegS_RegNS_Release_BL2_CC_DRIVER_PSA
                     ("arm/musca_s1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CC_DRIVER_PSA"),
-                    # RSE_TC3_GCC_2_RegS_RegNS_Debug_BL2
-                    ("arm/rse/tc/tc3", "GCC_10_3", "2",
+                    # RSE_TC3_GCC_3_RegS_RegNS_Debug_BL2
+                    ("arm/rse/tc/tc3", "GCC_10_3", "3",
                      "RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # RSE_TC3_GCC_2_RegBL1_1_Debug_BL2
                     ("arm/rse/tc/tc3", "GCC_10_3", "2",
@@ -932,7 +932,7 @@ config_corstone320 = {"seed_params": {
 config_rse_tc3 = {"seed_params": {
                 "tfm_platform":     ["arm/rse/tc/tc3"],
                 "compiler":         ["GCC_10_3"],
-                "isolation_level":  ["1", "2"],
+                "isolation_level":  ["1", "2", "3"],
                 "test_regression":  ["OFF", "RegS, RegNS"],
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Debug", "Release"],
@@ -951,7 +951,7 @@ config_rse_tc3 = {"seed_params": {
 config_rse_rdfremont = {"seed_params": {
                 "tfm_platform":     ["arm/rse/rdfremont"],
                 "compiler":         ["GCC_10_3"],
-                "isolation_level":  ["1", "2"],
+                "isolation_level":  ["1", "2", "3"],
                 "test_regression":  ["OFF"],
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Debug", "Release"],
@@ -966,7 +966,7 @@ config_rse_rdfremont = {"seed_params": {
 config_rse_rd1ae = {"seed_params": {
                 "tfm_platform":     ["arm/rse/automotive_rd/rd1ae"],
                 "compiler":         ["GCC_10_3"],
-                "isolation_level":  ["1", "2"],
+                "isolation_level":  ["1", "2", "3"],
                 "test_regression":  ["OFF"],
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Debug", "Release"],
