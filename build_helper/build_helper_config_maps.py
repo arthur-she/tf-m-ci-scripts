@@ -84,7 +84,7 @@ mapExtraParams = {
     "LZOFF"        : "-DCONFIG_TFM_LAZY_STACKING=OFF ",
     # Partiton
     "PSOFF"        : "-DTFM_PARTITION_PROTECTED_STORAGE=OFF ",
-    "PSCLEAR"      : "-DPS_ENCRYPTION=OFF",
+    "PSCLEAR"      : "-DPS_ENCRYPTION=OFF -DPS_ROLLBACK_PROTECTION=OFF",
     "PSLIMIT"      : "-DPS_AES_KEY_USAGE_LIMIT=1000000",
     # IPC
     "IPC"          : "-DCONFIG_TFM_SPM_BACKEND=IPC ",
