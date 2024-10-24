@@ -393,6 +393,9 @@ config_pp_test = {"seed_params": {
                     # psoc64_GCC_2_RegS_RegNS_Release
                     ("cypress/psoc64", "GCC_10_3", "2",
                      "RegS, RegNS", "OFF", "Release", False, "", ""),
+                    # rp2350_GCC_2_RegBL2_RegS_RegNS_Release_BL2
+                    ("rpi/rp2350", "GCC_10_3", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
                 ],
                 "invalid": _common_tfm_invalid_configs + []
                 }
@@ -1174,6 +1177,21 @@ config_m2354 = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_rp2350 = {"seed_params": {
+                "tfm_platform":     ["rpi/rp2350"],
+                "compiler":         ["GCC_10_3"],
+                "isolation_level":  ["2"],
+                "test_regression":  ["OFF", "RegBL2, RegS, RegNS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["RelWithDebInfo", "Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     [""]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 config_mem_footprint = {"seed_params": {
                "tfm_platform":      ["arm/mps2/an521"],
                 "compiler":         ["ARMCLANG_6_21"],
@@ -1295,6 +1313,7 @@ _builtin_configs = {
                     "nightly_b_u585i_iot02a": config_b_u585i_iot02a,
                     "nightly_stm32h573i_dk": config_stm32h573i_dk,
                     "nightly_lpcxpresso55s69": config_lpcxpresso55s69,
+                    "nightly_rp2350": config_rp2350,
 
                     # release test groups
                     "release_test": config_release_test,
@@ -1322,6 +1341,7 @@ _builtin_configs = {
                     "release_b_u585i_iot02a": config_b_u585i_iot02a,
                     "release_stm32h573i_dk": config_stm32h573i_dk,
                     "release_lpcxpresso55s69": config_lpcxpresso55s69,
+                    "release_rp2350": config_rp2350,
 
                     # code coverage test groups
                     "coverage_profile_s": config_cov_profile_s,
@@ -1363,6 +1383,7 @@ _builtin_configs = {
                     "nordic_nrf9160dk": config_nrf9160dk,
                     "nuvoton_m2351": config_m2351,
                     "nuvoton_m2354": config_m2354,
+                    "rp2350": config_rp2350,
 
                     # config groups for tf-m-extras examples
                     "example_vad": config_example_vad,
