@@ -393,9 +393,9 @@ config_pp_test = {"seed_params": {
                     # psoc64_GCC_2_RegS_RegNS_Release
                     ("cypress/psoc64", "GCC_10_3", "2",
                      "RegS, RegNS", "OFF", "Release", False, "", ""),
-                    # rp2350_GCC_2_RegBL2_RegS_RegNS_Release_BL2
+                    # rp2350_GCC_2_RegBL2_RegS_RegNS_Release_BL2_MEDIUM
                     ("rpi/rp2350", "GCC_10_3", "2",
-                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "profile_medium", ""),
                 ],
                 "invalid": _common_tfm_invalid_configs + []
                 }
@@ -1185,7 +1185,7 @@ config_rp2350 = {"seed_params": {
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["RelWithDebInfo", "Release"],
                 "with_bl2":         [True],
-                "profile":          [""],
+                "profile":          ["profile_medium"],
                 "extra_params":     [""]
                 },
                 "common_params": _common_tfm_builder_cfg,
