@@ -470,6 +470,101 @@ config_nightly_test = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_all_plat = {
+                # corstone1000_GCC_2_RegS_Release_BL2_NSOFF_CS1K_TEST_FVP
+                "seed_params": {
+                "tfm_platform":     ["arm/corstone1000"],
+                "compiler":         ["GCC_10_3"],
+                "isolation_level":  ["2"],
+                "test_regression":  ["RegS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     ["NSOFF, CS1K_TEST, FVP"]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "valid": [
+                    # AN521_GCC_3_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps2/an521", "GCC_10_3", "3",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # AN519_GCC_2_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps2/an519", "GCC_10_3", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # AN524_GCC_2_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps3/an524", "GCC_10_3", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # CS300_AN547_GCC_1_Debug_BL2
+                    ("arm/mps3/corstone300/an547", "GCC_10_3", "1",
+                     "OFF", "OFF", "Debug", True, "", ""),
+                    # CS300_AN552_GCC_2_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps3/corstone300/an552", "GCC_10_3", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                     # CS300_FVP_GCC_2_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps3/corstone300/fvp", "GCC_10_3", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # corstone310_GCC_1_Debug_BL2_NSOFF
+                    ("arm/mps3/corstone310/fvp", "GCC_10_3", "1",
+                     "OFF", "OFF", "Debug", True, "", "NSOFF"),
+                    # corstone315_GCC_1_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps4/corstone315", "GCC_10_3", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # corstone320_GCC_1_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps4/corstone320", "GCC_10_3", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # MUSCA_B1_GCC_3_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/musca_b1", "GCC_10_3", "3",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # MUSCA_S1_GCC_2_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/musca_s1", "GCC_10_3", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # RSE_TC3_GCC_3_RegS_RegNS_Debug_BL2_ATTESTATION_SCHEME_DPE
+                    ("arm/rse/tc/tc3", "GCC_10_3", "3",
+                     "RegS, RegNS", "OFF", "Debug", True, "", "ATTESTATION_SCHEME_DPE"),
+                    # psoc64_GCC_2_RegS_RegNS_Release
+                    ("cypress/psoc64", "GCC_10_3", "2",
+                     "RegS, RegNS", "OFF", "Release", False, "", ""),
+                    ## BL5340_GCC_1_Debug_BL2_NSOFF
+                    #("lairdconnectivity/bl5340_dvk_cpuapp", "GCC_10_3", "1",
+                    # "OFF", "OFF", "Debug", True, "", "NSOFF"),
+                    ## nrf5340dk_GCC_1_Debug_BL2_NSOFF
+                    #("nordic_nrf/nrf5340dk_nrf5340_cpuapp", "GCC_10_3", "1",
+                    # "OFF", "OFF", "Release", True, "", "NSOFF"),
+                    ## nrf9160dk_GCC_1_Debug_BL2_NSOFF
+                    #("nordic_nrf/nrf9160dk_nrf9160", "GCC_10_3", "1",
+                    # "OFF", "OFF", "Release", True, "", "NSOFF"),
+                    ## M2351_GCC_1_Release_BL2_NSOFF
+                    #("nuvoton/m2351", "GCC_10_3", "1",
+                    # "OFF", "OFF", "Release", True, "", "NSOFF"),
+                    # M2354_GCC_1_Debug_BL2_NSOFF
+                    ("nuvoton/m2354", "GCC_10_3", "1",
+                     "OFF", "OFF", "Debug", True, "", "NSOFF"),
+                    # lpcxpresso55s69_GCC_2_RegS_RegNS_Relwithdebinfo_MEDIUM
+                    ("nxp/lpcxpresso55s69", "GCC_10_3", "2",
+                     "RegS, RegNS", "OFF", "Relwithdebinfo", False, "profile_medium", ""),
+                    # rp2350_GCC_2_RegBL2_RegS_RegNS_RelWithDebInfo_BL2_MEDIUM
+                    ("rpi/rp2350", "GCC_10_3", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Relwithdebinfo", True, "profile_medium", ""),
+                     # b_u585i_iot02a_GCC_2_RegS_RegNS_Release_BL2
+                    ("stm/b_u585i_iot02a", "GCC_10_3", "2",
+                     "RegS, RegNS", "OFF", "Release", True, "", ""),
+                    # nucleo_l552ze_q_GCC_1_Release_BL2_NSOFF
+                    ("stm/nucleo_l552ze_q", "GCC_10_3", "1",
+                     "OFF", "OFF", "Release", True, "", "NSOFF"),
+                    # stm32h573i_dk_GCC_2_RegS_RegNS_Release_BL2
+                    ("stm/stm32h573i_dk", "GCC_10_3", "2",
+                     "RegS, RegNS", "OFF", "Release", True, "", ""),
+                    # stm32l562e_dk_GCC_3_RegBL2_RegS_RegNS_Release_BL2_CRYPTO_OFF
+                    ("stm/stm32l562e_dk", "GCC_10_3", "3",
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CRYPTO_OFF"),
+                    # stm32l562e_dk_GCC_3_Release_BL2_CRYPTO_ON
+                    ("stm/stm32l562e_dk", "GCC_10_3", "3",
+                     "OFF", "OFF", "Release", True, "", "CRYPTO_ON"),
+                ],
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
+
 # Config group for release job
 config_release_test = {"seed_params": {
                 "tfm_platform":     ["arm/mps2/an519",
@@ -1368,6 +1463,8 @@ config_debug_PSA_API = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+
+
 _builtin_configs = {
                     # per-patch test group
                     "pp_test": config_pp_test,
@@ -1403,6 +1500,7 @@ _builtin_configs = {
                     "nightly_stm32h573i_dk": config_stm32h573i_dk,
                     "nightly_lpcxpresso55s69": config_lpcxpresso55s69,
                     "nightly_rp2350": config_rp2350,
+                    "nightly_all_plat": config_all_plat,
 
                     # release test groups
                     "release_test": config_release_test,
