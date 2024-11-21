@@ -167,7 +167,7 @@ fvp_mps3_cs300_bl2 = {
 
 # FVP with BL1 and BL2 bootloader for Corstone315
 fvp_mps4_cs315_bl1_bl2 = {
-    "templ": "fvp_mps4.jinja2",
+    "templ": "fvp_mps4_cs315.jinja2",
     "job_name": "fvp_mps4_cs315_bl1_bl2",
     "device_type": "fvp",
     "job_timeout": 15,
@@ -205,7 +205,7 @@ fvp_mps4_cs315_bl1_bl2 = {
 
 # FVP with BL1 and BL2 bootloader for Corstone320
 fvp_mps4_cs320_bl1_bl2 = {
-    "templ": "fvp_mps4.jinja2",
+    "templ": "fvp_mps4_cs320.jinja2",
     "job_name": "fvp_mps4_cs320_bl1_bl2",
     "device_type": "fvp",
     "job_timeout": 15,
