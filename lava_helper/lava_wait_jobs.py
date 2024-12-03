@@ -69,17 +69,18 @@ def get_finished_jobs(job_list, user_args, lava):
     for job in unfinished_jobs:
         _log.info("Cancelling unfinished job {} because of timeout.".format(job))
         lava.cancel_job(job)
-    if len(unfinished_jobs) > 0:
+    if len(unfinished_jobs):
         _log.info("Job fails because some test jobs have been cancelled.")
     if user_args.artifacts_path:
         for job, info in finished_jobs.items():
             info['job_dir'] = os.path.join(user_args.artifacts_path, "{}_{}".format(str(job), info['description']))
         to_fetch = {job_id: info for job_id, info in finished_jobs.items() if job_id not in fetched_artifacts}
-        _log.info("Fetching artifacts for remaining jobs: %s", to_fetch.keys())
-        try:
-            fetch_artifacts(to_fetch, user_args, lava)
-        except Exception as e:
-            _log.exception("Still failed to fetch artifacts for some jobs; continuing, but overall result is failure")
+        if len(to_fetch):
+            _log.info("Fetching artifacts for remaining jobs: {}".format(to_fetch.keys()))
+            try:
+                fetch_artifacts(to_fetch, user_args, lava)
+            except Exception as e:
+                _log.exception("Still failed to fetch artifacts for some jobs; continuing, but overall result is failure")
     return finished_jobs
 
 def resubmit_failed_jobs(jobs, user_args):
