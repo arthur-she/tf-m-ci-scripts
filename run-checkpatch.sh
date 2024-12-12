@@ -88,71 +88,6 @@ app_err() {
 	echo "Error: "$1 >&2
 }
 
-##@fn download_checkpatch_file(string f_name)
-##@brief Download the specified checkpatch file.
-##@param[in] f_name name of file to download.
-##@returns status code
-##
-##Download checkpatch files from raw.githubusercontent.com to the current
-##directory. Target files are truncated to avoid breaking links.
-##
-#This is needed for Doxygen for now.
-#!err download_checkpatch_file(string f_name){};
-download_checkpatch_file() {
-	# HTTPS address location to download checkpatch file
-	if [ $VERBOSE -eq 0 ]; then
-		REDIRECT=" >/dev/null"
-	fi
-
-	curl "https://raw.githubusercontent.com/torvalds/linux/v5.9/scripts/$1" --output "$1.new" &>/dev/null
-
-	if [ $? != 0 ]; then
-		app_err "curl reported error while downloading $1"
-		exit 1
-	else
-		#Copy file and preserve links.
-		cat "$1.new" > "$1"
-		rm "$1.new"
-	fi
-}
-
-##@fn update_checkpatch()
-##@brief Download checkpatch files.
-##@returns status code
-##
-##Download checkpatch files from raw.githubusercontent.com to \ref CHECKPATCH_PATH
-##directory.
-##
-#This is needed for Doxygen for now.
-#!void update_checkpatch(){};
-update_checkpatch() {
-	echo "Updating checkpatch..."
-	if ! [ -x "$(command -v curl)" ]; then
-		app_err "curl was not found. Please, make sure curl command is available"
-		exit 1
-	fi
-
-	pushd $CHECKPATCH_PATH > /dev/null
-	#Execute popd when shell exits.
-	trap popd 0
-
-	# Download checkpatch.pl
-	download_checkpatch_file checkpatch.pl
-	chmod 750 $CHECKPATCH_PATH/checkpatch.pl
-
-	# Download const_structs.checkpatch
-	download_checkpatch_file const_structs.checkpatch
-	chmod 640 $CHECKPATCH_PATH/const_structs.checkpatch
-
-	# Download spelling.txt
-	download_checkpatch_file spelling.txt
-	chmod 640 $CHECKPATCH_PATH/spelling.txt
-
-	popd >/dev/null
-	#Remove cleanup trap
-	trap 0
-}
-
 ##@fn check_tree()
 ##@brief Run checkpatch in directory tree checking mode
 ##@returns status code
@@ -269,8 +204,7 @@ done
 
 # Update checkpatch files
 if [ $UPDATE_CHECKPATCH_FILES -eq 1 ]; then
-	update_checkpatch
-	echo "Checkpatch update was successful."
+	echo "DEPRECATED: Discarding request to update checkpatch files."
 	exit 0
 fi
 
