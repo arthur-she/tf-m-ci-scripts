@@ -66,12 +66,11 @@ CHECKPATCH_PATH=$CHECKPATCH_PATH_DEF
 #This is needed for Doxygen for now.
 #!void usage(void){};
 usage() {
-	echo "Usage: $(basename -- "$0") [-v] [-h] [-d <TF-M dir>] [-f <output_filename>] [-u] [-p <number>]"
+	echo "Usage: $(basename -- "$0") [-v] [-h] [-d <TF-M dir>] [-f <output_filename>] [-p <number>]"
 	echo " -v, Verbose output"
 	echo " -h, Script help"
 	echo " -d, <TF-M dir>, TF-M directory"
 	echo " -f, <output_filename>, Output filename"
-	echo " -u, Update checkpatch files using curl"
 	echo " -l <number>, Check only the last <number> commits (HEAD~<number>)."
 	echo " -p <path>, Provide location of directory containing checkpatch."
 	echo " -r, Print raw output. Implies verbose."
@@ -169,7 +168,6 @@ check_diff() {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Internal variables not to be modified.
 VERBOSE=0
-UPDATE_CHECKPATCH_FILES=0
 
 ##@var CHECK_LAST_COMMITS
 ##@brief Number of commits to check.
@@ -186,14 +184,13 @@ RAW_OUTPUT=0
 
 # Getting options and setting variables required to execute the script. This
 # script starts executing from here.
-while getopts "uvhd:f:l:p:r" opt
+while getopts "vhd:f:l:p:r" opt
 do
 	case $opt in
 		v) VERBOSE=1 ;;
 		h) usage ; exit 0 ;;
 		d) TFM_DIRECTORY_NAME="$OPTARG" ;;
 		f) OUTPUT_FILE_PATH="$OPTARG" ;;
-		u) UPDATE_CHECKPATCH_FILES=1 ;;
 		l) CHECK_LAST_COMMITS="$OPTARG" ;;
 		p) CHECKPATCH_PATH="$OPTARG" ;;
 		r) RAW_OUTPUT=1
@@ -201,12 +198,6 @@ do
 		\?) usage ; exit 1 ;;
 	esac
 done
-
-# Update checkpatch files
-if [ $UPDATE_CHECKPATCH_FILES -eq 1 ]; then
-	echo "DEPRECATED: Discarding request to update checkpatch files."
-	exit 0
-fi
 
 #Convert checkpath override path to full path
 CHECKPATCH_PATH=$(readlink -f "$CHECKPATCH_PATH")

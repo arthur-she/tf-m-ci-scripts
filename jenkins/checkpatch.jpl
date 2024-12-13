@@ -24,7 +24,6 @@ timestamps {
       try {
         sh """
   cd trusted-firmware-m
-  ../tf-m-ci-scripts/run-checkpatch.sh -u
   ../tf-m-ci-scripts/run-checkpatch.sh -r -l 1
   """
       } catch (Exception e) {
