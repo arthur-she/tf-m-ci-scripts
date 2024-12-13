@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 #-------------------------------------------------------------------------------
-# Copyright (c) 2018-2021, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2018-2024, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -13,7 +14,6 @@
 ##This bash script can be used to execute checkpatch for the tf-m project.
 ##The script can be started with -h to give help on usage.
 ##
-
 
 ##@var SKIP_PATHS
 ##@brief Folders and files to not be analysed by checkpatch
@@ -32,15 +32,6 @@ SKIP_PATHS='./build-\*:./platform/\*:*/tz_\*:./lib/\*:./platform/ext/\*:./bl2/ex
 #This is needed for Doxygen for now.
 #!path TFM_DIRECTORY_NAME;
 TFM_DIRECTORY_NAME="./"
-
-##@var OUTPUT_FILE_PATH
-##@brief Default path to report file.
-##
-##This text file will hold the output report of checkpatch.
-##
-#This is needed for Doxygen for now.
-#!path OUTPUT_FILE_PATH;
-OUTPUT_FILE_PATH="tfm_checkpatch_report.txt"
 
 ##@var CHECKPATCH_PATH_DEF
 ##@brief Default Path to checkpatch executable.
@@ -84,7 +75,7 @@ usage() {
 #This is needed for Doxygen for now.
 #!void app_err(void){};
 app_err() {
-	echo "Error: "$1 >&2
+	echo "run-checkpatch.sh($LINENO): Error: "$1 >&2
 }
 
 ##@fn check_tree()
@@ -101,8 +92,8 @@ app_err() {
 check_tree() {
 	# Find all files to execute checkpatch on
 	FIND_CMD="find $TFM_DIRECTORY_NAME -name '*.[ch]' -a -not \( -path "${SKIP_PATHS//:/ -o -path }" \)"
-	echo "Scanning "$TFM_DIRECTORY_NAME" dir to find all .c and .h files to check ..."
-	#Modify checkpatch command line to make checkpatch work on files.
+	echo "run-checkpatch.sh($LINENO): Scanning "$TFM_DIRECTORY_NAME" dir to find all .c and .h files to check..."
+	# Modify checkpatch command line to make checkpatch work on files.
 	CHECKPATCH_CMD="$CHECKPATCH_CMD -f "
 	if [ $VERBOSE -eq 1 ]; then
 		eval "$FIND_CMD" | xargs -n 1 -i -P 8 $CHECKPATCH_CMD {} |tee -a "$OUTPUT_FILE_PATH"
@@ -142,8 +133,8 @@ check_diff() {
 	if [ ! -z "$CARE_LIST" ]; then
 		# Only run checkpatch if there are files to check
 		GIT_CMD="git diff $BASE_COMMIT -- $CARE_LIST"
-		echo "$GIT_CMD"
-		echo "Checking commits: $(git log "$BASE_COMMIT"..HEAD --format=%h | tr $"\n" " ")"
+		echo "run-checkpatch.sh($LINENO): $GIT_CMD"
+		echo "run-checkpatch.sh($LINENO): Checking commits: $(git log "$BASE_COMMIT"..HEAD --format=%h | tr $"\n" " ")"
 
 		#Modify checkpatch parameters to give more details when working on
 		#diff:s
@@ -202,19 +193,16 @@ done
 #Convert checkpath override path to full path
 CHECKPATCH_PATH=$(readlink -f "$CHECKPATCH_PATH")
 
-#Convert output file name to full path
-OUTPUT_FILE_PATH=$(readlink -f "$OUTPUT_FILE_PATH")
-
 # Convert TF-M specific type defs file to full path
 TFM_TYPE_DEF_FILE=$CHECKPATCH_PATH"/tfm_type_defs.txt"
 
 # Prepare CheckPatch config file
-CHECKPATCH_CONFG_FILENAME=$CHECKPATCH_PATH_DEF"/checkpatch.conf"
-sed -i "s#TFM_TYPE_DEF_FILE#$TFM_TYPE_DEF_FILE#g" $CHECKPATCH_CONFG_FILENAME
+CHECKPATCH_CONFIG_FILENAME=$CHECKPATCH_PATH_DEF"/checkpatch.conf"
+sed -i.bak "s#TFM_TYPE_DEF_FILE#$TFM_TYPE_DEF_FILE#g" $CHECKPATCH_CONFIG_FILENAME
 
 # Create checkpatch command
 CHECKPATCH_APP=$CHECKPATCH_PATH"/checkpatch.pl"
-CHECKPATCH_CMD=$CHECKPATCH_APP" $(grep -o '^[^#]*' $CHECKPATCH_CONFG_FILENAME)"
+CHECKPATCH_CMD=$CHECKPATCH_APP" $(grep -o '^[^#]*' $CHECKPATCH_CONFIG_FILENAME)"
 
 # Check if checkpatch is present
 if ! [ -f "$CHECKPATCH_APP" ]; then
@@ -222,6 +210,7 @@ if ! [ -f "$CHECKPATCH_APP" ]; then
 	exit 1
 fi
 
+OUTPUT_FILE_PATH=${OUTPUT_FILE_PATH:-"tfm_checkpatch_report.txt"}
 #Truncate previous content
 : > $OUTPUT_FILE_PATH
 
@@ -235,9 +224,13 @@ else
 	check_diff
 fi
 
+#Restore the contents of the config file to original values
+sed -i.bak "s#$TFM_TYPE_DEF_FILE#TFM_TYPE_DEF_FILE#g" $CHECKPATCH_CONFIG_FILENAME
+rm $CHECKPATCH_CONFIG_FILENAME.bak
+
 if [ "$RAW_OUTPUT" == "1" ] ; then
 	rm $OUTPUT_FILE_PATH
 	exit $RETURN_CODE
 else
-	echo "checkpatch report \"$OUTPUT_FILE_PATH\" is ready!"
+	echo "run-checkpatch.sh($LINENO): checkpatch report \"$(readlink -f ${OUTPUT_FILE_PATH})\" is ready!"
 fi
