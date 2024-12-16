@@ -58,7 +58,11 @@ actions:
 {%- if enable_code_coverage %}
     -  "/opt/model/FVP_ARM_Std_Library/FVP_MPS2/FVP_MPS2_AEMv8M"
 {%- endif %}
+{%- if build_type == "Debug" %}
+    -  "--simlimit 2000"
+{%- else %}
     -  "--simlimit 900"
+{%- endif %}
 {% for name, img in binaries.items() %}
     {% if img.application is defined %}
     -  "--application cpu0={{ '{' ~ name.upper() ~ '}' }}"

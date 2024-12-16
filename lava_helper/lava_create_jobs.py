@@ -86,7 +86,8 @@ def generate_test_definitions(config, work_dir, user_args):
             "cpu0_initvtor_s": config.get("cpu0_initvtor_s", "0x10000000"),
             "psa_api_suite": os.getenv("TEST_PSA_API") if os.getenv("TEST_PSA_API") == "IPC" else "",
             "binaries": config.get('binaries', []),
-            "data_url_prefix": "{}/artifact/ci_build".format(os.getenv("BUILD_URL"))
+            "data_url_prefix": "{}/artifact/ci_build".format(os.getenv("BUILD_URL")),
+            "build_type": os.getenv("CMAKE_BUILD_TYPE"),
         }
 
         if len(params["monitors"]) == 0:
