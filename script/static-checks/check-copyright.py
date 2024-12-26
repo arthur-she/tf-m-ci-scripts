@@ -64,7 +64,8 @@ IGNORED_FILES = (
     'interface/include/psa/crypto_sizes.h',
     'interface/include/psa/crypto_struct.h',
     'interface/include/psa/crypto_types.h',
-    'interface/include/psa/crypto_values.h'
+    'interface/include/psa/crypto_values.h',
+    'interface/include/psa/crypto_values_lms.h'
 )
 
 # Supported comment styles (Python regex)
@@ -88,10 +89,12 @@ LICENSE_ID = '.*(BSD-3-Clause|BSD-2-Clause-FreeBSD)([ ,.\);].*)?'
 
 # File must contain both lines to pass the check
 COPYRIGHT_LINE = LINE_START + 'Copyright' + '.*' + TIME_PERIOD + '.*' + EOL
+COPYRIGHT_LINE_ALT = LINE_START + 'SPDX-FileCopyrightText: Copyright The TrustedFirmware-M Contributors' + EOL
 LICENSE_ID_LINE = LINE_START + 'SPDX-License-Identifier:' + LICENSE_ID + EOL
 
 # Compiled license patterns
 COPYRIGHT_PATTERN = re.compile(COPYRIGHT_LINE, re.MULTILINE)
+COPYRIGHT_PATTERN_ALT = re.compile(COPYRIGHT_LINE_ALT, re.MULTILINE)
 LICENSE_ID_PATTERN = re.compile(LICENSE_ID_LINE, re.MULTILINE)
 
 CURRENT_YEAR = str(datetime.datetime.now().year)
@@ -108,7 +111,8 @@ def check_copyright(path, args, encoding='utf-8'):
         file_content = file_.read()
 
     copyright_line = COPYRIGHT_PATTERN.search(file_content)
-    if not copyright_line:
+    coypright_line_alt = COPYRIGHT_PATTERN_ALT.search(file_content)
+    if not copyright_line and not copyright_line_alt:
         print("ERROR: Missing copyright in " + file_.name)
         result = COPYRIGHT_ERROR
 
