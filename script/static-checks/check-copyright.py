@@ -111,7 +111,7 @@ def check_copyright(path, args, encoding='utf-8'):
         file_content = file_.read()
 
     copyright_line = COPYRIGHT_PATTERN.search(file_content)
-    coypright_line_alt = COPYRIGHT_PATTERN_ALT.search(file_content)
+    copyright_line_alt = COPYRIGHT_PATTERN_ALT.search(file_content)
     if not copyright_line and not copyright_line_alt:
         print("ERROR: Missing copyright in " + file_.name)
         result = COPYRIGHT_ERROR
