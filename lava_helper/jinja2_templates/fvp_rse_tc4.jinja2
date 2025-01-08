@@ -1,0 +1,72 @@
+{#------------------------------------------------------------------------------
+# Copyright (c) 2018-2025, Arm Limited and Contributors. All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+#-----------------------------------------------------------------------------#}
+{% extends 'jinja2_templates/base.jinja2' %}
+{% block metadata %}
+{{ super() }}
+{% endblock %}
+{% block base %}
+{{ super() }}
+{% endblock %}
+{% block actions %}
+context:
+  kernel_start_message: ''
+
+actions:
+- deploy:
+    to: fvp
+    images:
+{% for name, img in binaries.items() %}
+      {{ name }}:
+        url: {{ data_url_prefix }}/{{ img.data }}
+{% endfor %}
+- boot:
+    failure_retry: 3
+    method: fvp
+    docker:
+      name: {{ docker_prefix }}/fvp:fvp_tc4_0.0_8404
+      local: true
+    prompts:
+    - 'root@lava '
+    image: /opt/model/FVP_TC4/models/Linux64_GCC-9.3/FVP_TC4
+    timeout:
+      minutes: 10
+    console_string: 'rse_terminal_uart: Listening for serial connection on port (?P<PORT>\d+)'
+    license_variable: '{{ license_variable }}'
+    use_telnet: True
+    arguments:
+    -  "--simlimit 900"
+    -  "-C css.sms.rse.rom.raw_image={ROM}"
+    -  "--data css.sms.rse.sram0={CM_PROVISIONING_BUNDLE}@0x400"
+    -  "--data css.sms.rse.sram1={DM_PROVISIONING_BUNDLE}@0x0"
+    -  "-C board.flashloader0.fname={FLASH}"
+    -  "-C displayController=2"
+    -  "-C css.sms.rse.sic.SIC_AUTH_ENABLE=1"
+    -  "-C css.sms.rse.sic.SIC_DECRYPT_ENABLE=1"
+    -  "-C css.sms.rse.VMADDRWIDTH=16"
+    -  "-C css.sms.rse.intchecker.ICBC_RESET_VALUE=0x0000011B"
+    -  "-C soc.pl011_uart1.shutdown_on_eot=1"
+    -  "-C disable_visualisation=1"
+
+    prompts:
+    - '(.*)'
+
+- test:
+    monitors:
+    {%- for monitor in monitors %}
+    - name: "{{monitor.name}}"
+      start: "{{monitor.start}}"
+      end: "{{monitor.end}}"
+      pattern: "{{monitor.pattern}}"
+      fixupdict:
+         '{{monitor.fixup.pass}}': pass
+         '{{monitor.fixup.fail}}': fail
+         {%- if monitor.fixup.skip %}
+         '{{monitor.fixup.skip}}': skip
+         {%- endif %}
+    {%- endfor %}
+
+{% endblock %}

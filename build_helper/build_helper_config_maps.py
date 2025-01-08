@@ -27,6 +27,7 @@ mapPlatform = {
     "arm/mps4/corstone320"               : "corstone320",
     "arm/mps3/corstone310/fvp"           : "corstone310",
     "arm/rse/tc/tc3"                     : "RSE_TC3",
+    "arm/rse/tc/tc4"                     : "RSE_TC4",
     "arm/rse/neoverse_rd/rdv3"           : "RSE_RDV3",
     "arm/rse/automotive_rd/rd1ae"        : "RSE_RD1AE",
     "cypress/psoc64"                     : "psoc64",

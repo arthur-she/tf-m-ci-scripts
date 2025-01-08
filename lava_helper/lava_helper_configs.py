@@ -360,6 +360,36 @@ fvp_rse_tc3 = {
     }
 }
 
+# RSE on TC4 FVP
+fvp_rse_tc4 = {
+    "templ": "fvp_rse_tc4.jinja2",
+    "job_name": "fvp_rse_tc4",
+    "device_type": "fvp",
+    "job_timeout": 15,
+    "action_timeout": 10,
+    "monitor_timeout": 15,
+    "poweroff_timeout": 1,
+    "platforms": {"arm/rse/tc/tc4": ""},
+    "binaries": {
+        "rom": {
+            "data": "spe/bin/rom.bin"
+        },
+        "cm_provisioning_bundle": {
+            "data": "spe/bin/encrypted_cm_provisioning_bundle_0.bin"
+        },
+        "dm_provisioning_bundle": {
+            "data": "spe/bin/encrypted_dm_provisioning_bundle_0.bin"
+        },
+        "flash": {
+            "data": "spe/bin/host_flash.bin"
+        }
+    },
+    "monitors": {
+        'no_reg_tests': no_reg_tests_monitors,
+        'reg_tests': reg_tests_monitors,
+    }
+}
+
 # QEMU for AN521 with BL2 bootloader
 qemu_mps2_bl2 = {
     "templ": "qemu_mps2_bl2.jinja2",
@@ -532,6 +562,7 @@ lava_gen_config_map_bl2 = {
     "fvp_mps4_cs320_bl1_bl2": fvp_mps4_cs320_bl1_bl2,
     "fvp_corstone1000": fvp_corstone1000,
     "fvp_rse_tc3": fvp_rse_tc3,
+    "fvp_rse_tc4": fvp_rse_tc4,
     "qemu_mps2_bl2": qemu_mps2_bl2,
     "musca_b1": musca_b1_bl2,
     "stm32l562e_dk": stm32l562e_dk,
