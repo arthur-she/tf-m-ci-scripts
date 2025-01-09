@@ -8,7 +8,7 @@ from __future__ import print_function
 
 __copyright__ = """
 /*
- * Copyright (c) 2018-2025, Arm Limited. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright The TrustedFirmware-M Contributors
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -259,13 +259,11 @@ _common_tfm_builder_cfg = {
                            "tfm_sign.bin"],
                            "arm/rse/tc/tc3": [
                            "%(ci_build_root_dir)s/spe/bin/rom.bin",
-                           "%(ci_build_root_dir)s/spe/bin/encrypted_cm_provisioning_bundle_0.bin",
-                           "%(ci_build_root_dir)s/spe/bin/encrypted_dm_provisioning_bundle_0.bin",
+                           "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
                            "%(ci_build_root_dir)s/spe/bin/host_flash.bin"],
                            "arm/rse/tc/tc4": [
                            "%(ci_build_root_dir)s/spe/bin/rom.bin",
-                           "%(ci_build_root_dir)s/spe/bin/encrypted_cm_provisioning_bundle_0.bin",
-                           "%(ci_build_root_dir)s/spe/bin/encrypted_dm_provisioning_bundle_0.bin",
+                           "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
                            "%(ci_build_root_dir)s/spe/bin/host_flash.bin"]
                            }
 }

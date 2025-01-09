@@ -8,7 +8,7 @@ from __future__ import print_function
 
 __copyright__ = """
 /*
- * Copyright (c) 2018-2024, Arm Limited. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright The TrustedFirmware-M Contributors
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -344,11 +344,8 @@ fvp_rse_tc3 = {
         "rom": {
             "data": "spe/bin/rom.bin"
         },
-        "cm_provisioning_bundle": {
-            "data": "spe/bin/encrypted_cm_provisioning_bundle_0.bin"
-        },
-        "dm_provisioning_bundle": {
-            "data": "spe/bin/encrypted_dm_provisioning_bundle_0.bin"
+        "combined_provisioning_message": {
+            "data": "spe/bin/provisioning/combined_provisioning_message.bin"
         },
         "flash": {
             "data": "spe/bin/host_flash.bin"
@@ -374,11 +371,8 @@ fvp_rse_tc4 = {
         "rom": {
             "data": "spe/bin/rom.bin"
         },
-        "cm_provisioning_bundle": {
-            "data": "spe/bin/encrypted_cm_provisioning_bundle_0.bin"
-        },
-        "dm_provisioning_bundle": {
-            "data": "spe/bin/encrypted_dm_provisioning_bundle_0.bin"
+        "combined_provisioning_message": {
+            "data": "spe/bin/provisioning/combined_provisioning_message.bin"
         },
         "flash": {
             "data": "spe/bin/host_flash.bin"

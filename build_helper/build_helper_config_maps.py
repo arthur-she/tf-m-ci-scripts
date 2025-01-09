@@ -5,7 +5,7 @@
 
 __copyright__ = """
 /*
- * Copyright (c) 2022-2025, Arm Limited. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright The TrustedFirmware-M Contributors
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
