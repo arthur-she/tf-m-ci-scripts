@@ -366,8 +366,8 @@ config_pp_test = {"seed_params": {
                     # RSE_TC3_GCC_2_Release_BL2_ATTESTATION_SCHEME_CCA
                     ("arm/rse/tc/tc3", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
-                    # RSE_RDFremont_GCC_2_Release_BL2_NSOFF_CFG0
-                    ("arm/rse/rdfremont", "GCC_10_3", "2",
+                    # RSE_RDV3_GCC_2_Release_BL2_NSOFF_CFG0
+                    ("arm/rse/rdv3", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
                     # RSE_RD1AE_GCC_2_Release_BL2_NSOFF
                     ("arm/rse/automotive_rd/rd1ae", "GCC_10_3", "2",
@@ -960,8 +960,8 @@ config_rse_tc3 = {"seed_params": {
                 ]
                 }
 
-config_rse_rdfremont = {"seed_params": {
-                "tfm_platform":     ["arm/rse/rdfremont"],
+config_rse_rdv3 = {"seed_params": {
+                "tfm_platform":     ["arm/rse/rdv3"],
                 "compiler":         ["GCC_10_3"],
                 "isolation_level":  ["1", "2", "3"],
                 "test_regression":  ["OFF"],
@@ -1309,7 +1309,7 @@ _builtin_configs = {
                     "nightly_corstone320": config_corstone320,
                     "nightly_corstone1000": config_corstone1000,
                     "nightly_rse_tc3": config_rse_tc3,
-                    "nightly_rse_rdfremont": config_rse_rdfremont,
+                    "nightly_rse_rdv3": config_rse_rdv3,
                     "nightly_rse_rd1ae": config_rse_rd1ae,
                     "nightly_psoc64": config_psoc64,
                     "nightly_stm32l562e_dk": config_stm32l562e_dk,
@@ -1337,7 +1337,7 @@ _builtin_configs = {
                     "release_corstone315": config_corstone315,
                     "release_corstone320": config_corstone320,
                     "release_rse_tc3": config_rse_tc3,
-                    "release_rse_rdfremont": config_rse_rdfremont,
+                    "release_rse_rdv3": config_rse_rdv3,
                     "release_rse_rd1ae": config_rse_rd1ae,
                     "release_psoc64": config_psoc64,
                     "release_stm32l562e_dk": config_stm32l562e_dk,
@@ -1372,7 +1372,7 @@ _builtin_configs = {
                     "corstone315": config_corstone315,
                     "corstone320": config_corstone320,
                     "rse_tc3": config_rse_tc3,
-                    "rse_rdfremont": config_rse_rdfremont,
+                    "rse_rdv3": config_rse_rdv3,
                     "rse_rd1ae": config_rse_rd1ae,
                     "cypress_psoc64": config_psoc64,
                     "corstone1000": config_corstone1000,
