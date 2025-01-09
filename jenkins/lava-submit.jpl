@@ -57,10 +57,8 @@ def submitJobs(device_type) {
       --lava-url ${LAVA_URL} --job-dir lava_jobs \
       --lava-user ${LAVA_USER} --lava-token ${LAVA_TOKEN} | egrep "^JOBS"
       ''', returnStdout: true).trim()
-    job_id = job_ids.split(":")[1].trim()
-    job_url = "${LAVA_URL}/scheduler/job/${job_id}"
-    print("LAVA Job URL: ${job_url}")
-    currentBuild.setDescription(job_url)
+    print("${job_ids}")
+    currentBuild.setDescription(job_ids)
   }
 }
 
