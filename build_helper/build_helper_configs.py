@@ -62,6 +62,7 @@ _common_tfm_builder_cfg = {
         "-DPSA_ARCH_TESTS_PATH=%(codebase_root_dir)s/../psa-arch-tests " + \
         "-DMCUBOOT_PATH=%(codebase_root_dir)s/../mcuboot " + \
         "-DQCBOR_PATH=%(codebase_root_dir)s/../qcbor " + \
+        "-DT_COSE_PATH=%(codebase_root_dir)s/../t_cose " + \
         "-DTFM_EXTRAS_REPO_PATH=%(codebase_root_dir)s/../tf-m-extras ",
 
     "nspe_config_template": "cmake -G Ninja " + \
@@ -70,7 +71,8 @@ _common_tfm_builder_cfg = {
         "-DCONFIG_SPE_PATH=%(ci_build_root_dir)s/spe/api_ns " + \
         "-DTFM_TOOLCHAIN_FILE=%(ci_build_root_dir)s/spe/api_ns/cmake/%(ns_compiler)s " + \
         "%(extra_params)s " + \
-        "-DQCBOR_PATH=%(codebase_root_dir)s/../qcbor ",
+        "-DQCBOR_PATH=%(codebase_root_dir)s/../qcbor " + \
+        "-DT_COSE_PATH=%(codebase_root_dir)s/../t_cose ",
 
     # CMake build commands will be executed for every build.
     "spe_cmake_build":  "cmake --build %(ci_build_root_dir)s/spe -- install",

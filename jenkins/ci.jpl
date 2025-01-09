@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 //-------------------------------------------------------------------------------
-// Copyright (c) 2020-2024, Arm Limited and Contributors. All rights reserved.
+// Copyright (c) 2020-2025, Arm Limited and Contributors. All rights reserved.
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -117,6 +117,8 @@ def buildConfig(config, results) {
   params += string(name: 'PSA_ARCH_TESTS_URL', value: env.PSA_ARCH_TESTS_URL)
   params += string(name: 'QCBOR_VERSION', value: env.QCBOR_VERSION)
   params += string(name: 'QCBOR_URL', value: env.QCBOR_URL)
+  params += string(name: 'T_COSE_VERSION', value: env.T_COSE_VERSION)
+  params += string(name: 'T_COSE_URL', value: env.T_COSE_URL)
   params += string(name: 'SHARE_FOLDER', value: env.SHARE_FOLDER)
   return { -> results
     def build_res = build(job: 'tf-m-build-config', parameters: params, propagate: false)

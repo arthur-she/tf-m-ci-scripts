@@ -1,6 +1,6 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
-# Copyright (c) 2020-2024, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2020-2025, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -90,6 +90,13 @@ cnt=$(ls trusted-firmware-m/lib/ext/mbedcrypto/*.patch 2> /dev/null | wc -l)
 if [ "$cnt" != "0" ] ; then
     cd mbedtls
     git apply ../trusted-firmware-m/lib/ext/mbedcrypto/*.patch
+    cd -
+fi
+
+cnt=$(ls trusted-firmware-m/lib/ext/t_cose/*.patch 2> /dev/null | wc -l)
+if [ "$cnt" != "0" ] ; then
+    cd t_cose
+    git apply ../trusted-firmware-m/lib/ext/t_cose/*.patch
     cd -
 fi
 

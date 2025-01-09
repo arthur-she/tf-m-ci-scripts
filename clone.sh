@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2021-2023 Arm Limited. All rights reserved.
+# Copyright (c) 2021-2025 Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -24,7 +24,7 @@
 # i.e. tf-m-build-config, uses its default SHARE_FOLDER value, in this
 # case, it would simply clone its own repositories without reusing any
 # file however the current approach prevents the latter unless the job
-# is triggered manually from the buider job itself.
+# is triggered manually from the builder job itself.
 #
 
 set -ex
@@ -106,6 +106,10 @@ QCBOR_PROJECT="${QCBOR_URL:-}"
 QCBOR_REFSPEC="${QCBOR_VERSION:-"$(parse_version lib/ext/qcbor/CMakeLists.txt set\(QCBOR_VERSION \" 2)"}"
 QCBOR_NAME="qcbor"
 
+T_COSE_PROJECT="${T_COSE_URL:-}"
+T_COSE_REFSPEC="${T_COSE_VERSION:-"$(parse_version lib/ext/t_cose/CMakeLists.txt set\(T_COSE_VERSION \" 2)"}"
+T_COSE_NAME="t_cose"
+
 TFM_EXTRAS_PROJECT="${TFM_EXTRAS_URL:-}"
 TFM_EXTRAS_REFSPEC="${TFM_EXTRAS_REFSPEC:-"$(parse_version lib/ext/tf-m-extras/CMakeLists.txt set\(TFM_EXTRAS_REPO_VERSION \" 2)"}"
 TFM_EXTRAS_NAME="tf-m-extras"
@@ -124,6 +128,7 @@ dependency_repos=(
     "${MBEDTLS_PROJECT};${MBEDTLS_NAME};${MBEDTLS_REFSPEC}"
     "${MCUBOOT_PROJECT};${MCUBOOT_NAME};${MCUBOOT_REFSPEC}"
     "${QCBOR_PROJECT};${QCBOR_NAME};${QCBOR_REFSPEC}"
+    "${T_COSE_PROJECT};${T_COSE_NAME};${T_COSE_REFSPEC}"
     "${TFM_EXTRAS_PROJECT};${TFM_EXTRAS_NAME};${TFM_EXTRAS_REFSPEC}"
     "${TFM_TOOLS_PROJECT};${TFM_TOOLS_NAME};${TFM_TOOLS_REFSPEC}"
     "${QA_TOOLS_PROJECT};${QA_TOOLS_NAME};${QA_TOOLS_REFSPEC}"
