@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2022-2023, Arm Limited. All rights reserved.
+# Copyright (c) 2022-2025, Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -12,10 +12,10 @@
 -file_tag+={external, "^mcuboot/.*$"}
 -file_tag+={external, "^QCBOR/.*$"}
 -file_tag+={external, "^qcbor/.*$"}
+-file_tag+={external, "^t_cose/.*$"}
 -file_tag+={external, "^trusted-firmware-m/platform/ext/cmsis/.*$"}
 -file_tag+={external, "^trusted-firmware-m/lib/ext/mbedcrypto/.*$"}
 -file_tag+={external, "^trusted-firmware-m/lib/ext/cryptocell-312-runtime/.*$"}
--file_tag+={external, "^trusted-firmware-m/lib/ext/t_cose/.*$"}
 
 # Ignore any auto-generated source files in build dir.
 # TODO make an exception for ci_build/spe/build-spe/generated in which source code is
