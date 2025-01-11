@@ -8,7 +8,7 @@ from __future__ import print_function
 
 __copyright__ = """
 /*
- * Copyright (c) 2018-2024, Arm Limited. All rights reserved.
+ * Copyright (c) 2018-2025, Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -367,7 +367,7 @@ config_pp_test = {"seed_params": {
                     ("arm/rse/tc/tc3", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
                     # RSE_RDV3_GCC_2_Release_BL2_NSOFF_CFG0
-                    ("arm/rse/rdv3", "GCC_10_3", "2",
+                    ("arm/rse/neoverse_rd/rdv3", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
                     # RSE_RD1AE_GCC_2_Release_BL2_NSOFF
                     ("arm/rse/automotive_rd/rd1ae", "GCC_10_3", "2",
@@ -961,7 +961,7 @@ config_rse_tc3 = {"seed_params": {
                 }
 
 config_rse_rdv3 = {"seed_params": {
-                "tfm_platform":     ["arm/rse/rdv3"],
+                "tfm_platform":     ["arm/rse/neoverse_rd/rdv3"],
                 "compiler":         ["GCC_10_3"],
                 "isolation_level":  ["1", "2", "3"],
                 "test_regression":  ["OFF"],

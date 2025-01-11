@@ -5,7 +5,7 @@
 
 __copyright__ = """
 /*
- * Copyright (c) 2022-2024, Arm Limited. All rights reserved.
+ * Copyright (c) 2022-2025, Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -27,7 +27,7 @@ mapPlatform = {
     "arm/mps4/corstone320"               : "corstone320",
     "arm/mps3/corstone310/fvp"           : "corstone310",
     "arm/rse/tc/tc3"                     : "RSE_TC3",
-    "arm/rse/rdv3"                       : "RSE_RDV3",
+    "arm/rse/neoverse_rd/rdv3"           : "RSE_RDV3",
     "arm/rse/automotive_rd/rd1ae"        : "RSE_RD1AE",
     "cypress/psoc64"                     : "psoc64",
     "lairdconnectivity/bl5340_dvk_cpuapp": "BL5340",
@@ -109,8 +109,10 @@ mapExtraParams = {
     "PACBTI_STD"   : "-DCONFIG_TFM_BRANCH_PROTECTION_FEAT=BRANCH_PROTECTION_STANDARD",
     "PACBTI_NONE"  : "-DCONFIG_TFM_BRANCH_PROTECTION_FEAT=BRANCH_PROTECTION_NONE",
 
-    # Platform Variants Support
+    # Platform Variants Support for RSE_RDV3
     "CFG0"         : "-DTFM_PLATFORM_VARIANT=0",
+    "CFG1"         : "-DTFM_PLATFORM_VARIANT=1",
+    "CFG2"         : "-DTFM_PLATFORM_VARIANT=2",
 
     # Extra test cases
     "TEST_CBOR"    : "-DTEST_NS_QCBOR=ON ",
