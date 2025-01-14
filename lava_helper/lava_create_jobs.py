@@ -69,6 +69,7 @@ def generate_test_definitions(config, work_dir, user_args):
             "build_name": os.getenv('CONFIG_NAME'),
             "device_type": config["device_type"],
             "job_timeout": config["job_timeout"],
+            "notification_email": config.get("notification_email", ''),
             "action_timeout": config.get("action_timeout", ''),
             "monitor_timeout": config.get("monitor_timeout", ''),
             "poweroff_timeout": config.get("poweroff_timeout", ''),

@@ -39,7 +39,9 @@ notify:
     status: incomplete
   verbosity: quiet
   recipients:
-    - to: {{ notification_email }}
+    - to:
+       email: {{ notification_email }}
+       method: email
 
 {% endblock %}
 {% block actions %}
