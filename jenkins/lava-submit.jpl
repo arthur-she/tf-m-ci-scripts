@@ -58,25 +58,7 @@ def submitJobs(device_type) {
       --lava-user ${LAVA_USER} --lava-token ${LAVA_TOKEN} | egrep "^JOBS"
       ''', returnStdout: true).trim()
     print("${job_ids}")
-
-    def lines = job_ids.split('\n')
-    def processedLines = []
-    lines.each { line ->
-      line = line.replace('JOBS:', '').trim()
-      def tokens = line.split(',')
-      tokens = tokens.collect { token ->
-        token = token.trim()
-        if (token ==~ /^\d+$/) {
-          return "<a href='${env.LAVA_URL}/scheduler/job/${token}'>${token}</a>"
-        } else {
-          return token
-        }
-      }
-      processedLines << tokens.join(' ')
-    }
-    def finalDescription = processedLines.join('<br/>')
-    println("Setting description to: " + finalDescription)
-    currentBuild.setDescription(finalDescription)
+    currentBuild.setDescription(job_ids)
   }
 }
 
