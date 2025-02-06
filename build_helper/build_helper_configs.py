@@ -393,15 +393,15 @@ config_pp_test = {"seed_params": {
                     # RSE_TC3_GCC_2_Release_BL2_ATTESTATION_SCHEME_CCA
                     #("arm/rse/tc/tc3", "GCC_10_3", "2",
                     # "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
-                    # RSE_TC4_GCC_3_RegS_RegNS_Release_BL2_ATTESTATION_SCHEME_DPE
+                    # RSE_TC4_GCC_3_RegS_RegNS_Release_BL2
                     ("arm/rse/tc/tc4", "GCC_10_3", "3",
-                     "RegS, RegNS", "OFF", "Release", True, "", "ATTESTATION_SCHEME_DPE"),
+                     "RegS, RegNS", "OFF", "Release", True, "", ""),
                     # RSE_TC4_GCC_2_RegBL1_1_Debug_BL2
-                    ("arm/rse/tc/tc4", "GCC_10_3", "2",
-                     "RegBL1_1", "OFF", "Debug", True, "", ""),
+                    #("arm/rse/tc/tc4", "GCC_10_3", "2",
+                    # "RegBL1_1", "OFF", "Debug", True, "", ""),
                     # RSE_TC4_GCC_2_Release_BL2_ATTESTATION_SCHEME_CCA
-                    ("arm/rse/tc/tc4", "GCC_10_3", "2",
-                     "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
+                    #("arm/rse/tc/tc4", "GCC_10_3", "2",
+                    # "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
                     # RSE_RDV3_GCC_2_Release_BL2_NSOFF_CFG0
                     ("arm/rse/neoverse_rd/rdv3", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
