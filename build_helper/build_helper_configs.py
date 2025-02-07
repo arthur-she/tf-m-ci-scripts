@@ -413,6 +413,9 @@ config_pp_test = {"seed_params": {
                     # RSE_RDV3_GCC_2_Release_BL2_NSOFF_CFG0
                     ("arm/rse/neoverse_rd/rdv3", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
+                    # RSE_RDV3R1_GCC_2_Release_BL2_NSOFF_CFG0
+                    ("arm/rse/neoverse_rd/rdv3r1", "GCC_10_3", "2",
+                     "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
                     # RSE_RD1AE_GCC_2_Release_BL2_NSOFF
                     ("arm/rse/automotive_rd/rd1ae", "GCC_10_3", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF"),
@@ -1041,6 +1044,21 @@ config_rse_rdv3 = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_rse_rdv3r1 = {"seed_params": {
+                "tfm_platform":     ["arm/rse/neoverse_rd/rdv3r1"],
+                "compiler":         ["GCC_10_3"],
+                "isolation_level":  ["1", "2"],
+                "test_regression":  ["OFF"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Debug", "Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     ["NSOFF, CFG0"]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 config_rse_rd1ae = {"seed_params": {
                 "tfm_platform":     ["arm/rse/automotive_rd/rd1ae"],
                 "compiler":         ["GCC_10_3"],
@@ -1377,6 +1395,7 @@ _builtin_configs = {
                     #"nightly_rse_tc3": config_rse_tc3,
                     "nightly_rse_tc4": config_rse_tc4,
                     "nightly_rse_rdv3": config_rse_rdv3,
+                    "nightly_rse_rdv3r1": config_rse_rdv3r1,
                     "nightly_rse_rd1ae": config_rse_rd1ae,
                     "nightly_psoc64": config_psoc64,
                     "nightly_stm32l562e_dk": config_stm32l562e_dk,
@@ -1406,6 +1425,7 @@ _builtin_configs = {
                     #"release_rse_tc3": config_rse_tc3,
                     "release_rse_tc4": config_rse_tc4,
                     "release_rse_rdv3": config_rse_rdv3,
+                    "release_rse_rdv3r1": config_rse_rdv3r1,
                     "release_rse_rd1ae": config_rse_rd1ae,
                     "release_psoc64": config_psoc64,
                     "release_stm32l562e_dk": config_stm32l562e_dk,
@@ -1442,6 +1462,7 @@ _builtin_configs = {
                     #"rse_tc3": config_rse_tc3,
                     "rse_tc4": config_rse_tc4,
                     "rse_rdv3": config_rse_rdv3,
+                    "rse_rdv3r1": config_rse_rdv3r1,
                     "rse_rd1ae": config_rse_rd1ae,
                     "cypress_psoc64": config_psoc64,
                     "corstone1000": config_corstone1000,
