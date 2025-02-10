@@ -124,7 +124,9 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
     def get_job_log(self, job_id, target_out_file):
         if self.is_tux_id(job_id):
             auth_headers = {}
-            log_url = "https://storage.tuxsuite.com/public/tfc/ci/tests/{job_id}/lava-logs.yaml".format(
+            log_url = "https://storage.tuxsuite.com/public/{tuxsuite_group}/{tuxsuite_project}/tests/{job_id}/lava-logs.yaml".format(
+                tuxsuite_group = os.environ.get("TUXSUITE_GROUP"),
+                tuxsuite_project = os.environ.get("TUXSUITE_PROJECT"),
                 job_id=job_id
             )
         else:
@@ -230,6 +232,9 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
         validating it againist the remote backend. Returns resulting job id,
         and server url for job"""
 
+        tuxsuite_group = os.environ.get("TUXSUITE_GROUP")
+        tuxsuite_project = os.environ.get("TUXSUITE_PROJECT")
+
         try:
             if not self.validate_job_yaml(job_definition):
                 _log.error("Server rejected job's syntax")
@@ -255,7 +260,11 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
                 _log.debug(l)
                 if l.startswith("uid:"):
                     job_id = l.split(None, 1)[1].strip()
-                    job_url = "https://tuxapi.tuxsuite.com/v1/groups/tfc/projects/ci/tests/" + job_id
+                    job_url = "https://tuxapi.tuxsuite.com/v1/groups/{tuxsuite_group}/projects/{tuxsuite_project}/tests/{job_id}".format(
+                        tuxsuite_group = os.environ.get("TUXSUITE_GROUP"),
+                        tuxsuite_project = os.environ.get("TUXSUITE_PROJECT"),
+                        job_id=job_id
+                    )
             return (job_id, job_url)
 
         try:

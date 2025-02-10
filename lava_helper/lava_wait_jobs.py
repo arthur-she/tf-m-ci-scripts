@@ -154,7 +154,9 @@ def fetch_artifacts(jobs, user_args, lava):
 
 def lava_id_to_url(id, user_args):
     if LAVA_RPC_connector.is_tux_id(id):
-        return "https://tuxapi.tuxsuite.com/v1/groups/tfc/projects/ci/tests/{}".format(id)
+        tuxsuite_group = os.environ.get("TUXSUITE_GROUP")
+        tuxsuite_project = os.environ.get("TUXSUITE_PROJECT")
+        return "https://tuxapi.tuxsuite.com/v1/groups/{}/projects/{}/tests/{}".format(tuxsuite_group, tuxsuite_project, id)
     else:
         return "{}/scheduler/job/{}".format(user_args.lava_url, id)
 

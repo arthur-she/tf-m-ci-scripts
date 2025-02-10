@@ -11,6 +11,6 @@ mkdir -p ~/.config/tuxsuite/
 cat > ~/.config/tuxsuite/config.ini <<EOF
 [default]
 token=$TUXSUITE_TOKEN
-group=tfc
-project=ci
+group=$TUXSUITE_GROUP
+project=$TUXSUITE_PROJECT
 EOF
