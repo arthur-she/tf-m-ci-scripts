@@ -420,6 +420,37 @@ fvp_rse_tc4 = {
     }
 }
 
+# RSE on RD-V3-R1 FVP
+fvp_rse_rdv3r1 = {
+    "templ": "fvp_rse_rdv3r1.jinja2",
+    "job_name": "fvp_rse_rdv3r1",
+    "device_type": "fvp",
+    "job_timeout": 15,
+    "notification_email": "tf-m-ci-notifications@lists.trustedfirmware.org",
+    "action_timeout": 10,
+    "monitor_timeout": 15,
+    "poweroff_timeout": 1,
+    "platforms": {"arm/rse/neoverse_rd/rdv3r1": ""},
+    "binaries": {
+        "rom": {
+            "data": "spe/bin/bl1_1.bin"
+        },
+        "combined_provisioning_message_0": {
+            "data": "spe/bin/provisioning/combined_provisioning_0_message.bin"
+        },
+        "combined_provisioning_message_1": {
+            "data": "spe/bin/provisioning/combined_provisioning_1_message.bin"
+        },
+        "flash": {
+            "data": "spe/bin/host_flash.bin"
+        }
+    },
+    "monitors": {
+        'no_reg_tests': no_reg_tests_monitors,
+        'reg_tests': reg_tests_monitors,
+    }
+}
+
 # QEMU for AN521 with BL2 bootloader
 qemu_mps2_bl2 = {
     "templ": "qemu_mps2_bl2.jinja2",
@@ -573,6 +604,7 @@ lava_gen_config_map_bl2 = {
     "fvp_corstone1000": fvp_corstone1000,
     "fvp_rse_tc3": fvp_rse_tc3,
     "fvp_rse_tc4": fvp_rse_tc4,
+    "fvp_rse_rdv3r1": fvp_rse_rdv3r1,
     "qemu_mps2_bl2": qemu_mps2_bl2,
     "musca_b1": musca_b1_bl2,
     "b_u585i_iot02a": b_u585i_iot02a,

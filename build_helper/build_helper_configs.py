@@ -147,6 +147,13 @@ _common_tfm_builder_cfg = {
                                    "--align 8192 --rse-sic-tables-ns %(ci_build_root_dir)s/nspe/bin/tfm_ns_sic_tables_signed.bin "
                                    "--out %(ci_build_root_dir)s/spe/bin/host_flash.bin "
                                    "fip.bin"),
+                    "arm/rse/neoverse_rd/rdv3r1": ("echo RSE-RD-V3-R1 build post process..; "
+                                    "srec_cat "
+                                    "%(ci_build_root_dir)s/spe/bin/bl2_signed.bin -Binary -offset 0x0 "
+                                    "%(ci_build_root_dir)s/spe/bin/bl2_signed.bin -Binary -offset 0x20000 "
+                                    "%(ci_build_root_dir)s/spe/bin/tfm_s_signed.bin -Binary -offset 0x40000 "
+                                    "%(ci_build_root_dir)s/spe/bin/tfm_s_signed.bin -Binary -offset 0x100000 "
+                                    "-o %(ci_build_root_dir)s/spe/bin/host_flash.bin -Binary"),
                    "stm/stm32l562e_dk": ("echo 'STM32L562E-DK board post process';"
                                           "%(ci_build_root_dir)s/spe/api_ns/postbuild.sh;"
                                           "pushd %(ci_build_root_dir)s/spe/api_ns;"
@@ -245,7 +252,12 @@ _common_tfm_builder_cfg = {
                                "%(ci_build_root_dir)s/spe/bin/rom.bin",
                                "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
                                "%(ci_build_root_dir)s/spe/bin/sram.bin",
-                               "%(ci_build_root_dir)s/spe/bin/host_flash.bin"]
+                               "%(ci_build_root_dir)s/spe/bin/host_flash.bin"],
+                            "arm/rse/neoverse_rd/rdv3r1": [
+                                "%(ci_build_root_dir)s/spe/bin/bl1_1.bin",
+                                "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_0_message.bin",
+                                "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_1_message.bin",
+                                "%(ci_build_root_dir)s/spe/bin/host_flash.bin"]
                            }
 }
 
@@ -385,11 +397,11 @@ config_pp_test = {"seed_params": {
                     # RSE_TC4_GCC_2_RegS_RegNS_MinSizeRel_BL2_RSE_COPY_USE_ROM_LIB_IN_SRAM
                     # ("arm/rse/tc/tc4", "GCC_14_3", "2",
                     #  "RegS, RegNS", "OFF", "MinSizeRel", True, "", "RSE_COPY_USE_ROM_LIB_IN_SRAM"),
+                    # RSE_RDV3R1_GCC_2_RegS_Debug_BL2_NSOFF_CFG0
+                    ("arm/rse/neoverse_rd/rdv3r1", "GCC_14_3", "2",
+                     "RegS", "OFF", "Debug", True, "", "NSOFF, CFG0"),
                     # RSE_RDV3_GCC_2_Release_BL2_NSOFF_CFG0
                     ("arm/rse/neoverse_rd/rdv3", "GCC_14_3", "2",
-                     "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
-                    # RSE_RDV3R1_GCC_2_Release_BL2_NSOFF_CFG0
-                    ("arm/rse/neoverse_rd/rdv3r1", "GCC_14_3", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
                     # RSE_CSSAspen_GCC_2_Release_BL2_NSOFF
                     ("arm/rse/automotive_rd/css-aspen", "GCC_13_2", "2",
@@ -1129,6 +1141,21 @@ config_rse_tc4 = {"seed_params": {
                 ]
                 }
 
+config_rse_rdv3r1 = {"seed_params": {
+                "tfm_platform":     ["arm/rse/neoverse_rd/rdv3r1"],
+                "compiler":         ["GCC_14_3"],
+                "isolation_level":  ["1", "2", "3"],
+                "test_regression":  ["RegS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Debug", "Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     ["NSOFF, CFG0"]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 # RSE-specific build-only cases.
 # New cases should be better added in the valid section
 # This group is only consumed in "tf-m-extra-build" CI job
@@ -1160,21 +1187,6 @@ config_rse_rdv3 = {"seed_params": {
                 "tfm_platform":     ["arm/rse/neoverse_rd/rdv3"],
                 "compiler":         ["GCC_14_3"],
                 "isolation_level":  ["1", "2", "3"],
-                "test_regression":  ["OFF"],
-                "test_psa_api":     ["OFF"],
-                "cmake_build_type": ["Debug", "Release"],
-                "with_bl2":         [True],
-                "profile":          [""],
-                "extra_params":     ["NSOFF, CFG0"]
-                },
-                "common_params": _common_tfm_builder_cfg,
-                "invalid": _common_tfm_invalid_configs + []
-                }
-
-config_rse_rdv3r1 = {"seed_params": {
-                "tfm_platform":     ["arm/rse/neoverse_rd/rdv3r1"],
-                "compiler":         ["GCC_14_3"],
-                "isolation_level":  ["1", "2"],
                 "test_regression":  ["OFF"],
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Debug", "Release"],
