@@ -363,6 +363,7 @@ fvp_rse_tc4 = {
     "job_name": "fvp_rse_tc4",
     "device_type": "fvp",
     "job_timeout": 15,
+    "notification_email": "tf-m-ci-notifications@lists.trustedfirmware.org",
     "action_timeout": 10,
     "monitor_timeout": 15,
     "poweroff_timeout": 1,
