@@ -19,6 +19,7 @@ for cfg in $(python3 ./tf-m-ci-scripts/configs.py -g "$FILTER_GROUP"); do
     (cd mbedtls; git checkout-index -faq; git clean -fdq)
     (cd psa-arch-tests; git checkout-index -faq; git clean -fdq)
     (cd trusted-firmware-m; git checkout-index -faq; git clean -fdq)
+    (cd t_cose; git checkout-index -faq; git clean -fdq)
     eclair_tfm_set_toolchain_path
     detachLicense $LICENSE_LEASE
     tf-m-ci-scripts/run-build.sh
