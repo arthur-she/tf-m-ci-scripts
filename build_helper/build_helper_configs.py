@@ -143,7 +143,7 @@ _common_tfm_builder_cfg = {
                     "arm/rse/tc/tc4": ("if [ -f \"%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin\" ]; then "
                                    "srec_cat "
                                    "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
-                                   "%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin -Binary -offset 0x10000 "
+                                   "%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin -Binary -offset 0x17000 "
                                    "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
                                    "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
                                    "else "
@@ -404,6 +404,9 @@ config_pp_test = {"seed_params": {
                     # RSE_TC4_GCC_2_Debug_BL2
                     ("arm/rse/tc/tc4", "GCC_10_3", "2",
                     "OFF", "OFF", "Debug", True, "", ""),
+                    # RSE_TC4_GCC_2_RegBL1_1_Debug_BL2
+                    ("arm/rse/tc/tc4", "GCC_10_3", "2",
+                    "RegBL1_1", "OFF", "Debug", True, "", ""),
                     # RSE_TC4_GCC_2_Release_BL2_ATTESTATION_SCHEME_CCA
                     #("arm/rse/tc/tc4", "GCC_10_3", "2",
                     # "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
@@ -1005,7 +1008,7 @@ config_rse_tc4 = {"seed_params": {
                 "tfm_platform":     ["arm/rse/tc/tc4"],
                 "compiler":         ["GCC_10_3"],
                 "isolation_level":  ["1", "2", "3"],
-                "test_regression":  ["OFF", "RegS, RegNS"],
+                "test_regression":  ["OFF", "RegS, RegNS", "RegBL1_1"],
                 "test_psa_api":     ["OFF"],
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
