@@ -1020,6 +1020,9 @@ config_rse_tc4 = {"seed_params": {
                     # BL2 is too large for RSE in Debug builds with tests
                     ("arm/rse/tc/tc4", "GCC_10_3", "*", "RegBL2, RegS, RegNS", "*",
                      "Debug", True, "*", "*"),
+                    # BL1_1 tests only support symmetric provisioning config
+                    ("arm/rse/tc/tc4", "*", "*", "RegBL1_1", "*",
+                     "*", True, "*", "RSE_PROVISIONING_ASYMMETRIC"),
                 ]
                 }
 
