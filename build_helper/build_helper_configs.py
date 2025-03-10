@@ -89,7 +89,7 @@ _common_tfm_builder_cfg = {
 
     # Keys will append extra commands when matching target_platform
     "post_build": {"arm/corstone1000": ("dd conv=notrunc bs=1 if=%(ci_build_root_dir)s/spe/bin/bl1_1.bin of=%(ci_build_root_dir)s/spe/bin/bl1.bin seek=0;"
-                                        "dd conv=notrunc bs=1 if=%(ci_build_root_dir)s/spe/bin/bl1_provisioning_bundle.bin of=%(ci_build_root_dir)s/spe/bin/bl1.bin seek=49152;"
+                                        "dd conv=notrunc bs=1 if=%(ci_build_root_dir)s/spe/bin/bl1_provisioning_bundle.bin of=%(ci_build_root_dir)s/spe/bin/bl1.bin seek=51200;"
                                         "%(codebase_root_dir)s/platform/ext/target/arm/corstone1000/create-flash-image.sh %(ci_build_root_dir)s/spe/bin/ cs1000.bin;"),
                     "arm/musca_b1": ("if [ -d \"%(ci_build_root_dir)s/nspe\" ]; then "
                                      "srec_cat "
