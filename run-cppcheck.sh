@@ -182,7 +182,7 @@ if [ "$RAW_OUTPUT" != "1" ] ; then
 else
   trap cppcheck_failed ERR
 fi
-CPPCHECK_ARGS="$EXTRA_ARGS --enable="$additional_checklist" --library="$library_file" --project=$cmake_commands --suppressions-list="$suppress_file" --inline-suppr"
+CPPCHECK_ARGS="$EXTRA_ARGS --enable="$additional_checklist" --library="$library_file" --project=$cmake_commands --suppressions-list="$suppress_file" --inline-suppr -j 8"
 
 #Now run cppcheck.
 echo
