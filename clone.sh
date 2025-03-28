@@ -111,7 +111,7 @@ T_COSE_REFSPEC="${T_COSE_VERSION:-"$(parse_version lib/ext/t_cose/CMakeLists.txt
 T_COSE_NAME="t_cose"
 
 TFM_EXTRAS_PROJECT="${TFM_EXTRAS_URL:-}"
-TFM_EXTRAS_REFSPEC="${TFM_EXTRAS_REFSPEC:-"$(parse_version lib/ext/tf-m-extras/CMakeLists.txt set\(TFM_EXTRAS_REPO_VERSION \" 2)"}"
+TFM_EXTRAS_REFSPEC="${TFM_EXTRAS_REFSPEC:-"$(parse_version config/config_base.cmake set\(TFM_EXTRAS_REPO_VERSION \" 2)"}"
 TFM_EXTRAS_NAME="tf-m-extras"
 
 TFM_TOOLS_PROJECT="${TFM_TOOLS_URL:-}"
