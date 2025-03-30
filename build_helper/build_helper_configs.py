@@ -622,9 +622,9 @@ config_psa_api = {"seed_params": {
                                      "CRYPTO",
                                      "INITIAL_ATTESTATION",
                                      "STORAGE"],
-                "cmake_build_type": ["Debug", "Release", "Minsizerel"],
+                "cmake_build_type": ["Release", "Minsizerel"],
                 "with_bl2":         [True],
-                "profile":          [""],
+                "profile":          ["profile_large"],
                 "extra_params":     [""]
                 },
                 "common_params": _common_tfm_builder_cfg,
