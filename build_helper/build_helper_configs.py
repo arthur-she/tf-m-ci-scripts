@@ -1131,6 +1131,24 @@ config_rse_tc4 = {"seed_params": {
                 ]
                 }
 
+# RSE-specific build-only cases.
+# New cases should be better added in the valid section
+# This group is only consumed in "tf-m-extra-build" CI job
+config_rse_build_only = {"seed_params": {
+                "tfm_platform":     ["arm/rse/tc/tc4"],
+                "compiler":         ["ARMCLANG_6_21"],
+                "isolation_level":  ["2"],
+                "test_regression":  ["OFF"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     ["ATTESTATION_SCHEME_CCA, RSE_SUPPORT_ROM_LIB_RELOCATION_OFF"]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 config_rse_rdv3 = {"seed_params": {
                 "tfm_platform":     ["arm/rse/neoverse_rd/rdv3"],
                 "compiler":         ["GCC_13_2"],
@@ -1618,6 +1636,9 @@ _builtin_configs = {
                     "debug": config_debug,
                     "debug_regr": config_debug_regr,
                     "debug_PSA_API": config_debug_PSA_API,
+
+                    # groups for build-only
+                    "rse_build_only": config_rse_build_only,
                 }
 
 if __name__ == '__main__':
