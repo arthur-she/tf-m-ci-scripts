@@ -158,7 +158,10 @@ mapExtraParams = {
     "RSE_PROVISIONING_SYMMETRIC" : ("-DRSE_SYMMETRIC_PROVISIONING=ON"),
 
     # Copy ROM code to SRAM in BL1_2 and execute from there
-    "RSE_COPY_USE_ROM_LIB_IN_SRAM" : ("-DRSE_USE_ROM_LIB_FROM_SRAM=ON")
+    "RSE_COPY_USE_ROM_LIB_IN_SRAM" : ("-DRSE_USE_ROM_LIB_FROM_SRAM=ON"),
+
+    # RSE ROM Relocation
+    "RSE_SUPPORT_ROM_LIB_RELOCATION_OFF" : ("-DRSE_SUPPORT_ROM_LIB_RELOCATION=OFF"),
 }
 
 mapTfmExtrasExamplePaths = {
