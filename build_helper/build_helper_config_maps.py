@@ -39,6 +39,7 @@ mapPlatform = {
     "nuvoton/m2354"                      : "M2354",
     "nxp/lpcxpresso55s69"                : "lpcxpresso55s69",
     "stm/stm32l562e_dk"                  : "stm32l562e_dk",
+    "stm/stm32wba65i_dk"                 : "stm32wba65i_dk",
     "stm/b_u585i_iot02a"                 : "b_u585i_iot02a",
     "stm/stm32h573i_dk"                  : "stm32h573i_dk",
     "stm/nucleo_l552ze_q"                : "nucleo_l552ze_q",

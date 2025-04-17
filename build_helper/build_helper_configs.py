@@ -1254,6 +1254,25 @@ config_stm32h573i_dk = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_stm32wba65i_dk = {"seed_params": {
+                "tfm_platform":     ["stm/stm32wba65i_dk"],
+                "compiler":         ["GCC_10_3", "ARMCLANG_6_21"],
+                "isolation_level":  ["1", "2"],
+                "test_regression":  ["OFF", "RegS, RegNS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Release"],
+                "with_bl2":         [False],
+                "profile":          ["profile_small","profile_medium"],
+                "extra_params":     [""]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + [
+                    ("stm/stm32wba65i_dk", "*", "2", "*",
+                     "*", "*", "*", "profile_small", "*"),
+                ]
+                }
+
+
 config_nucleo_l552ze_q = {"seed_params": {
                 "tfm_platform":     ["stm/nucleo_l552ze_q"],
                 "compiler":         ["GCC_10_3"],
@@ -1567,6 +1586,7 @@ _builtin_configs = {
                     "stm_stm32l562e_dk": config_stm32l562e_dk,
                     "stm_b_u585i_iot02a": config_b_u585i_iot02a,
                     "stm_stm32h573i_dk": config_stm32h573i_dk,
+                    "stm_stm32wba65i_dk" : config_stm32wba65i_dk,
                     "stm_nucleo_l552ze_q": config_nucleo_l552ze_q,
                     "nxp_lpcxpresso55s69": config_lpcxpresso55s69,
                     "laird_bl5340": config_bl5340,
