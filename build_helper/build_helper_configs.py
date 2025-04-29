@@ -1035,7 +1035,7 @@ config_corstone310 = {"seed_params": {
                 "cmake_build_type": ["Debug"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["NSOFF"]
+                "extra_params":     ["NSOFF", "PROV_TFM_DUMMY", "PROV_MCUBOOT_GEN_KEYS"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []

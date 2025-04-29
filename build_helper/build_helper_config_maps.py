@@ -125,6 +125,10 @@ mapExtraParams = {
     # Profiling test
     "PROF"         : ("-DTFM_EXTRA_CONFIG_PATH=%(codebase_root_dir)s/../tf-m-tools/profiling/profiling_cases/prof_psa_client_api/partitions/config_spe.cmake "),
 
+    # Platform provisioning
+    "PROV_TFM_DUMMY"        : "-DPLATFORM_DEFAULT_PROVISIONING=OFF -DTFM_DUMMY_PROVISIONING=ON ",
+    "PROV_MCUBOOT_GEN_KEYS" : "-DPLATFORM_DEFAULT_PROVISIONING=OFF -DTFM_DUMMY_PROVISIONING=OFF -DMCUBOOT_GENERATE_SIGNING_KEYPAIR=ON ",
+
     # tf-m-extras example support
     "EXTRAS_EXAMPLE_VAD"    : ("-DNS_EVALUATION_APP_PATH=%(codebase_root_dir)s/../tf-m-extras/examples/vad_an552/ns_side "
                                "-DTFM_EXTRA_PARTITION_PATHS=%(codebase_root_dir)s/../tf-m-extras/partitions/vad_an552_sp/ "
