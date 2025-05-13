@@ -560,6 +560,9 @@ config_all_plat = {
                     # stm32l562e_dk_GCC_3_Release_BL2_CRYPTO_ON
                     ("stm/stm32l562e_dk", "GCC_10_3", "3",
                      "OFF", "OFF", "Release", True, "", "CRYPTO_ON"),
+                    # stm32wba65i_dk_GCC_2_RegS_RegNS_Release_MEDIUM
+                    ("stm/stm32wba65i_dk", "GCC_10_3", "2",
+                     "RegS, RegNS", "OFF", "Release", False, "profile_medium", ""),
                 ],
                 "invalid": _common_tfm_invalid_configs + []
                 }
