@@ -143,7 +143,7 @@ _common_tfm_builder_cfg = {
                     "arm/rse/tc/tc4": ("if [ -f \"%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin\" ]; then "
                                    "srec_cat "
                                    "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
-                                   "%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin -Binary -offset 0x17000 "
+                                   "%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin -Binary -offset 0x18000 "
                                    "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
                                    "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
                                    "else "
