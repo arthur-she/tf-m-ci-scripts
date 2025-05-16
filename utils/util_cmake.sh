@@ -22,7 +22,7 @@
 ##@returns path in windows format
 ##
 ##This function converts MSYS and cygwin paths to windows like path. Can be used
-##to print paths in error message which can be used withouth conversion. This
+##to print paths in error message which can be used without conversion. This
 ##way for example you can get "clickable" path in Eclipse error window.
 ##
 ##Usage:
@@ -44,7 +44,7 @@ function fix_win_path() {
 	then
 		#sed:
 		# 1. match /cygdrive/c/ like paths and convert to the c:/ format
-		# 2. if 1 did not match conver /c/ path to c:/ format
+		# 2. if 1 did not match, convert /c/ path to c:/ format
 		path=`builtin echo "$path"|sed "s/\/cygdrive\/\([a-zA-Z]\)\//\1:\//;tx;s/\/\([a-zA-Z]\)\//\1:\//;:x"`
 	fi
 	builtin echo "$path"
@@ -58,7 +58,7 @@ function fix_win_path() {
 ##This function converts a path to absolute full path. The function will return
 ##execution environment specific path (/cygdrive/ under Cygwin c:/ under MSys
 ##and /foo/bar under Linux).
-##The patch to conver may or may not contain a file name.
+##The patch to convert may or may not contain a file name.
 ##
 ##Usage:
 ##  Assuming current directory is <i>c:/somedir1/somedir2</i>
@@ -113,7 +113,7 @@ function get_full_path {
 ##
 ##This function will generate the name for a build directory. The generated name
 ##follow the pattern "<build_base_dir>/build-<build_config_name>".
-##The generted path will be absolute.
+##The generated path will be absolute.
 ##
 ##Usage:
 ##  Assuming CMakeList.txt file is in /foo/bar directory.
@@ -147,7 +147,7 @@ function make_build_dir_name() {
 ##  Assuming CMakeList.txt file is in /foo/bar directory.
 ##  command | result
 ##  --------|-------
-## generate_project "/foo/bar" "/tmp/build" "test_build_st32" "-DCMAKE_BUILD_TYPE=Debug"| Generate makefiles under /tmp/buid/build-test_build_st32 for project /foo/bar/CMakeLists.txt
+## generate_project "/foo/bar" "/tmp/build" "test_build_st32" "-DCMAKE_BUILD_TYPE=Debug"| Generate makefiles under /tmp/build/build-test_build_st32 for project /foo/bar/CMakeLists.txt
 ##
 #This iis needed for doxygen for now.
 #!void generate_project(string dir, string build_base_dir, string build_config_name, string cmake_params){};

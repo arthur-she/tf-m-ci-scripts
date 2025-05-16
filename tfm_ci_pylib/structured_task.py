@@ -2,7 +2,7 @@
 
 """ structured_task.py:
 
-    A generic abstraction class for executing a task with prerequesites and
+    A generic abstraction class for executing a task with prerequisites and
     post execution action """
 
 from __future__ import print_function
@@ -62,7 +62,7 @@ class structuredTask(multiprocessing.Process):
 
     @abc.abstractmethod
     def pre_exec(self, eval_ret):
-        """ Tasks that set-up execution enviroment """
+        """ Tasks that set-up execution environment """
 
     @abc.abstractmethod
     def task_exec(self):

@@ -2,7 +2,7 @@
 
 """ tfm_build_manager.py:
 
-    Controlling class managing multiple build configruations for tfm """
+    Controlling class managing multiple build configurations for tfm """
 
 from __future__ import print_function
 from json import tool
@@ -157,7 +157,7 @@ class TFM_Build_Manager(structuredTask):
         """ """
 
     def override_tbm_cfg_params(self, config, override_keys, **params):
-        """ Using a dictionay as input, for each key defined in
+        """ Using a dictionary as input, for each key defined in
         override_keys it will replace the config[key] entries with
         the key=value parameters provided """
 
@@ -272,7 +272,7 @@ class TFM_Build_Manager(structuredTask):
                               img_sizes=self._tbm_img_sizes,
                               relative_paths=self._tbm_relative_paths))
         # When a seed pool is provided iterate through the entries
-        # and update platform spefific parameters
+        # and update platform specific parameters
         elif len(self._tbm_build_cfg):
             print("\r\n_tbm_build_cfg %s\r\n tbm_common_cfg %s\r\n" \
              % (self._tbm_build_cfg, self.tbm_common_cfg))
@@ -452,7 +452,7 @@ class TFM_Build_Manager(structuredTask):
             return False
 
     def post_exec(self, eval_ret):
-        """ Generate a report and fail the script if build == unsuccessfull"""
+        """ Generate a report and fail the script if build == unsuccessful"""
 
         self.print_summary()
         if not eval_ret:
@@ -510,14 +510,14 @@ class TFM_Build_Manager(structuredTask):
         abs_code_dir = os.path.abspath(os.path.expanduser(abs_code_dir))
         static_cfg["codebase_root_dir"] = abs_code_dir
 
-        # seed_params is an optional field. Do not proccess if it is missing
+        # seed_params is an optional field. Do not process if it is missing
         if "seed_params" in cfg:
             comb_cfg = cfg["seed_params"]
-            # Generate a list of all possible confugration combinations
+            # Generate a list of all possible configuration combinations
             ret_cfg = TFM_Build_Manager.generate_config_list(comb_cfg,
                                                              static_cfg)
 
-            # valid is an optional field. Do not proccess if it is missing
+            # valid is an optional field. Do not process if it is missing
             if "valid" in cfg:
                 # Valid configurations(Need to build)
                 valid_cfg = cfg["valid"]
@@ -527,7 +527,7 @@ class TFM_Build_Manager(structuredTask):
                     static_cfg,
                     valid_cfg))
 
-            # invalid is an optional field. Do not proccess if it is missing
+            # invalid is an optional field. Do not process if it is missing
             if "invalid" in cfg:
                 # Invalid configurations(Do not build)
                 invalid_cfg = cfg["invalid"]
@@ -545,7 +545,7 @@ class TFM_Build_Manager(structuredTask):
             self.simple_config = True
         return ret_cfg, static_cfg
 
-    # ----- Override bellow methods when subclassing for other projects ----- #
+    # ----- Override below methods when subclassing for other projects ----- #
 
     def print_summary(self):
         """ Print an comprehensive list of the build jobs with their status """
@@ -588,7 +588,7 @@ class TFM_Build_Manager(structuredTask):
                   " Please check config" % static_config["config_type"])
 
         ret_cfg = {}
-        # Notify the user for the rejected configuations
+        # Notify the user for the rejected configurations
         for i in config_list:
             # Convert named tuples to string in a brief format
             config_param = []
@@ -626,7 +626,7 @@ class TFM_Build_Manager(structuredTask):
                     if n in seed_config.keys()]
             sorted_default_lst = [seed_config[k] for k in tags]
 
-            # If tags are not alligned with optional list entries quit
+            # If tags are not aligned with optional list entries quit
             if len(tags) != len(optional_list[0]):
                 print(len(tags), len(optional_list[0]))
                 print("Error, tags should be assigned to each "
@@ -634,7 +634,7 @@ class TFM_Build_Manager(structuredTask):
                 return []
 
             # Replace wildcard ( "*") entries with every
-            # inluded in cfg variant
+            # included in cfg variant
             for k in optional_list:
                 # Pad the omitted values with wildcard char *
                 res_list = list(k) + ["*"] * (5 - len(k))
@@ -653,7 +653,7 @@ class TFM_Build_Manager(structuredTask):
                 # Append the configuration to the existing ones
                 optional_cfg = dict(optional_cfg, **op_cfg)
 
-            # Notify the user for the optional configuations
+            # Notify the user for the optional configurations
             for i in optional_cfg.keys():
                 print("Generating optional config %s" % i)
         else:

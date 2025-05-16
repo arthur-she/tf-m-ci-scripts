@@ -38,7 +38,7 @@ def list_files_from_dir(user_args, job_dir=""):
 
 
 def submit_lava_jobs(user_args, job_dir=""):
-    """ Submit a job to LAVA backend, block untill it is completed, and
+    """ Submit a job to LAVA backend, block until it is completed, and
     fetch the results files if successful. If not, calls sys exit with 1
     return code """
 

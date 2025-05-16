@@ -99,7 +99,7 @@ if __name__ == "__main__":
         default=os.getenv("GERRIT_PATCHSET_REVISION"),
     )
     PARSER.add_argument(
-        "--verify-name", help="Name to give the job verifcation message."
+        "--verify-name", help="Name to give the job verification message."
     )
     PARSER.add_argument(
         "--user", help="Username to authenticate as.", default=os.getenv("VERIFY_USER")

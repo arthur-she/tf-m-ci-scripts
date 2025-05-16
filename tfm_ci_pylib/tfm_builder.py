@@ -31,15 +31,15 @@ class TFM_Builder(structuredTask):
     """ Wrap around tfm cmake system and spawn a thread to build the project.
     """
     def __init__(self,
-                 name,      # Proccess name
+                 name,      # Process name
                  work_dir,  # Current working directory(ie logs)
                  cfg_dict,  # Input config dictionary of the following form
                             # input_dict = {"PROJ_CONFIG": "ConfigRegression",
                             #               "TARGET_PLATFORM": "MUSCA_A",
                             #               "COMPILER": "ARMCLANG",
                             #               "CMAKE_BUILD_TYPE": "Debug"}
-                 build_threads=4,   # Number of CPU thrads used in build
-                 silent=False,      # Silence stdout ouptut
+                 build_threads=4,   # Number of CPU threads used in build
+                 silent=False,      # Silence stdout output
                  img_sizes=False,   # Use arm-none-eabi-size for size info
                  relative_paths=False):  # Store relative paths in report
 
@@ -186,7 +186,7 @@ class TFM_Builder(structuredTask):
     def task_exec(self):
         """ Main tasks """
 
-        # Mark proccess running as status
+        # Mark process running as status
         self.set_status(-1)
         print("builder _tfb_cfg %s" % self._tfb_cfg)
 
@@ -215,7 +215,7 @@ class TFM_Builder(structuredTask):
         rep = {"build_cmd": "%s" % ",".join(build_cmds)}
         self.stash("Build Report", rep)
 
-        # Calll cmake to configure the project
+        # Call cmake to configure the project
         for build_cmd in build_cmds:
             # if a -j parameter is passed as user argument
             user_set_threads_match = threads_no_rex.findall(build_cmd)
@@ -272,7 +272,7 @@ class TFM_Builder(structuredTask):
 
         rep["artefacts"] = artefacts
 
-        # Proccess the artifacts into file structures
+        # Process the artifacts into file structures
         art_files = {}
         for art_item in artefacts:
             art_f = {"pl_source": 1,

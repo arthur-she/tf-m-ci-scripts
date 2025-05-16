@@ -29,5 +29,5 @@
 # in production release.
 -file_tag+={external, "^tf-m-tests/.*$"}
 
-# Ignore vendor platform specific soure code
+# Ignore vendor platform specific source code
 -file_tag+={external, "^trusted-firmware-m/platform/ext/target/.*$"}

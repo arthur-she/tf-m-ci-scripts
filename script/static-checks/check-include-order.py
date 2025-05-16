@@ -128,8 +128,8 @@ def group_lines(patchlines, starting_with):
     of the lines variable, marked with [1], is intentional and must come
     after the yield. That's because we must yield the (name, lines) tuple
     after we have found the name of the next section but before we assign the
-    name and start collecting lines. Further, [2] is required to yeild the
-    last block as there will not be a block start delimeter at the end of
+    name and start collecting lines. Further, [2] is required to yield the
+    last block as there will not be a block start delimiter at the end of
     the stream.
     """
     lines = []

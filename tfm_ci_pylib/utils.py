@@ -57,7 +57,7 @@ def resolve_rel_path(target_path, origin_path=os.getcwd()):
 
 def print_test_dict(data_dict,
                     pad_space=80,
-                    identation=5,
+                    indentation=5,
                     titl="Summary",
                     pad_char="*"):
 
@@ -65,8 +65,8 @@ def print_test_dict(data_dict,
     {"TEST NAME": "RESULT"} used in CI systems. It will also return
     the string which is printing """
 
-    # Calculate pad space bewteen variables x, y t achieve alignment on y
-    # taking into consideration a maximum aligment boundary p and
+    # Calculate pad space between variables x, y t achieve alignment on y
+    # taking into consideration a maximum alignment boundary p and
     # possible indentation i
     def flex_pad(x, y, p, i):
         return " " * (p - i * 2 - len(x) - len(y)) + "-> "
@@ -75,15 +75,15 @@ def print_test_dict(data_dict,
     tests = [k + flex_pad(k,
                           v,
                           pad_space,
-                          identation) + v for k, v in data_dict.items()]
+                          indentation) + v for k, v in data_dict.items()]
 
-    # Add the identation
-    tests = map(lambda x: " " * identation + x, tests)
+    # Add the indentation
+    tests = map(lambda x: " " * indentation + x, tests)
 
     # Convert to string
     tests = "\n".join(tests)
 
-    # Calcuate the top header padding ceiling any rounding errors
+    # Calculate the top header padding ceiling any rounding errors
     hdr_pad = (pad_space - len(titl) - 3) / 2
 
     if detect_python3():
@@ -104,7 +104,7 @@ def print_test_dict(data_dict,
 
 
 def print_test(t_name=None, t_list=None, status="failed", tname="Tests"):
-    """ Print a list of tests in a stuctured ascii table format """
+    """ Print a list of tests in a structured ascii table format """
 
     gfx_line1 = "=" * 80
     gfx_line2 = "\t" + "-" * 70
@@ -127,9 +127,9 @@ def test(test_list,
          summary=True):
 
     """ Using input of a test_lst and a test results dictionary in the format
-    of test_name: resut key-value pairs, test() method will verify that Every
+    of test_name: result key-value pairs, test() method will verify that Every
     single method in the test_list has been tested and passed. Pass and Failed,
-    status tests can be overriden and error_on_failed flag, exits the script
+    status tests can be overridden and error_on_failed flag, exits the script
     with failure if a single test fails or is not detected. Returns a json
     containing status and fields for each test passed/failed/missing, if error
     on failed is not set.
@@ -146,14 +146,14 @@ def test(test_list,
     # Calculate the difference of the two sets to find missing tests
     t_report["missing"] = list(set(test_list) - set(test_dict.keys()))
 
-    # Sor the items into the apropriate lists (failed or passed)
+    # Sor the items into the appropriate lists (failed or passed)
     # based on their status.
     for k, v in test_dict.items():
         # print(k, v)
         key = "passed" if v in pass_text else "failed"
         t_report[key] += [k]
 
-    # For the test to pass every singe test in test_list needs to be present
+    # For the test to pass every single test in test_list needs to be present
     # and be in the passed list
     if len(test_list) == len(t_report["passed"]):
         t_report["success"] = True
@@ -195,7 +195,7 @@ def save_dict_json(f_name, data_dict, sort_list=None):
 
 
 def sort_dict(config_dict, sort_order_list=None):
-    """ Create a fixed order disctionary out of a config dataset """
+    """ Create a fixed order dictionary out of a config dataset """
 
     if sort_order_list:
         ret = OrderedDict([(k, config_dict[k]) for k in sort_order_list])
@@ -232,7 +232,7 @@ def load_yaml(f_name):
 
 def subprocess_log(cmd, log_f, prefix=None, append=False, silent=False):
     """ Run a command as subproccess an log the output to stdout and fileself.
-    If prefix is spefified it will be added as the first line in file """
+    If prefix is specified it will be added as the first line in file """
 
     with open(log_f, 'a' if append else "w") as F:
         if prefix:
@@ -255,7 +255,7 @@ def subprocess_log(cmd, log_f, prefix=None, append=False, silent=False):
 
 def run_proccess(cmd):
     """ Run a command as subproccess an log the output to stdout and file.
-    If prefix is spefified it will be added as the first line in file """
+    If prefix is specified it will be added as the first line in file """
 
     pcss = Popen(cmd,
                  stdout=PIPE,
@@ -268,7 +268,7 @@ def run_proccess(cmd):
 
 def get_pid_status(pid):
     """ Read the procfc in Linux machines to determine a proccess's statusself.
-    Returns status if proccess exists or None if it does not """
+    Returns status if process exists or None if it does not """
 
     try:
         with open("/proc/%s/status" % pid, "r") as F:
@@ -281,7 +281,7 @@ def get_pid_status(pid):
 
 def check_pid_status(pid, status_list):
     """ Check a proccess's status againist a provided lists and return True
-    if the proccess exists and has a status included in the list. (Linux) """
+    if the process exists and has a status included in the list. (Linux) """
 
     pid_status = get_pid_status(pid)
 
@@ -316,7 +316,7 @@ def export_config_map(config_m, dir=None):
 
 def gen_cfg_combinations(name, categories, *args):
     """ Create a list of named tuples of `name`, with elements defined in a
-    space separated string `categories` and equal ammount of lists for said
+    space separated string `categories` and equal amount of lists for said
     categories provided as arguments. Order of arguments should match the
     order of the categories lists """
 
@@ -346,7 +346,7 @@ def get_cmd_args(descr="", parser=None):
 
 def arm_non_eabi_size(filename):
     """ Run arm-non-eabi-size command and parse the output using regex. Will
-    return a tuple with the formated data as well as the raw output of the
+    return a tuple with the formatted data as well as the raw output of the
     command """
 
     size_info_rex = re.compile(r'^\s+(?P<text>[0-9]+)\s+(?P<data>[0-9]+)\s+'
@@ -368,7 +368,7 @@ def arm_non_eabi_size(filename):
 
 def fromelf(filename):
     """ Run fromelf command and parse the output using regex. Will
-    return a tuple with the formated data as well as the raw output of the
+    return a tuple with the formatted data as well as the raw output of the
     command """
 
     size_info_rex = re.compile(r'^\s+(?P<Code>[0-9]+)\s+(?P<data>[0-9]+)\s+'
@@ -476,7 +476,7 @@ def get_local_git_info(directory, json_out_f=None):
 
     remote = proc_res[2]
     # Internal Gerrit specific code
-    # Intended for converting the git remote to a more usuable url
+    # Intended for converting the git remote to a more usable url
     known_remotes = ["https://gerrit.oss.arm.com",
                      "http://gerrit.mirror.oss.arm.com"]
 

@@ -69,7 +69,7 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
         super(LAVA_RPC_connector, self).__init__(server_addr)
 
     def _rpc_cmd_raw(self, cmd, params=None):
-        """ Run a remote comand and return the result. There is no constrain
+        """ Run a remote command and return the result. There is no constrain
         check on the syntax of the command. """
 
         cmd = "self.%s(%s)" % (cmd, params if params else "")
@@ -196,7 +196,7 @@ class LAVA_RPC_connector(xmlrpc.client.ServerProxy, object):
         return self.scheduler.job_state(job_id)["job_state"]
 
     def cancel_job(self, job_id):
-        """ Cancell job with id=job_id. Returns True if successfull """
+        """ Cancel job with id=job_id. Returns True if successful """
 
         return self.scheduler.jobs.cancel(job_id)
 

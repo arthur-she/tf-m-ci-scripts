@@ -1644,7 +1644,7 @@ _builtin_configs = {
 if __name__ == '__main__':
     import os
 
-    # Default behavior is to export refference config when called
+    # Default behavior is to export reference config when called
     _dir = os.getcwd()
     from utils import save_json
     for _cname, _cfg in _builtin_configs.items():

@@ -89,7 +89,7 @@ def main(user_args):
                   user_args.config)
             sys.exit(1)
     else:
-        print("Error: Configuration not specificed")
+        print("Error: Configuration not specified")
         sys.exit(1)
 
     # Build everything

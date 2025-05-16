@@ -86,7 +86,7 @@ mapExtraParams = {
     "FPON"         : ("-DCONFIG_TFM_ENABLE_FP=ON "
                       "-DTEST_S_FPU=ON -DTEST_NS_FPU=ON "),
     "LZOFF"        : "-DCONFIG_TFM_LAZY_STACKING=OFF ",
-    # Partiton
+    # Partition
     "PSOFF"        : "-DTFM_PARTITION_PROTECTED_STORAGE=OFF ",
     "PSCLEAR"      : "-DPS_ENCRYPTION=OFF -DPS_ROLLBACK_PROTECTION=OFF",
     "PSLIMIT"      : "-DPS_AES_KEY_USAGE_LIMIT=1000000",

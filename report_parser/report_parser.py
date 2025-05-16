@@ -3,10 +3,10 @@
 """ report_parser.py:
 
     Report parser parses openci json reports and conveys the invormation in a
-    one or more standard formats (To be implememented)
+    one or more standard formats (To be implemented)
 
     After all information is captured it validates the success/failure status
-    and can change the script exit code for intergration with standard CI
+    and can change the script exit code for integration with standard CI
     executors.
     """
 
@@ -100,7 +100,7 @@ def dependencies_mdt_collect(path_list,
         print(err_msg)
         raise Exception(err_msg)
 
-    # Create a dataset for the entires of known data format
+    # Create a dataset for the entries of known data format
     known_data = {n: {} for n in
                   set(known_content_types).intersection(set(cpaths.keys()))}
 
@@ -248,7 +248,7 @@ def cppcheck_mdt_collect(file_list, out_f=None):
 
         sever = E.pop("severity")
 
-        # Sort it based on serverity
+        # Sort it based on severity
         try:
             out_data["report"][sever].append(E)
         except KeyError:
@@ -328,7 +328,7 @@ def checkpatch_mdt_collect(file_name, out_f=None):
 
 
 def jenkins_mdt_collect(out_f):
-    """ Collects Jenkins enviroment information and stores
+    """ Collects Jenkins environment information and stores
      it in a key value list """
 
     # Jenkins environment parameters are always valid
@@ -350,7 +350,7 @@ def jenkins_mdt_collect(out_f):
                            "GERRIT_CHANGE_OWNER_EMAIL",
                            "GERRIT_PATCHSET_UPLOADER_EMAIL"]
 
-    # Find as mamny of the variables in environent
+    # Find as mamny of the variables in environment
     el = set(os.environ).intersection(set(jenkins_env_keys +
                                           gerrit_trigger_keys))
     # Format it in key:value pairs
@@ -456,7 +456,7 @@ def parse_report(user_args):
     in_rep = load_json(user_args.report)
     report_eval = None
 
-    # Extract the required condition for evalutation to pass
+    # Extract the required condition for evaluation to pass
     pass_key, pass_val = split_keys(user_args.set_pass)
 
     print("Evaluation will succeed if \"%s\" is \"%s\"" % (pass_key,
@@ -485,7 +485,7 @@ def parse_report(user_args):
             except Exception as e:
                 report_eval = False
 
-        # If every singel field need to be succesfful, invert the check and
+        # If every single field needs to be succesfful, invert the check and
         # look for those who are not
         elif user_args.allpass:
             try:
@@ -509,7 +509,7 @@ def parse_report(user_args):
 def main(user_args):
     """ Main logic """
 
-    # Metadat Collect Mode
+    # Metadata Collect Mode
     if user_args.collect:
         metadata_collect(user_args)
         return
@@ -542,7 +542,7 @@ def get_cmd_args():
                         dest="allpass",
                         action="store_true",
                         help="When set and a list is provided, all entries"
-                        "must be succefull for evaluation to pass")
+                        "must be successful for evaluation to pass")
     parser.add_argument("-o", "--one-field-must-pass",
                         dest="onepass",
                         action="store",
@@ -570,7 +570,7 @@ def get_cmd_args():
                         nargs='*',
                         help=("Pass a space separated list of paths in the"
                               "following format: -p mbedtls=/yourpath/"
-                              "fpv=/another/path .Used in conjuction with -n"))
+                              "fpv=/another/path .Used in conjunction with -n"))
     parser.add_argument("-g", "--git-info",
                         dest="git_info",
                         action="store",
@@ -594,7 +594,7 @@ def get_cmd_args():
     parser.add_argument("-j", "--jenkins-info",
                         dest="jenkins_info",
                         action="store_true",
-                        help="Extract jenkings and gerrit trigger enviroment "
+                        help="Extract jenkings and gerrit trigger environment "
                              "information fr. Requires --colect directive."
                              " Optional parameter --output-file ")
     parser.add_argument("-l", "--collate-report",
@@ -615,7 +615,7 @@ def get_cmd_args():
                              "following format: -l report_key_0=value_0"
                              " report_key_1=value_0. Filter will remote all"
                              "entries of the original report but the ones"
-                             "mathing the key:value pairs defined and print it"
+                             "matching the key:value pairs defined and print it"
                              "to stdout.Optional parameter --output-file")
     return parser.parse_args()
 
