@@ -119,7 +119,7 @@ TFM_TOOLS_REFSPEC="${TFM_TOOLS_REFSPEC:-"$(parse_version lib/ext/tf-m-tools/CMak
 TFM_TOOLS_NAME="tf-m-tools"
 
 QA_TOOLS_PROJECT="https://review.trustedfirmware.org/ci/qa-tools"
-QA_TOOLS_REFSPEC="openci"
+QA_TOOLS_REFSPEC="master"
 QA_TOOLS_NAME="qa-tools"
 
 # Array containing "<repo url>;"<repo name>;<refspec>" elements
