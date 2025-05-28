@@ -621,7 +621,7 @@ config_profile_m = {"seed_params": {
                 "tfm_platform":     ["arm/mps2/an519",
                                      "arm/mps2/an521",
                                      "arm/musca_b1"],
-                "compiler":         ["GCC_10_3", "ARMCLANG_6_21"],
+                "compiler":         ["GCC_13_2", "ARMCLANG_6_21"],
                 "isolation_level":  ["2"],
                 "test_regression":  ["OFF", "RegBL2, RegS, RegNS"],
                 "test_psa_api":     ["OFF"],
