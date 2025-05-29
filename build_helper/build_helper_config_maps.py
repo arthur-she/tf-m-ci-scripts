@@ -155,7 +155,7 @@ mapExtraParams = {
                                    "-DEXTRA_NS_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/partitions/measured_boot/test/non_secure "),
 
     # Provisioning blob signing
-    "RSE_PROVISIONING_ASYMMETRIC" : ("-DRSE_SYMMETRIC_PROVISIONING=OFF"),
+    "RSE_PROVISIONING_SYMMETRIC" : ("-DRSE_SYMMETRIC_PROVISIONING=ON"),
 
     # Copy ROM code to SRAM in BL1_2 and execute from there
     "RSE_COPY_USE_ROM_LIB_IN_SRAM" : ("-DRSE_USE_ROM_LIB_FROM_SRAM=ON")

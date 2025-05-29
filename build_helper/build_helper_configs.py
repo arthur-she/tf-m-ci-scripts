@@ -387,40 +387,40 @@ config_pp_test = {"seed_params": {
                     ("arm/musca_s1", "GCC_10_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CC_DRIVER_PSA"),
                     # RSE_TC3_GCC_3_RegS_RegNS_Release_BL2_ATTESTATION_SCHEME_DPE
-                    #("arm/rse/tc/tc3", "GCC_10_3", "3",
+                    #("arm/rse/tc/tc3", "GCC_13_2", "3",
                     # "RegS, RegNS", "OFF", "Release", True, "", "ATTESTATION_SCHEME_DPE"),
                     # RSE_TC3_GCC_2_RegBL1_1_Debug_BL2
-                    #("arm/rse/tc/tc3", "GCC_10_3", "2",
+                    #("arm/rse/tc/tc3", "GCC_13_2", "2",
                     # "RegBL1_1", "OFF", "Debug", True, "", ""),
                     # RSE_TC3_GCC_2_Release_BL2_ATTESTATION_SCHEME_CCA
-                    #("arm/rse/tc/tc3", "GCC_10_3", "2",
+                    #("arm/rse/tc/tc3", "GCC_13_2", "2",
                     # "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
                     # RSE_TC4_GCC_3_RegS_RegNS_Release_BL2_ATTESTATION_SCHEME_DPE
-                    ("arm/rse/tc/tc4", "GCC_10_3", "3",
+                    ("arm/rse/tc/tc4", "GCC_13_2", "3",
                      "RegS, RegNS", "OFF", "Release", True, "", "ATTESTATION_SCHEME_DPE"),
-                    # RSE_TC4_GCC_3_RegS_RegNS_Release_BL2_RSE_PROVISIONING_ASYMMETRIC
-                    ("arm/rse/tc/tc4", "GCC_10_3", "3",
-                     "RegS, RegNS", "OFF", "Release", True, "", "RSE_PROVISIONING_ASYMMETRIC"),
+                    # RSE_TC4_GCC_3_RegS_RegNS_Release_BL2_RSE_PROVISIONING_SYMMETRIC
+                    ("arm/rse/tc/tc4", "GCC_13_2", "3",
+                     "RegS, RegNS", "OFF", "Release", True, "", "RSE_PROVISIONING_SYMMETRIC"),
                     # RSE_TC4_GCC_2_Debug_BL2
-                    ("arm/rse/tc/tc4", "GCC_10_3", "2",
+                    ("arm/rse/tc/tc4", "GCC_13_2", "2",
                      "OFF", "OFF", "Debug", True, "", ""),
                     # RSE_TC4_GCC_2_RegBL1_1_Debug_BL2
-                    ("arm/rse/tc/tc4", "GCC_10_3", "2",
+                    ("arm/rse/tc/tc4", "GCC_13_2", "2",
                      "RegBL1_1", "OFF", "Debug", True, "", ""),
                     # RSE_TC4_GCC_2_Release_BL2_ATTESTATION_SCHEME_CCA
-                    ("arm/rse/tc/tc4", "GCC_10_3", "2",
+                    ("arm/rse/tc/tc4", "GCC_13_2", "2",
                      "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
                     # RSE_TC4_GCC_2_RegS_RegNS_MinSizeRel_BL2_RSE_COPY_USE_ROM_LIB_IN_SRAM
-                    ("arm/rse/tc/tc4", "GCC_10_3", "2",
+                    ("arm/rse/tc/tc4", "GCC_13_2", "2",
                      "RegS, RegNS", "OFF", "MinSizeRel", True, "", "RSE_COPY_USE_ROM_LIB_IN_SRAM"),
                     # RSE_RDV3_GCC_2_Release_BL2_NSOFF_CFG0
-                    ("arm/rse/neoverse_rd/rdv3", "GCC_10_3", "2",
+                    ("arm/rse/neoverse_rd/rdv3", "GCC_13_2", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
                     # RSE_RDV3R1_GCC_2_Release_BL2_NSOFF_CFG0
-                    ("arm/rse/neoverse_rd/rdv3r1", "GCC_10_3", "2",
+                    ("arm/rse/neoverse_rd/rdv3r1", "GCC_13_2", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
                     # RSE_RD1AE_GCC_2_Release_BL2_NSOFF
-                    ("arm/rse/automotive_rd/rd1ae", "GCC_10_3", "2",
+                    ("arm/rse/automotive_rd/rd1ae", "GCC_13_2", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF"),
                     # stm32l562e_dk_ARMCLANG_1_RegS_RegNS_Release_BL2_CRYPTO_OFF
                     ("stm/stm32l562e_dk", "ARMCLANG_6_21", "1",
@@ -1117,16 +1117,13 @@ config_rse_tc4 = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["ATTESTATION_SCHEME_DPE", "RSE_PROVISIONING_ASYMMETRIC"]
+                "extra_params":     ["ATTESTATION_SCHEME_DPE", "RSE_PROVISIONING_SYMMETRIC"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + [
                     # BL2 is too large for RSE in Debug builds with tests
                     ("arm/rse/tc/tc4", "GCC_10_3", "*", "RegBL2, RegS, RegNS", "*",
                      "Debug", True, "*", "*"),
-                    # BL1_1 tests only support symmetric provisioning config
-                    ("arm/rse/tc/tc4", "*", "*", "RegBL1_1", "*",
-                     "*", True, "*", "RSE_PROVISIONING_ASYMMETRIC"),
                 ],
                 "valid": [
                     ("arm/rse/tc/tc4", "*", "*", "*", "*",
