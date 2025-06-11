@@ -79,11 +79,17 @@ class TFM_Build_Manager(structuredTask):
                 toolchain = "toolchain_GNUARM.cmake"
             elif "ARMCLANG" in compiler:
                 toolchain = "toolchain_ARMCLANG.cmake"
+            elif "CLANG" in compiler:
+                # IMPORTANT, this must be below ARMCLANG or it will select that
+                toolchain = "toolchain_CLANG.cmake"
         else:
             if "GCC"in compiler:
                 toolchain = "toolchain_ns_GNUARM.cmake"
             elif "ARMCLANG" in compiler:
                 toolchain = "toolchain_ns_ARMCLANG.cmake"
+            elif "CLANG" in compiler:
+                # IMPORTANT, this must be below ARMCANG
+                toolchain = "toolchain_ns_CLANG.cmake"
 
         return toolchain
 
@@ -93,6 +99,8 @@ class TFM_Build_Manager(structuredTask):
             compiler_name = "arm-none-eabi-gcc"
         elif "ARMCLANG" in compiler:
             compiler_name = "armclang"
+        elif "CLANG" in compiler:
+            compiler_name = "clang"
 
         return compiler_name
 
