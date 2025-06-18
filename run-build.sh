@@ -93,6 +93,13 @@ if [ "$cnt" != "0" ] ; then
     cd -
 fi
 
+cnt=$(ls trusted-firmware-m/lib/ext/mcuboot/*.patch 2> /dev/null | wc -l)
+if [ "$cnt" != "0" ] ; then
+    cd mcuboot
+    git apply ../trusted-firmware-m/lib/ext/mcuboot/*.patch
+    cd -
+fi
+
 cnt=$(ls trusted-firmware-m/lib/ext/t_cose/*.patch 2> /dev/null | wc -l)
 if [ "$cnt" != "0" ] ; then
     cd t_cose
