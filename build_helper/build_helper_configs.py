@@ -243,30 +243,30 @@ _common_tfm_builder_cfg = {
 
     # (Optional) If set will fail if those artefacts are missing post build
     "required_artefacts": {"all": [
-                           "%(ci_build_root_dir)s/spe/bin/"
-                           "tfm_s.bin",
-                           "%(ci_build_root_dir)s/nspe/"
-                           "tfm_ns.bin"],
+                               "%(ci_build_root_dir)s/spe/bin/"
+                               "tfm_s.bin",
+                               "%(ci_build_root_dir)s/nspe/"
+                               "tfm_ns.bin"],
                            "arm/musca_b1": [
-                           "%(ci_build_root_dir)s/tfm.hex",
-                           "%(ci_build_root_dir)s/spe/bin/"
-                           "bl2.bin",
-                           "%(ci_build_root_dir)s/spe/bin/"
-                           "tfm_sign.bin"],
+                               "%(ci_build_root_dir)s/tfm.hex",
+                               "%(ci_build_root_dir)s/spe/bin/"
+                               "bl2.bin",
+                               "%(ci_build_root_dir)s/spe/bin/"
+                               "tfm_sign.bin"],
                            "arm/musca_s1": [
-                           "%(ci_build_root_dir)s/tfm.hex",
-                           "%(ci_build_root_dir)s/spe/bin/"
-                           "bl2.bin",
-                           "%(ci_build_root_dir)s/spe/bin/"
-                           "tfm_sign.bin"],
+                               "%(ci_build_root_dir)s/tfm.hex",
+                               "%(ci_build_root_dir)s/spe/bin/"
+                               "bl2.bin",
+                               "%(ci_build_root_dir)s/spe/bin/"
+                               "tfm_sign.bin"],
                            "arm/rse/tc/tc3": [
-                           "%(ci_build_root_dir)s/spe/bin/rom.bin",
-                           "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
-                           "%(ci_build_root_dir)s/spe/bin/host_flash.bin"],
+                               "%(ci_build_root_dir)s/spe/bin/rom.bin",
+                               "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
+                               "%(ci_build_root_dir)s/spe/bin/host_flash.bin"],
                            "arm/rse/tc/tc4": [
-                           "%(ci_build_root_dir)s/spe/bin/rom.bin",
-                           "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
-                           "%(ci_build_root_dir)s/spe/bin/host_flash.bin"]
+                               "%(ci_build_root_dir)s/spe/bin/rom.bin",
+                               "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
+                               "%(ci_build_root_dir)s/spe/bin/host_flash.bin"]
                            }
 }
 
@@ -1008,7 +1008,22 @@ config_musca_b1 = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["", "NSOFF"]
+                "extra_params":     [""]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
+config_musca_b1_nsoff = {"seed_params": {
+                "tfm_platform":     ["arm/musca_b1"],
+                "compiler":         ["GCC_13_2", "ARMCLANG_6_21"],
+                "isolation_level":  ["1", "2", "3"],
+                "test_regression":  ["OFF", "RegBL2, RegS, RegNS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Debug", "Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     ["NSOFF"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []
@@ -1023,7 +1038,22 @@ config_musca_s1 = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["", "NSOFF"]
+                "extra_params":     [""]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
+config_musca_s1_nsoff = {"seed_params": {
+                "tfm_platform":     ["arm/musca_s1"],
+                "compiler":         ["GCC_13_2", "ARMCLANG_6_21"],
+                "isolation_level":  ["1", "2"],
+                "test_regression":  ["OFF", "RegBL2, RegS, RegNS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Debug", "Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     ["NSOFF"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []
@@ -1597,7 +1627,9 @@ _builtin_configs = {
                     "cs300_an552": config_cs300_an552,
                     "cs300_fvp": config_cs300_fvp,
                     "musca_b1": config_musca_b1,
+                    "musca_b1_nsoff": config_musca_b1_nsoff,
                     "musca_s1": config_musca_s1,
+                    "musca_s1_nsoff": config_musca_s1_nsoff,
                     "corstone310": config_corstone310,
                     "corstone315": config_corstone315,
                     "corstone320": config_corstone320,
