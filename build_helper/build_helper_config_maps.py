@@ -94,6 +94,8 @@ mapExtraParams = {
     "IPC"          : "-DCONFIG_TFM_SPM_BACKEND=IPC ",
     # CC Driver
     "CC_DRIVER_PSA": "-DCC312_LEGACY_DRIVER_API_ENABLED=OFF ",
+    # CC3XX Runtime Enabled (experimental)
+    "CC3XX_RUNTIME_ENABLED": "-DCC3XX_RUNTIME_ENABLED=ON -DCC312_LEGACY_DRIVER_API_ENABLED=OFF ",
     # ST support
     "CRYPTO_OFF"   : ("-DTEST_S_CRYPTO=OFF "
                       "-DTEST_NS_CRYPTO=OFF "),

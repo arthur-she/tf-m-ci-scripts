@@ -698,6 +698,22 @@ config_cc_driver_psa = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_cc3xx_runtime_enabled = {"seed_params": {
+               "tfm_platform":      ["arm/musca_b1",
+                                     "arm/musca_s1"],
+                "compiler":         ["GCC_13_2"],
+                "isolation_level":  ["1"],
+                "test_regression":  ["RegBL2, RegS, RegNS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Release"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     ["CC3XX_RUNTIME_ENABLED"]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 config_fp = {"seed_params": {
                 "tfm_platform":     ["arm/mps2/an521",
                                      "arm/mps3/corstone300/an552",
@@ -1551,6 +1567,7 @@ _builtin_configs = {
                     "nightly_profile_l": config_profile_l,
                     "nightly_ipc_backend": config_ipc_backend,
                     "nightly_cc_driver_psa": config_cc_driver_psa,
+                    "nightly_cc3xx_runtime_enabled": config_cc3xx_runtime_enabled,
                     "nightly_fp":config_fp,
                     "nightly_psa_api": config_psa_api,
                     "nightly_nsce": config_nsce,
