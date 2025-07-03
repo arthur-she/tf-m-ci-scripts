@@ -31,7 +31,6 @@ mapPlatform = {
     "arm/rse/neoverse_rd/rdv3r1"         : "RSE_RDV3R1",
     "arm/rse/automotive_rd/rd1ae"        : "RSE_RD1AE",
     "cypress/psoc64"                     : "psoc64",
-    "lairdconnectivity/bl5340_dvk_cpuapp": "BL5340",
     "nordic_nrf/nrf5340dk_nrf5340_cpuapp": "nrf5340dk",
     "nordic_nrf/nrf9160dk_nrf9160"       : "nrf9160dk",
     "nuvoton/m2351"                      : "M2351",

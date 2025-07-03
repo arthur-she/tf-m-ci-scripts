@@ -491,9 +491,6 @@ config_all_plat = {
                     # psoc64_GCC_2_RegS_RegNS_Release
                     ("cypress/psoc64", "GCC_13_2", "2",
                      "RegS, RegNS", "OFF", "Release", False, "", ""),
-                    ## BL5340_GCC_1_Debug_BL2_NSOFF
-                    #("lairdconnectivity/bl5340_dvk_cpuapp", "GCC_13_2", "1",
-                    # "OFF", "OFF", "Debug", True, "", "NSOFF"),
                     ## nrf5340dk_GCC_1_Debug_BL2_NSOFF
                     #("nordic_nrf/nrf5340dk_nrf5340_cpuapp", "GCC_13_2", "1",
                     # "OFF", "OFF", "Release", True, "", "NSOFF"),
@@ -1303,21 +1300,6 @@ config_lpcxpresso55s69 = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
-config_bl5340 = {"seed_params": {
-                "tfm_platform":     ["lairdconnectivity/bl5340_dvk_cpuapp"],
-                "compiler":         ["GCC_13_2"],
-                "isolation_level":  ["1"],
-                "test_regression":  ["OFF"],
-                "test_psa_api":     ["OFF"],
-                "cmake_build_type": ["Debug"],
-                "with_bl2":         [True],
-                "profile":          [""],
-                "extra_params":     ["NSOFF"]
-                },
-                "common_params": _common_tfm_builder_cfg,
-                "invalid": _common_tfm_invalid_configs + []
-                }
-
 config_nrf5340dk = {"seed_params": {
                 "tfm_platform":     ["nordic_nrf/nrf5340dk_nrf5340_cpuapp"],
                 "compiler":         ["GCC_13_2"],
@@ -1590,7 +1572,6 @@ _builtin_configs = {
                     "stm_stm32wba65i_dk" : config_stm32wba65i_dk,
                     "stm_nucleo_l552ze_q": config_nucleo_l552ze_q,
                     "nxp_lpcxpresso55s69": config_lpcxpresso55s69,
-                    "laird_bl5340": config_bl5340,
                     "nordic_nrf5340dk": config_nrf5340dk,
                     "nordic_nrf9160dk": config_nrf9160dk,
                     "nuvoton_m2351": config_m2351,
