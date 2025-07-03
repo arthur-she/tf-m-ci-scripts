@@ -101,6 +101,7 @@ else
 fi
 TFM_REFSPEC="${GERRIT_REFSPEC:?}"
 TFM_NAME="trusted-firmware-m"
+pip install --no-deps ./trusted-firmware-m/pyproject.toml || true
 
 clone_repo_to_share_folder "${TFM_PROJECT}" "${TFM_NAME}" "${TFM_REFSPEC}"
 if [ ! -d "${SHARE_FOLDER}/${TFM_NAME}" ]; then
