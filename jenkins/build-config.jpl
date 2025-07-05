@@ -3,7 +3,6 @@
 // Copyright (c) 2020-2024, Arm Limited and Contributors. All rights reserved.
 //
 // SPDX-License-Identifier: BSD-3-Clause
-//
 //-------------------------------------------------------------------------------
 
 @Library('trustedfirmware') _
@@ -11,74 +10,94 @@ import org.trustedfirmware.Gerrit
 
 def nodeLabel = "docker-amd64-tf-m-jammy"
 
+// Helpers
 @NonCPS
-def getUpstreamJob() {
-  def cause = manager.build.getAction(hudson.model.CauseAction.class).getCauses()
-  return cause
+def getUpstreamProjectName() {
+    def causes = manager.build.getAction(hudson.model.CauseAction.class)?.getCauses()
+    def upstreamCause = causes?.find { it instanceof hudson.model.Cause$UpstreamCause }
+    return upstreamCause?.upstreamProject
+}
+
+def archiveRequired(String pattern) {
+    def matchedFiles = findFiles(glob: pattern)
+    if (matchedFiles.length > 0) {
+        echo "Archiving required files: ${pattern}"
+        archiveArtifacts artifacts: pattern, allowEmptyArchive: false
+    } else {
+        error "Required artifacts not found for pattern: ${pattern}"
+    }
+}
+
+def archiveOptional(String pattern) {
+    def matchedFiles = findFiles(glob: pattern)
+    if (matchedFiles.length > 0) {
+        echo "Archiving optional files: ${pattern}"
+        archiveArtifacts artifacts: pattern, allowEmptyArchive: false
+    } else {
+        echo "Optional artifacts missing for pattern: ${pattern} — skipping."
+    }
 }
 
 timestamps {
-  node(nodeLabel) {
-    stage("Init") {
-      cleanWs()
-      dir("tf-m-ci-scripts") {
-        tfgit.checkout_ci_scripts()
-        sh "git rev-parse --short HEAD"
-        // Clone TF-M repositories so share folder can be reused by downstream jobs
-        sh "./clone.sh"
-      }
-    }
-    try {
-      verify = 1
-      stage("Build") {
-        // Activate UBL license for ArmClang.
-        if (env.CONFIG_NAME.contains("ARMCLANG")) {
-          withCredentials([string(credentialsId: 'ARMCLANG_UBL_CODE', variable: 'ARMCLANG_UBL_CODE')]) {
-            sh "tf-m-ci-scripts/jenkins/armclang-ubl.sh"
-          }
+    node(nodeLabel) {
+        stage("Init") {
+            cleanWs()
+            dir("tf-m-ci-scripts") {
+                tfgit.checkout_ci_scripts()
+                sh "git rev-parse --short HEAD"
+                sh "./clone.sh"
+            }
         }
 
-        sh "tf-m-ci-scripts/run-build.sh"
-      }
-      stage("Post") {
-        // Temporary, for debugging https://linaro.atlassian.net/browse/TFC-615
-        archiveArtifacts artifacts: 'ci_build/**', allowEmptyArchive: true
+        try {
+            stage("Build") {
+                if (env.CONFIG_NAME.contains("ARMCLANG")) {
+                    withCredentials([string(credentialsId: 'ARMCLANG_UBL_CODE', variable: 'ARMCLANG_UBL_CODE')]) {
+                        sh "tf-m-ci-scripts/jenkins/armclang-ubl.sh"
+                    }
+                }
+                sh "tf-m-ci-scripts/run-build.sh"
+            }
 
-        archiveArtifacts 'ci_build/spe/bin/**'
-        archiveArtifacts 'ci_build/spe/api_ns/bin/**'
-        archiveArtifacts 'ci_build/spe/api_ns/interface/**'
-        try {
-          archiveArtifacts 'ci_build/nspe/bin/**'
+            stage("Post") {
+                // Required artifacts (secure side)
+                def requiredSpePaths = [
+                    'ci_build/spe/bin/**',
+                    'ci_build/spe/api_ns/bin/**',
+                    'ci_build/spe/api_ns/interface/**'
+                ]
+                requiredSpePaths.each { archiveRequired(it) }
+
+                // Optional artifacts (non-secure side)
+                def optionalNspePaths = [
+                    'ci_build/nspe/bin/**',
+                    'ci_build/nspe/*.bin'
+                ]
+                optionalNspePaths.each { archiveOptional(it) }
+
+                // Handle upstream-specific artifacts
+                def upstreamProject = getUpstreamProjectName()
+
+                if (upstreamProject == "tf-m-build-and-test") {
+                    archiveRequired('ci_build/spe/build-spe/generated/**')
+                }
+
+                if (upstreamProject == "tf-m-nightly-performance") {
+                    sh "mkdir -p ${SHARE_FOLDER}/Memory_footprint/"
+                    def output = sh(script: "python3 tf-m-ci-scripts/performance.py --generate-memory", returnStdout: true).trim()
+                    println(output)
+                }
+            }
+
         } catch (Exception e) {
-          print("ci_build/nspe/bin not exists")
+            echo "Exception: ${e.getClass().getName()}: ${e.getMessage()}"
+            echo "Archiving all build files due to build error (to allow investigation)"
+            archiveArtifacts artifacts: 'ci_build/**', allowEmptyArchive: true
+            manager.buildFailure()
+        } finally {
+            def g = new Gerrit()
+            g.verifyStatusInWorkspace(currentBuild.result == 'SUCCESS' ? 1 : -1, env.CONFIG_NAME, 'build')
+            cleanWs()
         }
-        try {
-          archiveArtifacts 'ci_build/nspe/*.bin'
-        } catch (Exception e) {
-          print("ci_build/nspe/*.bin not exists")
-        }
-        def upstreamProject = getUpstreamJob()[0].upstreamProject
-        if (upstreamProject == "tf-m-build-and-test") {
-          archiveArtifacts 'ci_build/spe/build-spe/generated/**'
-        }
-        if (upstreamProject == "tf-m-nightly-performance"){
-          //Creating a folder to store memory footprint artifacts and launching the memory footprint script.
-          sh "mkdir -p ${SHARE_FOLDER}/Memory_footprint/"
-          output = sh(script: """python3 tf-m-ci-scripts/performance.py --generate-memory""", returnStdout: true).trim()
-          println(output)
-        }
-      }
-    } catch (Exception e) {
-      println("Archiving all build files due to build error (to allow investigate it)")
-      archiveArtifacts artifacts: 'ci_build/**', allowEmptyArchive: true
-      manager.buildFailure()
-      verify = -1
-    } finally {
-      g = new Gerrit()
-      g.verifyStatusInWorkspace(verify, env.CONFIG_NAME, 'build')
-      def buildStatus = (verify == 1) ? 'Successful' : 'Failed'
-      //g.commentInWorkspace("Build configuration ${env.CONFIG_NAME} ${buildStatus}: ${env.RUN_DISPLAY_URL}")
-      cleanWs()
     }
-  }
 }
