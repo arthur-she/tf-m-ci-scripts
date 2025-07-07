@@ -97,6 +97,8 @@ mapExtraParams = {
     "PSLIMIT"      : "-DPS_AES_KEY_USAGE_LIMIT=1000000",
     # IPC
     "IPC"          : "-DCONFIG_TFM_SPM_BACKEND=IPC ",
+    # Multi signaure support
+    "MULTI_SIG_SUPPORT" : "-DMCUBOOT_IMAGE_MULTI_SIG_SUPPORT=ON",
     # CC Driver
     "CC_DRIVER_PSA": "-DCC312_LEGACY_DRIVER_API_ENABLED=OFF ",
     # CC3XX Runtime Enabled (experimental)

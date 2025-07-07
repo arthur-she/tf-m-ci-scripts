@@ -388,6 +388,15 @@ config_pp_test = {"seed_params": {
                     # AN521_ARMCLANG_2_STORAGE_Debug_BL2
                     ("arm/mps2/an521", "ARMCLANG_6_21", "2",
                      "OFF", "STORAGE", "Debug", True, "", ""),
+                    # AN521_GCC_1_RegBL2_RegS_RegNS_Minsizerel_BL2_SMALL_MULTI_SIG_SUPPORT
+                    ("arm/mps2/an521", "GCC_14_3", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "profile_small", "MULTI_SIG_SUPPORT"),
+                    # AN521_GCC_1_RegBL2_RegS_RegNS_Release_BL2_MEDIUM_MULTI_SIG_SUPPORT
+                    ("arm/mps2/an521", "GCC_14_3", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "profile_medium", "MULTI_SIG_SUPPORT"),
+                    # AN521_GCC_1_RegBL2_RegS_RegNS_Release_BL2_LARGE_MULTI_SIG_SUPPORT
+                    ("arm/mps2/an521", "GCC_14_3", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "profile_large", "MULTI_SIG_SUPPORT"),
                     # CS300_FVP_GCC_2_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps3/corstone300/fvp", "GCC_14_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
@@ -671,7 +680,7 @@ config_profile_m = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release", "Minsizerel"],
                 "with_bl2":         [True],
                 "profile":          ["profile_medium"],
-                "extra_params":     ["", "PSOFF"]
+                "extra_params":     ["", "PSOFF", "MULTI_SIG_SUPPORT"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + [
@@ -690,7 +699,7 @@ config_profile_m_arotless = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release", "Minsizerel"],
                 "with_bl2":         [True],
                 "profile":          ["profile_medium_arotless"],
-                "extra_params":     ["", "PSOFF"]
+                "extra_params":     ["", "PSOFF", "MULTI_SIG_SUPPORT"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []
@@ -705,7 +714,7 @@ config_profile_l = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release", "Minsizerel"],
                 "with_bl2":         [True],
                 "profile":          ["profile_large"],
-                "extra_params":     ["", "PSOFF"]
+                "extra_params":     ["", "PSOFF", "MULTI_SIG_SUPPORT"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []
