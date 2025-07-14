@@ -66,8 +66,8 @@ def coverage_reports(jobs, user_args):
             dl_artifact("nspe/bin/tfm_ns.axf")
 
             script_dir = os.path.dirname(__file__)
-            run("python3 $SHARE_FOLDER/qa-tools/coverage-tool/coverage-reporting/intermediate_layer.py --config-json %s/trace2covjson.json --local-workspace %s" % (script_dir, local_workspace), cwd=job_dir)
-            run("python3 $SHARE_FOLDER/qa-tools/coverage-tool/coverage-reporting/generate_info_file.py --workspace %s --json covjson.json" % (local_workspace), cwd=job_dir)
+            run("python3 %s/../../qa-tools/coverage-tool/coverage-reporting/intermediate_layer.py --config-json %s/trace2covjson.json --local-workspace %s" % (script_dir, script_dir, local_workspace), cwd=job_dir)
+            run("python3 %s/../../qa-tools/coverage-tool/coverage-reporting/generate_info_file.py --workspace %s --json covjson.json" % (script_dir, local_workspace), cwd=job_dir)
             # Remove sources, coverage of which we're not interested in (e.g.
             # 3rd party code).
             run(

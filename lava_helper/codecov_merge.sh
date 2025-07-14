@@ -12,7 +12,7 @@ input_folder=cfgs
 output_coverage_file=merge.info
 output_json_file=merge.json
 
-python3 $SHARE_FOLDER/qa-tools/coverage-tool/coverage-reporting/merge.py \
+python3 $WORKSPACE/qa-tools/coverage-tool/coverage-reporting/merge.py \
       $(find $input_folder -name "*.info" -exec echo "-a {}" \;) \
       -o $output_coverage_file \
 

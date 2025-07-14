@@ -46,18 +46,37 @@ function clone_repo_to_share_folder() {
         return 0
     fi
 
+    # The non-compressed repo should not be in there, removing
     if [ ! -d "${SHARE_FOLDER}/${REPO_NAME}" ]; then
+        echo "Removing non-compressed ${REPO_NAME} as it should not be stored."
+        rm -rf "${SHARE_FOLDER}/${REPO_NAME}"
+    fi
+
+    if [ ! -f "${SHARE_FOLDER}/${REPO_NAME}.tar.gz" ]; then
         git_clone $REPO_URL "${SHARE_FOLDER}/${REPO_NAME}"
+        # Compress for shared area
         git_checkout "${SHARE_FOLDER}/${REPO_NAME}" $REPO_REFSPEC $SYNC_CMD
-    else
-        cd "${SHARE_FOLDER}/${REPO_NAME}"
-        echo -e "Share Folder ${REPO_NAME} $(git rev-parse --short HEAD)\n"
+        cd ${SHARE_FOLDER}
+        if [ "${REPO_NAME}" = "${TFM_NAME}" ] || [ "${REPO_NAME}" = "${TFM_TESTS_NAME}" ]; then
+            # These two need to remain as directories for now for further usage
+            tar -czf "${REPO_NAME}.tar.gz" "${REPO_NAME}"
+        else
+            tar -czf "${REPO_NAME}.tar.gz" "${REPO_NAME}" --remove-files
+        fi
         cd $OLDPWD
     fi
 
     # Copy repos into pwd dir (workspace in CI), so each job would work
     # on its own workspace
-    cp -a -f "${SHARE_FOLDER}/${REPO_NAME}" "${WORKSPACE}/${REPO_NAME}"
+    cp -a -f "${SHARE_FOLDER}/${REPO_NAME}.tar.gz" "${WORKSPACE}/${REPO_NAME}.tar.gz"
+    # De-compress the repo
+    tar -xzf "${WORKSPACE}/${REPO_NAME}.tar.gz" -C "${WORKSPACE}"
+    rm "${WORKSPACE}/${REPO_NAME}.tar.gz"
+
+    # Output the info of the current repo
+    cd "${WORKSPACE}/${REPO_NAME}"
+    echo -e "Local Folder ${REPO_NAME} $(git rev-parse --short HEAD)\n"
+    cd $OLDPWD
 }
 
 # Take into consideration non-CI runs where SHARE_FOLDER variable
@@ -150,5 +169,9 @@ done
 PSA_ARCH_TESTS_PROJECT="${PSA_ARCH_TESTS_URL:-}"
 PSA_ARCH_TESTS_REFSPEC="${PSA_ARCH_TESTS_VERSION:-"$(parse_version ../tf-m-tests/tests_psa_arch/fetch_repo/CMakeLists.txt set\(PSA_ARCH_TESTS_VERSION \" 2)"}"
 PSA_ARCH_TESTS_NAME="psa-arch-tests"
+
+if [-d "${SHARE_FOLDER}/${TFM_TESTS_NAME}" ]; then
+    rm -rf "${SHARE_FOLDER}/${TFM_TESTS_NAME}"
+fi
 
 clone_repo_to_share_folder "${PSA_ARCH_TESTS_PROJECT}" "${PSA_ARCH_TESTS_NAME}" "${PSA_ARCH_TESTS_REFSPEC}"
