@@ -162,6 +162,9 @@ mapExtraParams = {
 
     # RSE ROM Relocation
     "RSE_SUPPORT_ROM_LIB_RELOCATION_OFF" : ("-DRSE_SUPPORT_ROM_LIB_RELOCATION=OFF"),
+
+    # RSE test suite configuration
+    "RSE_RUN_BL1_1_TESTS_IN_PCI" : ("-DRSE_TESTS_TP_MODE=PCI")
 }
 
 mapTfmExtrasExamplePaths = {

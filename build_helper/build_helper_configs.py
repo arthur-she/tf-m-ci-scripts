@@ -375,6 +375,9 @@ config_pp_test = {"seed_params": {
                     # RSE_TC4_GCC_2_RegBL1_1_Debug_BL2
                     ("arm/rse/tc/tc4", "GCC_13_2", "2",
                      "RegBL1_1", "OFF", "Debug", True, "", ""),
+                    # RSE_TC4_GCC_2_RegBL1_1_Debug_BL2
+                    ("arm/rse/tc/tc4", "GCC_13_2", "2",
+                     "RegBL1_1", "OFF", "Debug", True, "", "RSE_RUN_BL1_1_TESTS_IN_PCI"),
                     # RSE_TC4_GCC_2_Release_BL2_ATTESTATION_SCHEME_CCA
                     ("arm/rse/tc/tc4", "GCC_13_2", "2",
                      "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
@@ -1100,6 +1103,9 @@ config_rse_tc4 = {"seed_params": {
                 "valid": [
                     ("arm/rse/tc/tc4", "*", "*", "*", "*",
                      "MinSizeRel", True, "*", "RSE_COPY_USE_ROM_LIB_IN_SRAM"),
+                    # RSE_RUN_BL1_1_TESTS_IN_PCI only relevant when running BL1_1 tests
+                    ("arm/rse/tc/tc4", "*", "*", "RegBL1_1", "*",
+                     "*", True, "*", "RSE_RUN_BL1_1_TESTS_IN_PCI"),
                 ]
                 }
 
