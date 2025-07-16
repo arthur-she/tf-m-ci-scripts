@@ -34,6 +34,26 @@ actions:
               '{{monitor.fixup.skip}}': skip
               {%- endif %}
         {% endfor %}
+{% if erpc_enabled is defined and erpc_enabled %}
+- test:
+    namespace: test
+    timeout:
+      minutes: 30
+    definitions:
+    - repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: tfm-erpc-tests
+          description: "TF-M eRPC Non-Secure test suite"
+        run:
+          steps:
+          - lava-test-case erpc-uart-config --shell stty -F {{ erpc_uart_device | default('/dev/ttyUSB0') }} {{ erpc_uart_baudrate | default(115200) }}
+          - lava-test-case erpc-test-execution --shell |
+              {{ erpc_client_binary }} \
+                --uart {{ erpc_uart_device | default('/dev/ttyUSB0') }} \
+                --baudrate {{ erpc_uart_baudrate | default(115200) }} \
+                --test-suite {{ erpc_test_suite | default('ns_regression') }}
+{% endif %}
 {% endblock %}
 
 {% block metadata %}

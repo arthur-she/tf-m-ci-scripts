@@ -20,6 +20,7 @@ import sys
 import argparse
 from jinja2 import Environment, FileSystemLoader
 from lava_helper_configs import *
+from erpc_support import eRPCConfig
 
 
 def get_recovery_url(recovery_store_url, recovery):
@@ -203,3 +204,30 @@ def get_cmd_args():
 
 if __name__ == "__main__":
     main(get_cmd_args())
+
+
+def _get_erpc_params(config, platform):
+    """Get eRPC-specific parameters for the job definition"""
+    erpc_params = {}
+    
+    if config.get("erpc_enabled", False) and eRPCConfig.is_erpc_supported(platform):
+        erpc_config = eRPCConfig.get_platform_config(platform)
+        erpc_params.update({
+            "erpc_enabled": True,
+            "erpc_mode": erpc_config.get("erpc_mode"),
+            "erpc_client_binary": erpc_config.get("erpc_client_binary"),
+            "erpc_test_suite": config.get("erpc_test_suite", "ns_regression"),
+        })
+        # Add mode-specific parameters
+        if erpc_config.get("erpc_mode") == "uart":
+            erpc_params.update({
+                "erpc_uart_device": erpc_config.get("erpc_uart_device"),
+                "erpc_uart_baudrate": erpc_config.get("erpc_uart_baudrate"),
+            })
+        elif erpc_config.get("erpc_mode") == "tcp":
+            erpc_params.update({
+                "erpc_tcp_host": erpc_config.get("erpc_tcp_host"),
+                "erpc_tcp_port": erpc_config.get("erpc_tcp_port"),
+            })
+    
+    return erpc_params

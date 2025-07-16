@@ -590,3 +590,48 @@ lava_gen_monitor_sort_order = [
     'pattern',
     'fixup',
 ]
+
+erpc_monitors_cfg = {
+    'monitors': [
+        {
+            'name': 'erpc_connection',
+            'pattern': r'\[eRPC\] Connection established on (?P<transport>.*)',
+            'fixupdict': {'PASS': 'pass'}
+        },
+        {
+            'name': 'erpc_test_pass',
+            'pattern': r'\[eRPC\] Test PASSED: (?P<test_name>.*)',
+            'fixupdict': {'PASS': 'pass'}
+        },
+        {
+            'name': 'erpc_test_fail',
+            'pattern': r'\[eRPC\] Test FAILED: (?P<test_name>.*)',
+            'fixupdict': {'FAIL': 'fail'}
+        },
+        {
+            'name': 'erpc_summary',
+            'pattern': r'\[eRPC\] All tests completed. Passed: (?P<passed>\d+), Failed: (?P<failed>\d+)',
+            'fixupdict': {'PASS': 'pass'}
+        }
+    ]
+}
+
+# Example eRPC configuration for musca_b1
+example_erpc_config = {
+    "musca_b1_erpc": {
+        "templ": "musca_b1.jinja2",
+        "device_type": "musca_b1",
+        "job_timeout": 60,
+        "action_timeout": 40,
+        "monitor_timeout": 40,
+        "poweroff_timeout": 1,
+        "platforms": {
+            "musca_b1": "GCC_MUSCA_B1_BL2.tar.gz",
+        },
+        "erpc_enabled": True,
+        "erpc_test_suite": "ns_regression",
+        "monitors": {
+            "reg_tests": erpc_monitors_cfg,
+        }
+    }
+}

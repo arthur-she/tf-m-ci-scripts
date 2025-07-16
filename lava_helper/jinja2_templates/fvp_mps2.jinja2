@@ -88,6 +88,12 @@ actions:
     -  "--plugin {CC}"
     -  "--parameter fvp_mps2.UART0.shutdown_tag=\x04"
     -  "--cpulimit 600"
+{% if erpc_enabled is defined and erpc_enabled %}
+      - '-C'
+      - 'mps2_board.erpc.enable=1'
+      - '-C'
+      - 'mps2_board.erpc.port={{ erpc_tcp_port | default(5555) }}'
+{% endif %}
 {%- endif %}
 
     prompts:
