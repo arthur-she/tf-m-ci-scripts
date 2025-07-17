@@ -25,7 +25,8 @@ timestamps {
         sh "tf-m-ci-scripts/build-docs.sh"
       }
       stage("Post") {
-        archiveArtifacts 'trusted-firmware-m/build/docs/**'
+        sh "cd trusted-firmware-m/build; tar -czf docs.tar.gz docs"
+        archiveArtifacts 'trusted-firmware-m/build/docs.tar.gz'
       }
     } catch (Exception e) {
       stage("Post") {
