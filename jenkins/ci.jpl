@@ -35,7 +35,7 @@ def submit_lava_tests(config, results, build_res, params, params_collection) {
   params += string(name: 'CODE_COVERAGE_EN', value: env.CODE_COVERAGE_EN)
   params += string(name: 'DEVICE_FILTER', value: env.DEVICE_FILTER)
   params += string(name: 'USE_TUXSUITE_FVP', value: env.USE_TUXSUITE_FVP)
-  def lava_res = build(job: 'tf-m-lava-submit', parameters: params, propagate: false)
+  def lava_res = build(job: 'tf-m-arthur-lava-submit', parameters: params, propagate: false)
   def lava_resubmitted = false
   if (lava_res.result in failure_states) {
     error("LAVA Create and Submit failed at ${lava_res.getAbsoluteUrl()}")
@@ -121,7 +121,7 @@ def buildConfig(config, results) {
   params += string(name: 'T_COSE_URL', value: env.T_COSE_URL)
   params += string(name: 'SHARE_FOLDER', value: env.SHARE_FOLDER)
   return { -> results
-    def build_res = build(job: 'tf-m-build-config', parameters: params, propagate: false)
+    def build_res = build(job: 'tf-m-arthur-build-config', parameters: params, propagate: false)
     def build_url = build_res.getAbsoluteUrl()
     results['builds'][config] = build_res
 
