@@ -344,6 +344,9 @@ fvp_rse_tc3 = {
         "rom": {
             "data": "spe/bin/rom.bin"
         },
+        "combined_provisioning_message": {
+            "data": "spe/bin/provisioning/combined_provisioning_message.bin"
+        },
         "sram": {
             "data": "spe/bin/sram.bin"
         },
@@ -371,6 +374,9 @@ fvp_rse_tc4 = {
     "binaries": {
         "rom": {
             "data": "spe/bin/rom.bin"
+        },
+        "combined_provisioning_message": {
+            "data": "spe/bin/provisioning/combined_provisioning_message.bin"
         },
         "sram": {
             "data": "spe/bin/sram.bin"

@@ -107,7 +107,8 @@ _common_tfm_builder_cfg = {
                     "arm/rse/tc/tc3": ("if [ -f \"%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin\" ]; then "
                                    "cp %(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin %(ci_build_root_dir)s/spe/bin/sram.bin;"
                                    "else "
-                                   "cp %(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin %(ci_build_root_dir)s/spe/bin/sram.bin;"
+                                   # dummy file with no data to keep the FVP happy
+                                   "touch %(ci_build_root_dir)s/spe/bin/sram.bin;"
                                    "fi;"
                                    "srec_cat "
                                    "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
@@ -127,7 +128,8 @@ _common_tfm_builder_cfg = {
                     "arm/rse/tc/tc4": ("if [ -f \"%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin\" ]; then "
                                    "cp %(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin %(ci_build_root_dir)s/spe/bin/sram.bin;"
                                    "else "
-                                   "cp %(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin %(ci_build_root_dir)s/spe/bin/sram.bin;"
+                                   # dummy file with no data to keep the FVP happy
+                                   "touch %(ci_build_root_dir)s/spe/bin/sram.bin;"
                                    "fi;"
                                    "srec_cat "
                                    "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
@@ -236,10 +238,12 @@ _common_tfm_builder_cfg = {
                                "tfm_sign.bin"],
                            "arm/rse/tc/tc3": [
                                "%(ci_build_root_dir)s/spe/bin/rom.bin",
+                               "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
                                "%(ci_build_root_dir)s/spe/bin/sram.bin",
                                "%(ci_build_root_dir)s/spe/bin/host_flash.bin"],
                            "arm/rse/tc/tc4": [
                                "%(ci_build_root_dir)s/spe/bin/rom.bin",
+                               "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
                                "%(ci_build_root_dir)s/spe/bin/sram.bin",
                                "%(ci_build_root_dir)s/spe/bin/host_flash.bin"]
                            }
