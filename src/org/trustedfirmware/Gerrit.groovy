@@ -38,7 +38,13 @@ def verifyStatusInWorkspace(value, verify_name, category) {
     echo Not running for a Gerrit change, skipping vote.
     exit 0
   fi
-  . /.venv/bin/activate
+
+  if [ -d "./.venv" ]; then
+    . /.venv/bin/activate
+  elif [ -d "/home/buildslave/.venv" ]; then
+    . /home/buildslave/.venv/bin/activate
+  fi
+
   pip -q install requests
   ./tf-m-ci-scripts/jenkins/verify.py --category ${category} --value ${value} --verify-name ${verify_name} --user \$VERIFY_USER
   """)
@@ -62,7 +68,13 @@ def commentInWorkspace(comment) {
     echo Not running for a Gerrit change, skipping.
     exit 0
   fi
-  . /.venv/bin/activate
+
+  if [ -d "./.venv" ]; then
+    . /.venv/bin/activate
+  elif [ -d "/home/buildslave/.venv" ]; then
+    . /home/buildslave/.venv/bin/activate
+  fi
+
   pip -q install requests
   ./tf-m-ci-scripts/jenkins/comment.py --comment "${comment}" --user \$GERRIT_USER
   """)
