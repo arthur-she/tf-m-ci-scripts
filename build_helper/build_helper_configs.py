@@ -105,17 +105,14 @@ _common_tfm_builder_cfg = {
                                      "spe/bin/tfm.hex -Intel;"
                                      "fi;"),
                     "arm/rse/tc/tc3": ("if [ -f \"%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin\" ]; then "
-                                   "srec_cat "
-                                   "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
-                                   "%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin -Binary -offset 0x10000 "
-                                   "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
-                                   "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
+                                   "cp %(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin %(ci_build_root_dir)s/spe/bin/sram.bin;"
                                    "else "
+                                   "cp %(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin %(ci_build_root_dir)s/spe/bin/sram.bin;"
+                                   "fi;"
                                    "srec_cat "
                                    "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
                                    "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
                                    "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
-                                   "fi;"
                                    "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fiptool https://downloads.trustedfirmware.org/tf-m/rse/tc/tc3/fiptool;"
                                    "chmod 755 fiptool;"
                                    "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fip.bin https://downloads.trustedfirmware.org/tf-m/rse/tc/tc3/fip.bin;"
@@ -128,17 +125,14 @@ _common_tfm_builder_cfg = {
                                    "--out %(ci_build_root_dir)s/spe/bin/host_flash.bin "
                                    "fip.bin"),
                     "arm/rse/tc/tc4": ("if [ -f \"%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin\" ]; then "
-                                   "srec_cat "
-                                   "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
-                                   "%(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin -Binary -offset 0x18000 "
-                                   "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
-                                   "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
+                                   "cp %(ci_build_root_dir)s/spe/bin/rse_bl1_tests.bin %(ci_build_root_dir)s/spe/bin/sram.bin;"
                                    "else "
+                                   "cp %(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin %(ci_build_root_dir)s/spe/bin/sram.bin;"
+                                   "fi;"
                                    "srec_cat "
                                    "%(ci_build_root_dir)s/spe/bin/bl1_1.bin -Binary -offset 0x0 "
                                    "%(ci_build_root_dir)s/spe/bin/rom_dma_ics.bin -Binary -offset 0x1F000 "
                                    "-o %(ci_build_root_dir)s/spe/bin/rom.bin -Binary;"
-                                   "fi;"
                                    # fiptool in tc3 directory also compatible with tc4 fip.bin
                                    "curl --fail --no-progress-meter --connect-timeout 10 --retry 6 -LS -o fiptool https://downloads.trustedfirmware.org/tf-m/rse/tc/tc3/fiptool;"
                                    "chmod 755 fiptool;"
@@ -242,11 +236,11 @@ _common_tfm_builder_cfg = {
                                "tfm_sign.bin"],
                            "arm/rse/tc/tc3": [
                                "%(ci_build_root_dir)s/spe/bin/rom.bin",
-                               "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
+                               "%(ci_build_root_dir)s/spe/bin/sram.bin",
                                "%(ci_build_root_dir)s/spe/bin/host_flash.bin"],
                            "arm/rse/tc/tc4": [
                                "%(ci_build_root_dir)s/spe/bin/rom.bin",
-                               "%(ci_build_root_dir)s/spe/bin/provisioning/combined_provisioning_message.bin",
+                               "%(ci_build_root_dir)s/spe/bin/sram.bin",
                                "%(ci_build_root_dir)s/spe/bin/host_flash.bin"]
                            }
 }
