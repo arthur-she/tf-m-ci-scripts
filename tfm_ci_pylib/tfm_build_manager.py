@@ -424,6 +424,21 @@ class TFM_Build_Manager(structuredTask):
         elif "EXTRAS_" in i.extra_params and "OFF" == i.test_regression:
             overwrite_params["nspe_root_dir"] = build_cfg["codebase_root_dir"] + "/../tf-m-extras/" + mapTfmExtrasExamplePaths[i.extra_params]
 
+        # Test for eRPC build config
+        if "ERPC" in i.extra_params:
+            overwrite_params["nspe_root_dir"] = build_cfg["codebase_root_dir"] + "/../tf-m-tests/erpc/server/app"
+            build_cfg["post_build"] = (
+                "cmake -S %(codebase_root_dir)s/../tf-m-tests/erpc/tfm_reg_tests "
+                 "-B %(ci_build_root_dir)s/erpc "
+                "-DCONFIG_SPE_PATH=%(ci_build_root_dir)s/spe/api_ns "
+                "-DERPC_REPO_PATH=%(ci_build_root_dir)s/nspe/lib/ext/erpc-src "
+                "-DERPC_TRANSPORT=TCP "
+                "-DERPC_HOST=127.0.0.1 "
+                "-DERPC_PORT=5001; "
+                "cmake --build %(ci_build_root_dir)s/erpc -- -j 2"
+            )
+
+
         # Overwrite commands for building TF-M image
         build_cfg["spe_config_template"] %= overwrite_params
         build_cfg["nspe_config_template"] %= overwrite_params

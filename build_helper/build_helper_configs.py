@@ -846,6 +846,21 @@ config_misra_debug = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_erpc_test = {"seed_params": {
+                "tfm_platform":     ["arm/mps2/an521"],
+                "compiler":         ["GCC_13_2"],
+                "isolation_level":  ["1"],
+                "test_regression":  ["RegNS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Debug"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     ["ERPC"]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 # Config groups for code coverage
 config_cov_profile_s = deepcopy(config_profile_s)
 config_cov_profile_s["seed_params"]["tfm_platform"] = ["arm/mps2/an521"]
@@ -1533,6 +1548,7 @@ _builtin_configs = {
                     "release_stm32h573i_dk": config_stm32h573i_dk,
                     "release_lpcxpresso55s69": config_lpcxpresso55s69,
                     "release_rp2350": config_rp2350,
+                    "erpc_test" : config_erpc_test,
 
                     # code coverage test groups
                     "coverage_profile_s": config_cov_profile_s,

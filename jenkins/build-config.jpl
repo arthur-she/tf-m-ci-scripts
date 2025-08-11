@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 //-------------------------------------------------------------------------------
-// Copyright (c) 2020-2024, Arm Limited and Contributors. All rights reserved.
+// Copyright (c) 2020-2025, Arm Limited and Contributors. All rights reserved.
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //-------------------------------------------------------------------------------
@@ -71,7 +71,8 @@ timestamps {
                 // Optional artifacts (non-secure side)
                 def optionalNspePaths = [
                     'ci_build/nspe/bin/**',
-                    'ci_build/nspe/*.bin'
+                    'ci_build/nspe/*.bin',
+                    'ci_build/erpc/erpc_main'
                 ]
                 optionalNspePaths.each { archiveOptional(it) }
 

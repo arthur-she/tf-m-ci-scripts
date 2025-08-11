@@ -164,7 +164,12 @@ mapExtraParams = {
     "RSE_SUPPORT_ROM_LIB_RELOCATION_OFF" : ("-DRSE_SUPPORT_ROM_LIB_RELOCATION=OFF"),
 
     # RSE test suite configuration
-    "RSE_RUN_BL1_1_TESTS_IN_PCI" : ("-DRSE_TESTS_TP_MODE=PCI")
+    "RSE_RUN_BL1_1_TESTS_IN_PCI" : ("-DRSE_TESTS_TP_MODE=PCI"),
+
+    # Allows option for eRPC to be accepted, but will not map to anything for
+    # extra_params, but rather will allow for the nspe_cmake_config and
+    # post_build to be altered later in tfm_build_manager.py
+    "ERPC" : ""
 }
 
 mapTfmExtrasExamplePaths = {
