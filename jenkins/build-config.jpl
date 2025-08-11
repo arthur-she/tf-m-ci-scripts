@@ -71,7 +71,8 @@ timestamps {
                 // Optional artifacts (non-secure side)
                 def optionalNspePaths = [
                     'ci_build/nspe/bin/**',
-                    'ci_build/nspe/*.bin'
+                    'ci_build/nspe/*.bin',
+                    'ci_build/erpc/erpc_main'
                 ]
                 optionalNspePaths.each { archiveOptional(it) }
 
