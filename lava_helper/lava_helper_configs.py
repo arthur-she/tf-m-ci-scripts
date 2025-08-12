@@ -437,27 +437,6 @@ musca_b1_bl2 = {
     }
 }
 
-# STM32L562E-DK
-stm32l562e_dk = {
-    "templ": "stm32l562e_dk.jinja2",
-    "job_name": "stm32l562e_dk",
-    "device_type": "stm32l562e-dk",
-    "job_timeout": 24,
-    "notification_email": "tf-m-ci-notifications@lists.trustedfirmware.org",
-    "action_timeout": 15,
-    "monitor_timeout": 15,
-    "poweroff_timeout": 5,
-    "platforms": {"stm/stm32l562e_dk": ""},
-    "binaries": {
-        "tarball": {
-            "data": "spe/api_ns/bin/stm32l562e-dk-tfm.tar.bz2"
-        }
-    },
-    "monitors": {
-        'reg_tests': reg_tests_monitors,
-    }
-}
-
 # STM32U5 B-U585I-IOT02A
 b_u585i_iot02a = {
     "templ": "b_u585i_iot02a.jinja2",
@@ -560,7 +539,6 @@ lava_gen_config_map_bl2 = {
     "fvp_rse_tc4": fvp_rse_tc4,
     "qemu_mps2_bl2": qemu_mps2_bl2,
     "musca_b1": musca_b1_bl2,
-    "stm32l562e_dk": stm32l562e_dk,
     "b_u585i_iot02a": b_u585i_iot02a,
     "stm32h573i_dk": stm32h573i_dk
 }
