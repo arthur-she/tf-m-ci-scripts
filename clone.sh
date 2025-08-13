@@ -53,9 +53,8 @@ function clone_repo_to_share_folder() {
     fi
 
     if [ ! -f "${SHARE_FOLDER}/${REPO_NAME}.tar.gz" ]; then
-        git_clone $REPO_URL "${SHARE_FOLDER}/${REPO_NAME}"
+        git_clone $REPO_URL "${SHARE_FOLDER}/${REPO_NAME}" ${REPO_REFSPEC} ${SYNC_CMD}
         # Compress for shared area
-        git_checkout "${SHARE_FOLDER}/${REPO_NAME}" $REPO_REFSPEC $SYNC_CMD
         cd ${SHARE_FOLDER}
         if [ "${REPO_NAME}" = "${TFM_NAME}" ] || [ "${REPO_NAME}" = "${TFM_TESTS_NAME}" ]; then
             # These two need to remain as directories for now for further usage

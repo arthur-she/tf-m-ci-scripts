@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2023 Arm Limited. All rights reserved.
+# Copyright (c) 2025 Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -15,6 +15,8 @@ function git_clone() {
     # Parse the repo elements
     local REPO_URL=$1
     local REPO_PATH=$2
+    local REPO_REFSPEC=$3
+    local REPO_SYNC_CMD=$4
 
     # In case repository is not defined, just skip it
     if [ -z "${REPO_URL}" ]; then
@@ -23,43 +25,24 @@ function git_clone() {
 
     # Clone if it does not exit
     if [ ! -d ${REPO_PATH} ]; then
-        git clone --quiet ${GIT_CLONE_PARAMS} ${REPO_URL} ${REPO_PATH}
-    fi
-}
+                # Shallow clone the repo without checkout
+        git clone --quiet ${GIT_CLONE_PARAMS} "${REPO_URL}" "${REPO_PATH}"
 
-function git_checkout() {
-    # Parse the repo elements
-    local REPO_PATH=$1
-    local REPO_REFSPEC=$2
-    local SYNC_CMD=$3
+        # If a refspec or commit SHA was provided, fetch & checkout shallowly
+        if [ -n "${REPO_REFSPEC}" ]; then
+            git -C "${REPO_PATH}" fetch --quiet --depth=1 origin "${REPO_REFSPEC}" \
+                || git -C "${REPO_PATH}" fetch --quiet --all --depth=1
 
-    # Checkout if repo exits
-    if [ -d ${REPO_PATH} ]; then
-        cd ${REPO_PATH}
-
-        # Fetch the corresponding refspec
-        REPO_FETCH_HEAD=$(git ls-remote --quiet | grep ${REPO_REFSPEC} | awk -v d=" " '{s=(NR==1?s:s d)$1} END{print s}')
-
-        if [ -z "${REPO_FETCH_HEAD}" ]; then
-            git fetch --all
-        else
-            git fetch origin ${REPO_FETCH_HEAD}
+            git -C "${REPO_PATH}" checkout --quiet FETCH_HEAD 2>/dev/null \
+                || git -C "${REPO_PATH}" checkout --quiet "${REPO_REFSPEC}"
         fi
 
-        # Checkout to specified refspec
-        if [[ "${REPO_REFSPEC}" =~ "refs/" ]]; then
-            # Refspec in "refs/" format cannot be directly used to checkout
-            git checkout ${REPO_FETCH_HEAD}
-        else
-            git checkout ${REPO_REFSPEC}
+        # If requested, shallow-init and update all submodules
+        if [ "${REPO_SYNC_CMD}" = "SYNC_ALL_SUBMODULES" ]; then
+            git -C "${REPO_PATH}" submodule update --init --recursive --depth=1 --quiet
         fi
 
-        if [ "${SYNC_CMD}" = "SYNC_ALL_SUBMODULES" ]; then
-            # Make sure that any submodule is also inited and updated if present
-            git submodule update --init --recursive
-        fi
+        echo -e "Share Folder ${REPO_PATH} $(git -C "${REPO_PATH}" rev-parse --short HEAD)\n"
 
-        echo -e "Share Folder ${REPO_PATH} $(git rev-parse --short HEAD)\n"
-        cd $OLDPWD
     fi
 }
