@@ -107,6 +107,10 @@ if [ ! -d "${SHARE_FOLDER}/${TFM_NAME}" ]; then
     exit 1
 fi
 
+if [ "${JOB_NAME}" = "tf-m-static-checks" ]; then
+    git -C ${WORKSPACE}/${TFM_NAME} fetch --unshallow
+fi
+
 pip install --no-deps ../trusted-firmware-m/
 
 # Dependency projects
