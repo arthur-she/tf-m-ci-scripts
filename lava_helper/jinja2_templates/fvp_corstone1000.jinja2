@@ -74,8 +74,12 @@ actions:
       end: "{{monitor.end}}"
       pattern: "{{monitor.pattern}}"
       fixupdict:
+         {%- if monitor.fixup.pass %}
          '{{monitor.fixup.pass}}': pass
+         {%- endif %}
+         {%- if monitor.fixup.fail %}
          '{{monitor.fixup.fail}}': fail
+         {%- endif %}
          {%- if monitor.fixup.skip %}
          '{{monitor.fixup.skip}}': skip
          {%- endif %}

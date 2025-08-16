@@ -57,6 +57,15 @@ s_reg_tests_monitors_cfg = {
     'fixup': {"pass": "PASSED", "fail": "FAILED", "skip": "SKIPPED"},
 }
 
+# Capture assertion crash cases and mark them as fail
+s_reg_tests_assertion_monitors_cfg = {
+    'name': 'secure_tests_assertions',
+    'start': 'Execute test suites for the Secure area',
+    'end': 'End of Secure test suites',
+    'pattern': r"Executing '(?P<test_case_id>TFM_S_[A-Z]+_TEST_\d+)'.*?Assertion failed",
+    'fixup': {"fail": "Assertion failed"},
+}
+
 ns_reg_tests_monitors_cfg = {
     'name': 'non_secure_regression_suite',
     'start': 'Execute test suites for the Non-secure area',
@@ -94,7 +103,7 @@ arch_tests_monitors_cfg = {
 # Group related monitors into same list to simplify the code
 no_reg_tests_monitors = [no_reg_tests_monitors_cfg]
 
-reg_tests_monitors = [] + \
+reg_tests_monitors = [s_reg_tests_assertion_monitors_cfg] + \
                      ([mcuboot_tests_monitor_cfg] if "RegBL2" in os.getenv("TEST_REGRESSION") and os.getenv("BL2") == "True" else []) + \
                      ([s_reg_tests_monitors_cfg] if "RegS" in os.getenv("TEST_REGRESSION") else []) + \
                      ([ns_reg_tests_monitors_cfg] if "RegNS" in os.getenv("TEST_REGRESSION") else []) + \
