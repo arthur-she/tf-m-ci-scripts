@@ -53,8 +53,8 @@ s_reg_tests_monitors_cfg = {
     'name': 'secure_regression_suite',
     'start': 'Execute test suites for the Secure area',
     'end': 'End of Secure test suites',
-    'pattern': r"TEST: (?P<test_case_id>.+?) - (?P<result>(PASSED|FAILED|SKIPPED))",
-    'fixup': {"pass": "PASSED", "fail": "FAILED", "skip": "SKIPPED"},
+    'pattern': r"'(?P<test_case_id>TFM_S_[A-Z]+_TEST_[0-9]+)'.*?(?P<result>PASSED|FAILED|SKIPPED|Assertion failed)",
+    'fixup': {"pass": "PASSED", "fail": "FAILED", "assertion_fail": "Assertion failed", "skip": "SKIPPED"},
 }
 
 ns_reg_tests_monitors_cfg = {

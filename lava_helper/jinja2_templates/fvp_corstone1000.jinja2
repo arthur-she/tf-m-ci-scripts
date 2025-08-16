@@ -76,6 +76,9 @@ actions:
       fixupdict:
          '{{monitor.fixup.pass}}': pass
          '{{monitor.fixup.fail}}': fail
+         {%- if monitor.fixup.assertion_fail%}
+         '{{monitor.fixup.assertion_fail}}': fail
+         {%- endif %}
          {%- if monitor.fixup.skip %}
          '{{monitor.fixup.skip}}': skip
          {%- endif %}
