@@ -33,8 +33,7 @@ function check_dependency_version() {
         REPO_REFSPEC="$(echo "${repo}" | awk -F ';' '{print $2}')"
 
         if [ ! -z "$REPO_REFSPEC" ] ; then
-            echo "Refspec was not pulled correctly"
-            exit 1
+            git_checkout $REPO_PATH $REPO_REFSPEC
         fi
     done
 }
