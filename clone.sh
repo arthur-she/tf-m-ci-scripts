@@ -108,7 +108,7 @@ if [ ! -d "${SHARE_FOLDER}/${TFM_NAME}" ]; then
     exit 1
 fi
 
-pip install --no-deps ../trusted-firmware-m/
+pip install --no-deps ${WORKSPACE}/${TFM_NAME}
 
 # Dependency projects
 TFM_TESTS_PROJECT="${TFM_TESTS_URL:-}"
