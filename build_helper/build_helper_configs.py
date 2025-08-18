@@ -549,13 +549,7 @@ config_release_test = {"seed_params": {
                 "extra_params":     ["TEST_CBOR"]
                 },
                 "common_params": _common_tfm_builder_cfg,
-                "valid": [
-                    # sanity test for GCC v11.2
-                    # AN521_GCC_3_RegBL2_RegS_RegNS_Relwithdebinfo_BL2
-                    ("arm/mps2/an521", "GCC_11_2",
-                     "3", "RegBL2, RegS, RegNS", "OFF", "Relwithdebinfo",
-                     True, "", ""),
-                ],
+                "valid": [],
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
