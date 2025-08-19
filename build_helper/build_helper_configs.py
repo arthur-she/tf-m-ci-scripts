@@ -380,8 +380,8 @@ config_pp_test = {"seed_params": {
                     ("arm/rse/tc/tc4", "GCC_13_2", "2",
                      "OFF", "OFF", "Release", True, "", "ATTESTATION_SCHEME_CCA"),
                     # RSE_TC4_GCC_2_RegS_RegNS_MinSizeRel_BL2_RSE_COPY_USE_ROM_LIB_IN_SRAM
-                    ("arm/rse/tc/tc4", "GCC_13_2", "2",
-                     "RegS, RegNS", "OFF", "MinSizeRel", True, "", "RSE_COPY_USE_ROM_LIB_IN_SRAM"),
+                    # ("arm/rse/tc/tc4", "GCC_13_2", "2",
+                    #  "RegS, RegNS", "OFF", "MinSizeRel", True, "", "RSE_COPY_USE_ROM_LIB_IN_SRAM"),
                     # RSE_RDV3_GCC_2_Release_BL2_NSOFF_CFG0
                     ("arm/rse/neoverse_rd/rdv3", "GCC_13_2", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF, CFG0"),
@@ -1099,8 +1099,10 @@ config_rse_tc4 = {"seed_params": {
                      "Debug", True, "*", "*"),
                 ],
                 "valid": [
-                    ("arm/rse/tc/tc4", "*", "*", "*", "*",
-                     "MinSizeRel", True, "*", "RSE_COPY_USE_ROM_LIB_IN_SRAM"),
+                    # BL1_1 code is too large to copy into VM1 without overwriting
+                    # persistent data
+                    # ("arm/rse/tc/tc4", "*", "*", "*", "*",
+                    #  "MinSizeRel", True, "*", "RSE_COPY_USE_ROM_LIB_IN_SRAM"),
                     # RSE_RUN_BL1_1_TESTS_IN_PCI only relevant when running BL1_1 tests
                     ("arm/rse/tc/tc4", "*", "*", "RegBL1_1", "*",
                      "*", True, "*", "RSE_RUN_BL1_1_TESTS_IN_PCI"),
