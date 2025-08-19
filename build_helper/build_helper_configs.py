@@ -501,9 +501,9 @@ config_all_plat = {
                     ## M2351_GCC_1_Release_BL2_NSOFF
                     #("nuvoton/m2351", "GCC_13_2", "1",
                     # "OFF", "OFF", "Release", True, "", "NSOFF"),
-                    # M2354_GCC_1_Debug_BL2_NSOFF
-                    ("nuvoton/m2354", "GCC_13_2", "1",
-                     "OFF", "OFF", "Debug", True, "", "NSOFF"),
+                    ## M2354_GCC_1_Debug_BL2_NSOFF
+                    #("nuvoton/m2354", "GCC_13_2", "1",
+                    # "OFF", "OFF", "Debug", True, "", "NSOFF"),
                     # lpcxpresso55s69_GCC_2_RegS_RegNS_Relwithdebinfo_MEDIUM
                     ("nxp/lpcxpresso55s69", "GCC_13_2", "2",
                      "RegS, RegNS", "OFF", "Relwithdebinfo", False, "profile_medium", ""),
