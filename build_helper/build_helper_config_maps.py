@@ -29,6 +29,7 @@ mapPlatform = {
     "arm/rse/tc/tc4"                     : "RSE_TC4",
     "arm/rse/neoverse_rd/rdv3"           : "RSE_RDV3",
     "arm/rse/neoverse_rd/rdv3r1"         : "RSE_RDV3R1",
+    "arm/rse/automotive_rd/css-aspen"    : "RSE_CSSAspen",
     "arm/rse/automotive_rd/rd1ae"        : "RSE_RD1AE",
     "cypress/psoc64"                     : "psoc64",
     "nordic_nrf/nrf5340dk_nrf5340_cpuapp": "nrf5340dk",
