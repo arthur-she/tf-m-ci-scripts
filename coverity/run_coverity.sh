@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2019-2020, Arm Limited. All rights reserved.
+# Copyright (c) 2019-2025, Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -29,6 +29,7 @@
 # Bail out as soon as an error is encountered
 set -e
 
+export PATH=$PATH:${GCC_13_2_PATH}
 
 function do_check_tools()
 {
