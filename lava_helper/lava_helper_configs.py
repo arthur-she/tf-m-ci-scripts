@@ -299,35 +299,6 @@ fvp_mps2_an521_bl2 = {
     }
 }
 
-# FVP with BL2 bootloader for AN521 with eRPC
-# application: --application cpu0=bl2.axf
-# data: --data cpu0=tfm_s_ns_signed.bin@0x10080000
-fvp_mps2_an521_bl2_erpc = {
-    "templ": "fvp_mps2.jinja2",
-    "job_name": "fvp_mps2_an521_bl2",
-    "device_type": "fvp",
-    "job_timeout": 15,
-    "notification_email": "tf-m-ci-notifications@lists.trustedfirmware.org",
-    "action_timeout": 10,
-    "monitor_timeout": 15,
-    "poweroff_timeout": 1,
-    "platforms": {"arm/mps2/an521": ""},
-    "binaries": {
-        "bl2": {
-            "application": "spe/bin/bl2.axf"
-        },
-        "tfm_s_ns_img": {
-            "data": "nspe/tfm_s_ns_signed.bin",
-            "offset": "0x10080000",
-        },
-        "erpc_client_app": {
-            "client_app": "erpc/erpc_main"
-        }
-    },
-    "monitors": {
-        'reg_tests': reg_tests_monitors,
-    }
-}
 
 # FVP with BL2 bootloader for AN519
 # application: --application cpu0=bl2.axf
@@ -566,7 +537,6 @@ lava_gen_config_map_bl2 = {
     "mps2_an521_bl2": tfm_mps2_sse_200,
     "fvp_mps3_cs300_bl2": fvp_mps3_cs300_bl2,
     "fvp_mps2_an521_bl2": fvp_mps2_an521_bl2,
-    "fvp_mps2_an521_bl2_erpc": fvp_mps2_an521_bl2_erpc,
     "fvp_mps2_an519_bl2": fvp_mps2_an519_bl2,
     "fvp_mps4_cs315_bl1_bl2": fvp_mps4_cs315_bl1_bl2,
     "fvp_mps4_cs320_bl1_bl2": fvp_mps4_cs320_bl1_bl2,

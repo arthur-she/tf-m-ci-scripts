@@ -134,8 +134,6 @@ def main(user_args):
     if user_args.physical_board_only:
         config_keys = [key for key in config_keys
                        if "fvp" not in key and "qemu" not in key]
-    if "ERPC" in os.getenv("EXTRA_PARAMS"):
-        config_keys = [key for key in config_keys if "erpc" in key]
     if user_args.config_key:
         config_keys = [user_args.config_key]
     for config_key in config_keys:

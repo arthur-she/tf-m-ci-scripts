@@ -23,8 +23,6 @@ actions:
       {{ name }}:
     {% if img.application is defined %}
         url: {{ data_url_prefix }}/{{ img.application }}
-    {% elif img.client_app is defined %}
-        url: {{ data_url_prefix }}/{{ img.client_app }}
     {% else %}
         url: {{ data_url_prefix }}/{{ img.data }}
     {% endif %}
@@ -68,7 +66,7 @@ actions:
 {% for name, img in binaries.items() %}
     {% if img.application is defined %}
     -  "--application cpu0={{ '{' ~ name.upper() ~ '}' }}"
-    {% elif img.offset is defined %}
+    {% else %}
     -  "--data cpu0={{ '{' ~ name.upper() ~ '}' }}@{{ img.offset }}"
     {% endif %}
 {% endfor %}
@@ -78,21 +76,11 @@ actions:
     -  "--parameter cpu0.semihosting-enable=0"
     -  "--parameter fvp_mps2.DISABLE_GATING=0"
     -  "--parameter fvp_mps2.telnetterminal0.start_telnet=1"
-    -  "--parameter fvp_mps2.telnetterminal0.quiet=0"
-{% if binaries.erpc_client_app is defined %}
-    -  "--parameter fvp_mps2.telnetterminal1.start_telnet=0"
-    -  "--parameter fvp_mps2.telnetterminal2.start_telnet=0"
-    -  "--parameter fvp_mps2.telnetterminal1.quiet=1"
-    -  "--parameter fvp_mps2.telnetterminal2.quiet=1"
-    -  "--parameter fvp_mps2.telnetterminal0.start_port=5000"
-    -  "--parameter fvp_mps2.telnetterminal1.start_port=5001"
-    -  "--parameter fvp_mps2.telnetterminal1.mode=raw"
-{% else %}
     -  "--parameter fvp_mps2.telnetterminal1.start_telnet=1"
     -  "--parameter fvp_mps2.telnetterminal2.start_telnet=1"
+    -  "--parameter fvp_mps2.telnetterminal0.quiet=0"
     -  "--parameter fvp_mps2.telnetterminal1.quiet=0"
     -  "--parameter fvp_mps2.telnetterminal2.quiet=0"
-{% endif %}
     -  "--parameter fvp_mps2.UART0.shutdown_on_eot=1"
     -  "--parameter 'fvp_mps2.UART0.out_file=-'"
     -  "--parameter fvp_mps2.mps2_visualisation.disable-visualisation=1"
@@ -105,9 +93,6 @@ actions:
     prompts:
     - '(.*)'
 
-{% if binaries.erpc_client_app is defined %}
-    erpc_app: erpc_client_app
-{% endif %}
 - test:
     monitors:
     {%- for monitor in monitors %}
