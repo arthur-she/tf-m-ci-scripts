@@ -1518,6 +1518,7 @@ _builtin_configs = {
                     "nightly_lpcxpresso55s69": config_lpcxpresso55s69,
                     "nightly_rp2350": config_rp2350,
                     "nightly_all_plat": config_all_plat,
+                    "nightly_erpc" : config_erpc_test,
 
                     # release test groups
                     "release_test": config_release_test,
@@ -1548,7 +1549,7 @@ _builtin_configs = {
                     "release_stm32h573i_dk": config_stm32h573i_dk,
                     "release_lpcxpresso55s69": config_lpcxpresso55s69,
                     "release_rp2350": config_rp2350,
-                    "erpc_test" : config_erpc_test,
+                    "release_erpc" : config_erpc_test,
 
                     # code coverage test groups
                     "coverage_profile_s": config_cov_profile_s,
@@ -1609,6 +1610,9 @@ _builtin_configs = {
                     "debug": config_debug,
                     "debug_regr": config_debug_regr,
                     "debug_PSA_API": config_debug_PSA_API,
+
+                    # config groups for eRPC
+                    "erpc_test" : config_erpc_test,
 
                     # groups for build-only
                     "rse_build_only": config_rse_build_only,
