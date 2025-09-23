@@ -29,7 +29,7 @@
 # Bail out as soon as an error is encountered
 set -e
 
-export PATH=$PATH:${GCC_13_2_PATH}
+export PATH=$PATH:${GCC_14_3_PATH}
 
 function do_check_tools()
 {

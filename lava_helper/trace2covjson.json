@@ -6,8 +6,8 @@
         },
     "parameters":
         {
-        "objdump": "/home/buildslave/compiler/gcc-13-2/bin/arm-none-eabi-objdump",
-        "readelf": "/home/buildslave/compiler/gcc-13-2/bin/arm-none-eabi-readelf",
+        "objdump": "/home/buildslave/compiler/gcc-14-3/bin/arm-none-eabi-objdump",
+        "readelf": "/home/buildslave/compiler/gcc-14-3/bin/arm-none-eabi-readelf",
         "sources": [
                     {
                     "type": "git",

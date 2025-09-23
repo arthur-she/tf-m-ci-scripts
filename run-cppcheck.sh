@@ -1,6 +1,6 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
-# Copyright (c) 2018-2022, Arm Limited and Contributors. All rights reserved.
+# Copyright (c) 2018-2025, Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -43,7 +43,7 @@
 #Fail if any command exit with error.
 set -e
 
-export PATH=$PATH:$GCC_13_2_PATH
+export PATH=$PATH:$GCC_14_3_PATH
 
 RAW_OUTPUT=0
 

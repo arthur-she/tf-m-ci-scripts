@@ -13,7 +13,7 @@
 
 set -ex
 
-export PATH=$PATH:$GCC_13_2_PATH
+export PATH=$PATH:$GCC_14_3_PATH
 
 mkdir -p ${WORKSPACE}/trusted-firmware-m/build/docs
 cd ${WORKSPACE}/trusted-firmware-m/build/docs
