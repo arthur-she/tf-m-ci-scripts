@@ -313,6 +313,9 @@ config_pp_test = {"seed_params": {
                     # AN521_GCC_1_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps2/an521", "GCC_14_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # AN521_GCC_1_RegBL2_RegS_RegNS_RegFihHigh_Debug_BL2
+                    ("arm/mps2/an521", "GCC_13_2", "1",
+                     "RegBL2, RegS, RegNS, RegFihHigh", "OFF", "Debug", True, "", ""),
                     # AN521_GCC_2_RegBL2_RegS_RegNS_Debug_BL2_MEDIUM
                     ("arm/mps2/an521", "GCC_14_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "profile_medium", ""),
@@ -419,6 +422,22 @@ config_pp_test = {"seed_params": {
                     ("rpi/rp2350", "GCC_14_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "profile_medium", ""),
                 ],
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
+# Config group for FIH testing
+config_fih_test = {"seed_params": {
+               "tfm_platform":      ["arm/mps2/an521"],
+                "compiler":         ["GCC_13_2", "ARMCLANG_6_21"],
+                "isolation_level":  ["1", "2", "3"],
+                "test_regression":  ["RegFihLow", "RegFihMedium", "RegFihHigh"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Debug", "Release", "Minsizerel"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     [""]
+                },
+                "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
@@ -1487,6 +1506,7 @@ _builtin_configs = {
 
                     # nightly test groups
                     "nightly_test": config_nightly_test,
+                    "nightly_fih_test": config_fih_test,
                     "nightly_profile_s": config_profile_s,
                     "nightly_profile_m": config_profile_m,
                     "nightly_profile_m_arotless": config_profile_m_arotless,

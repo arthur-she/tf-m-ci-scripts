@@ -52,6 +52,11 @@ mapRegTest = {
     "RegNS"     : "-DTEST_NS=ON -DTEST_NS_FLIH_IRQ=OFF ",
     "RegBL1_1"  : "-DTEST_BL1_1=ON ",
     "RegBL1_2"  : "-DTEST_BL1_2=ON ",
+
+    # FIH regressions
+    "RegFihLow"    : "-DTFM_FIH_PROFILE=LOW -DTEST_S_FIH=ON",
+    "RegFihMedium" : "-DTFM_FIH_PROFILE=MEDIUM -DTEST_S_FIH=ON",
+    "RegFihHigh"   : "-DTFM_FIH_PROFILE=HIGH -DTEST_S_FIH=ON",
 }
 
 # Map PSA Arch Tests to short format
