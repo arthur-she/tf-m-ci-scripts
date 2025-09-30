@@ -369,6 +369,7 @@ fvp_rse_tc3 = {
     "monitor_timeout": 15,
     "poweroff_timeout": 1,
     "platforms": {"arm/rse/tc/tc3": ""},
+    "xip": True,
     "binaries": {
         "rom": {
             "data": "spe/bin/rom.bin"
@@ -400,6 +401,7 @@ fvp_rse_tc4 = {
     "monitor_timeout": 15,
     "poweroff_timeout": 1,
     "platforms": {"arm/rse/tc/tc4": ""},
+    "xip": True,
     "binaries": {
         "rom": {
             "data": "spe/bin/rom.bin"

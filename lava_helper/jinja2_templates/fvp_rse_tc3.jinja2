@@ -1,5 +1,5 @@
 {#------------------------------------------------------------------------------
-# Copyright (c) 2018-2024, Arm Limited and Contributors. All rights reserved.
+# SPDX-FileCopyrightText: Copyright The TrustedFirmware-M Contributors
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -42,15 +42,20 @@ actions:
     -  "-C css.sms.rse.rom.raw_image={ROM}"
     -  "-C css.sms.rse.GRETREG_RESET=0x2"
     -  "--data css.sms.rse.sram0={SRAM}@0x400"
-    -  "--data css.sms.rse.sram1={COMBINED_PROVISIONING_MESSAGE}@0x5000"
     -  "-C board.flashloader0.fname={FLASH}"
     -  "-C displayController=2"
-    -  "-C css.sms.rse.sic.SIC_AUTH_ENABLE=1"
-    -  "-C css.sms.rse.sic.SIC_DECRYPT_ENABLE=1"
-    -  "-C css.sms.rse.VMADDRWIDTH=16"
     -  "-C css.sms.rse.intchecker.ICBC_RESET_VALUE=0x0000011B"
     -  "-C soc.pl011_uart1.shutdown_on_eot=1"
     -  "-C disable_visualisation=1"
+{%- if xip %}
+    -  "--data css.sms.rse.sram1={COMBINED_PROVISIONING_MESSAGE}@0x5000"
+    -  "-C css.sms.rse.VMADDRWIDTH=16"
+    -  "-C css.sms.rse.sic.SIC_AUTH_ENABLE=1"
+    -  "-C css.sms.rse.sic.SIC_DECRYPT_ENABLE=1"
+{%- else %}
+    -  "--data css.sms.rse.sram1={COMBINED_PROVISIONING_MESSAGE}@0x60000"
+    -  "-C css.sms.rse.VMADDRWIDTH=19"
+{%- endif %}
 
     prompts:
     - '(.*)'

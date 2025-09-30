@@ -4,7 +4,7 @@ from __future__ import print_function
 
 __copyright__ = """
 /*
- * Copyright (c) 2020-2025, Arm Limited. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright The TrustedFirmware-M Contributors
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -89,6 +89,7 @@ def generate_test_definitions(config, work_dir, user_args):
             "binaries": config.get('binaries', []),
             "data_url_prefix": "{}/artifact/ci_build".format(os.getenv("BUILD_URL")),
             "build_type": os.getenv("CMAKE_BUILD_TYPE"),
+            "xip": config["xip"] if "xip" in config else None,
         }
 
         if len(params["monitors"]) == 0:
@@ -113,6 +114,11 @@ def generate_lava_job_defs(user_args, config):
         # Only test this platform
         platform = os.getenv("TFM_PLATFORM")
         config["platforms"] = {platform: config["platforms"][platform]}
+
+    if (any(key in ["arm/rse/tc/tc3", "arm/rse/tc/tc4"] for key in config["platforms"])
+        and "RSE_XIP_OFF" in os.getenv("EXTRA_PARAMS")):
+        config["xip"] = False
+
     # Generate the output definition
     definitions = generate_test_definitions(config, work_dir, user_args)
     # Write it into a file

@@ -182,7 +182,11 @@ mapExtraParams = {
     # Allows option for eRPC to be accepted, but will not map to anything for
     # extra_params, but rather will allow for the nspe_cmake_config and
     # post_build to be altered later in tfm_build_manager.py
-    "ERPC" : ""
+    "ERPC" : "",
+
+    # Execute In Place settings
+    "RSE_XIP_ON" : "-DRSE_XIP=ON ",
+    "RSE_XIP_OFF": "-DRSE_XIP=OFF ",
 }
 
 mapTfmExtrasExamplePaths = {
