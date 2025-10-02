@@ -146,6 +146,11 @@ def main(user_args):
         config = load_config_overrides(user_args, config_key)
         generate_lava_job_defs(user_args, config)
 
+    # exclusions
+    if "Fih" in os.getenv("TEST_REGRESSION"):
+        # Remove QEMU from options as it lacks DWT cycle counter
+        config_keys = [key for key in config_keys if "qemu" not in key]
+
 
 def get_cmd_args():
     """Parse command line arguments"""
