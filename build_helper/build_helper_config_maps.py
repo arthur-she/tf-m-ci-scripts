@@ -160,6 +160,9 @@ mapExtraParams = {
                                    "-DEXTRA_S_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/partitions/delegated_attestation/test/secure "
                                    "-DEXTRA_NS_TEST_SUITE_PATH=%(codebase_root_dir)s/../tf-m-extras/partitions/measured_boot/test/non_secure "),
 
+    # SCMI Communication for RSE
+    "RSE_USE_PARTITION_SCMI_COMMS" : ("-DTFM_PARTITION_SCMI_COMMS=ON "),
+
     # Provisioning blob signing
     "RSE_PROVISIONING_SYMMETRIC" : ("-DRSE_SYMMETRIC_PROVISIONING=ON"),
 

@@ -1144,8 +1144,17 @@ config_rse_build_only = {"seed_params": {
                 "extra_params":     ["ATTESTATION_SCHEME_CCA, RSE_SUPPORT_ROM_LIB_RELOCATION_OFF"]
                 },
                 "common_params": _common_tfm_builder_cfg,
-                "invalid": _common_tfm_invalid_configs + []
-                }
+                "invalid": _common_tfm_invalid_configs + [],
+                "valid": [
+                    # RSE_TC4_ARMCLANG_2_Debug_BL2_RSE_USE_PARTITION_SCMI_COMMS_RSE_SUPPORT_ROM_LIB_RELOCATION_OFF
+                    ("arm/rse/tc/tc4", "ARMCLANG_6_21", "2", "OFF", "OFF",
+                     "Release", True, "",
+                     "RSE_USE_PARTITION_SCMI_COMMS, RSE_SUPPORT_ROM_LIB_RELOCATION_OFF"),
+                    # RSE_TC4_GCC_2_Debug_BL2_RSE_USE_PARTITION_SCMI_COMMS
+                    ("arm/rse/tc/tc4", "GCC_14_3", "2", "OFF", "OFF",
+                     "Debug", True, "", "RSE_USE_PARTITION_SCMI_COMMS"),
+                 ]
+                 }
 
 config_rse_rdv3 = {"seed_params": {
                 "tfm_platform":     ["arm/rse/neoverse_rd/rdv3"],
