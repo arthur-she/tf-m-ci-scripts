@@ -187,6 +187,9 @@ mapExtraParams = {
     # Execute In Place settings
     "RSE_XIP_ON" : "-DRSE_XIP=ON ",
     "RSE_XIP_OFF": "-DRSE_XIP=OFF ",
+
+    # Reuse copy area as SP stacks
+    "CONFIG_TFM_REUSE_COPY_AREA_FOR_SP_STACKS" : "-DCONFIG_TFM_REUSE_COPY_AREA_FOR_SP_STACKS=.. ",
 }
 
 mapTfmExtrasExamplePaths = {

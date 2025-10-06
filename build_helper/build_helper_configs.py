@@ -448,6 +448,9 @@ config_pp_test = {"seed_params": {
                     # RSE_TC4_GCC_2_RegS_RegNS_MinSizeRel_BL2_RSE_COPY_USE_ROM_LIB_IN_SRAM
                     # ("arm/rse/tc/tc4", "GCC_14_3", "2",
                     #  "RegS, RegNS", "OFF", "MinSizeRel", True, "", "RSE_COPY_USE_ROM_LIB_IN_SRAM"),
+                    # RSE_TC4_GCC_2_Debug_BL2_CONFIG_TFM_REUSE_COPY_AREA_FOR_SP_STACKS_RSE_XIP_OFF
+                    ("arm/rse/tc/tc4", "GCC_14_3", "2",
+                     "OFF", "OFF", "Debug", True, "", "CONFIG_TFM_REUSE_COPY_AREA_FOR_SP_STACKS, RSE_XIP_OFF"),
                     # RSE_RDV3R1_GCC_2_RegS_Debug_BL2_NSOFF_CFG0
                     ("arm/rse/neoverse_rd/rdv3r1", "GCC_14_3", "2",
                      "RegS", "OFF", "Debug", True, "", "NSOFF, CFG0"),
@@ -1173,7 +1176,7 @@ config_rse_tc4 = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["", "ATTESTATION_SCHEME_DPE", "RSE_PROVISIONING_SYMMETRIC", "CM_DM_BL2_ECDSA_SIGNING"]
+                "extra_params":     ["", "ATTESTATION_SCHEME_DPE", "RSE_PROVISIONING_SYMMETRIC", "CM_DM_BL2_ECDSA_SIGNING", "CONFIG_TFM_REUSE_COPY_AREA_FOR_SP_STACKS, RSE_XIP_OFF"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + [
