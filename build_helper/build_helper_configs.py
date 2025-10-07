@@ -1018,21 +1018,6 @@ config_musca_b1 = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
-config_musca_b1_nsoff = {"seed_params": {
-                "tfm_platform":     ["arm/musca_b1"],
-                "compiler":         ["GCC_14_3", "ARMCLANG_6_21"],
-                "isolation_level":  ["1", "2", "3"],
-                "test_regression":  ["OFF", "RegBL2, RegS, RegNS"],
-                "test_psa_api":     ["OFF"],
-                "cmake_build_type": ["Debug", "Release"],
-                "with_bl2":         [True],
-                "profile":          [""],
-                "extra_params":     ["NSOFF"]
-                },
-                "common_params": _common_tfm_builder_cfg,
-                "invalid": _common_tfm_invalid_configs + []
-                }
-
 config_corstone310 = {"seed_params": {
                 "tfm_platform":     ["arm/mps3/corstone310/fvp"],
                 "compiler":         ["GCC_14_3"],
@@ -1612,7 +1597,6 @@ _builtin_configs = {
                     "cs300_an552": config_cs300_an552,
                     "cs300_fvp": config_cs300_fvp,
                     "musca_b1": config_musca_b1,
-                    "musca_b1_nsoff": config_musca_b1_nsoff,
                     "corstone310": config_corstone310,
                     "corstone315": config_corstone315,
                     "corstone320": config_corstone320,
