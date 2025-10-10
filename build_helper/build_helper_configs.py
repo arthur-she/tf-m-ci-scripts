@@ -295,9 +295,15 @@ config_pp_test = {"seed_params": {
                     # AN519_ARMCLANG_2_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/mps2/an519", "ARMCLANG_6_21", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "",  ""),
+                    # AN519_ATFE_2_RegBL2_RegS_RegNS_Release_BL2
+                    ("arm/mps2/an519", "ATFE_20_1", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
                     # AN519_GCC_2_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/mps2/an519", "GCC_14_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
+                    # AN519_ATFE_1_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps2/an519", "ATFE_20_1", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # AN519_GCC_1_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps2/an519", "GCC_14_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
@@ -321,6 +327,9 @@ config_pp_test = {"seed_params": {
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
                     # AN521_ARMCLANG_3_RegBL2_RegS_RegNS_Minsizerel_BL2
                     ("arm/mps2/an521", "ARMCLANG_6_21", "3",
+                     "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "", ""),
+                    # AN521_ATFE_3_RegBL2_RegS_RegNS_Minsizerel_BL2
+                    ("arm/mps2/an521", "ATFE_20_1", "3",
                      "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "", ""),
                     # AN521_GCC_1_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps2/an521", "GCC_14_3", "1",
@@ -361,6 +370,12 @@ config_pp_test = {"seed_params": {
                     # corstone320_ARMCLANG_1_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps4/corstone320", "ARMCLANG_6_21", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # corstone320_ATFE_1_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps4/corstone320", "ATFE_20_1", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # MUSCA_B1_ATFE_1_RegBL2_RegS_RegNS_Minsizerel_BL2
+                    ("arm/musca_b1", "ATFE_20_1", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "", ""),
                     # MUSCA_B1_GCC_1_RegBL2_RegS_RegNS_Minsizerel_BL2
                     ("arm/musca_b1", "GCC_14_3", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "", ""),
@@ -1526,6 +1541,49 @@ config_debug_PSA_API = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_atfe_quick_test = {
+                # AN519__*_RegBL2_RegS_RegNS_*_BL2
+                "seed_params": {
+                "tfm_platform":     ["arm/mps2/an521"],
+                "compiler":         ["ATFE_20_1"],
+                "isolation_level":  ["1", "2", "3"],
+                "test_regression":  ["RegBL2, RegS, RegNS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Release", "Debug", "Minsizerel"],
+                "with_bl2":         [True],
+                "profile":          [""],
+                "extra_params":     [""]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "valid": [
+                    # AN519_ATFE_2_RegBL2_RegS_RegNS_Release_BL2
+                    ("arm/mps2/an519", "ATFE_20_1", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
+                    # CS300_AN547_ATFE_1_Debug_BL2
+                    ("arm/mps3/corstone300/an547", "ATFE_20_1", "1",
+                     "OFF", "OFF", "Debug", True, "", ""),
+                    # CS300_AN552_ATFE_2_RegBL2_RegS_RegNS_Release_BL2
+                    ("arm/mps3/corstone300/an552", "ATFE_20_1", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
+                    # CS300_FVP_ATFE_1_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps3/corstone300/fvp", "ATFE_20_1", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # corstone310_ATFE_1_Debug_BL2_NSOFF
+                    ("arm/mps3/corstone310/fvp", "ATFE_20_1", "1",
+                     "OFF", "OFF", "Debug", True, "", "NSOFF"),
+                    # corstone315_ATFE_1_RegBL2_RegS_RegNS_Release_BL2
+                    ("arm/mps4/corstone315", "ATFE_20_1", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
+                    # corstone320_ATFE_1_RegBL2_RegS_RegNS_Debug_BL2
+                    ("arm/mps4/corstone320", "ATFE_20_1", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
+                    # MUSCA_B1_ATFE_1_RegBL2_RegS_RegNS_Release_BL2
+                    ("arm/musca_b1", "ATFE_20_1", "1",
+                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
+                ],
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 
 
 _builtin_configs = {
@@ -1666,6 +1724,9 @@ _builtin_configs = {
 
                     # groups for build-only
                     "rse_build_only": config_rse_build_only,
+
+                    # compiler tests
+                    "nightly_atfe": config_atfe_quick_test,
                 }
 
 if __name__ == '__main__':
