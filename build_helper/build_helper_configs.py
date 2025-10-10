@@ -608,7 +608,11 @@ config_profile_m = {"seed_params": {
                 "extra_params":     ["", "PSOFF"]
                 },
                 "common_params": _common_tfm_builder_cfg,
-                "invalid": _common_tfm_invalid_configs + []
+                "invalid": _common_tfm_invalid_configs + [
+                    # MUSCA_B1_GCC_2_RegBL2_RegS_RegNS_Minsizerel_BL2_MEDIUM
+                    ("arm/musca_b1", "GCC_14_3", "2",
+                     "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "profile_medium", ""),
+                ]
                 }
 
 config_profile_m_arotless = {"seed_params": {
