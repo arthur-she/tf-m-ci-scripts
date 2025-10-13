@@ -4,7 +4,7 @@ from __future__ import print_function
 
 __copyright__ = """
 /*
- * Copyright (c) 2020-2024, Arm Limited. All rights reserved.
+ * Copyright (c) 2020-2025, Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -142,14 +142,17 @@ def main(user_args):
         config_keys = [key for key in config_keys if not key.endswith("_erpc")]
     if user_args.config_key:
         config_keys = [user_args.config_key]
+    # Exclusions
+    if "Fih" in os.getenv("TEST_REGRESSION"):
+        # Remove QEMU from options as it lacks DWT cycle counter
+        config_keys = [key for key in config_keys if "qemu" not in key]
+
+    # Generate testing definitions
     for config_key in config_keys:
         config = load_config_overrides(user_args, config_key)
         generate_lava_job_defs(user_args, config)
 
-    # exclusions
-    if "Fih" in os.getenv("TEST_REGRESSION"):
-        # Remove QEMU from options as it lacks DWT cycle counter
-        config_keys = [key for key in config_keys if "qemu" not in key]
+
 
 
 def get_cmd_args():
