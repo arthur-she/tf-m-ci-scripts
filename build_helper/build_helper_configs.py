@@ -415,6 +415,9 @@ config_pp_test = {"seed_params": {
                     # RSE_TC4_GCC_3_RegS_RegNS_Release_BL2_RSE_PROVISIONING_SYMMETRIC
                     ("arm/rse/tc/tc4", "GCC_14_3", "3",
                      "RegS, RegNS", "OFF", "Release", True, "", "RSE_PROVISIONING_SYMMETRIC"),
+                    # RSE_TC4_GCC_3_RegS_RegNS_Release_BL2_CM_DM_BL2_ECDSA_SIGNING
+                    ("arm/rse/tc/tc4", "GCC_14_3", "3",
+                     "RegS, RegNS", "OFF", "Release", True, "", "CM_DM_BL2_ECDSA_SIGNING"),
                     # RSE_TC4_GCC_2_Debug_BL2
                     ("arm/rse/tc/tc4", "GCC_14_3", "2",
                      "OFF", "OFF", "Debug", True, "", ""),
@@ -1155,7 +1158,7 @@ config_rse_tc4 = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["ATTESTATION_SCHEME_DPE", "RSE_PROVISIONING_SYMMETRIC"]
+                "extra_params":     ["ATTESTATION_SCHEME_DPE", "RSE_PROVISIONING_SYMMETRIC", "CM_DM_BL2_ECDSA_SIGNING"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + [

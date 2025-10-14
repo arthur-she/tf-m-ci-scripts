@@ -167,6 +167,9 @@ mapExtraParams = {
     # Provisioning blob signing
     "RSE_PROVISIONING_SYMMETRIC" : ("-DRSE_SYMMETRIC_PROVISIONING=ON"),
 
+    # CM / DM ECDSA signing in BL2
+    "CM_DM_BL2_ECDSA_SIGNING" : ("-DTFM_BL1_2_ENABLE_LMS=OFF -DTFM_BL1_2_CM_SIGNING_ALG=ECDSA -DTFM_BL1_2_DM_SIGNING_ALG=ECDSA"),
+
     # Copy ROM code to SRAM in BL1_2 and execute from there
     "RSE_COPY_USE_ROM_LIB_IN_SRAM" : ("-DRSE_USE_ROM_LIB_FROM_SRAM=ON"),
 
