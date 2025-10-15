@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2019-2021, Arm Limited. All rights reserved.
+# Copyright (c) 2019-2025, Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -17,7 +17,8 @@ target_platforms := cypress/psoc64 \
                     arm/mps2/an519 arm/mps2/an521 \
                     arm/mps3/an524 \
                     arm/musca_b1 \
-                    stm/stm32l562e_dk
+                    stm/stm32l562e_dk \
+                    arm/rse/tc/tc4
 
 tf_m := trusted-firmware-m
 
