@@ -98,7 +98,7 @@ class TFM_Build_Manager(structuredTask):
         elif "ARMCLANG" in compiler:
             compiler_name = "armclang"
         elif "ATFE" in compiler:
-            compiler_name = "atfe"
+            compiler_name = "clang"
 
         return compiler_name
 
