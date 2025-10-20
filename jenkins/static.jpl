@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 //-------------------------------------------------------------------------------
-// Copyright (c) 2020-2024, Arm Limited and Contributors. All rights reserved.
+// Copyright (c) 2020-2025, Arm Limited and Contributors. All rights reserved.
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -42,6 +42,13 @@ timestamps {
       cleanWs()
       dir("tf-m-ci-scripts") {
         tfgit.checkout_ci_scripts()
+        // for when the trigger is coming from tf-m-tests
+        // if this statement is not triggered, it is from trusted-firmware-m
+        if(env.GERRIT_PROJECT   == 'TF-M/tf-m-tests'){
+          env.TFM_TESTS_REFSPEC = env.GERRIT_REFSPEC
+          env.GERRIT_REFSPEC    = 'refs/heads/main'
+          env.GERRIT_BRANCH     = 'main'
+        }
         // Clone TF-M repositories so share folder can be reused by downstream jobs
         sh "./clone.sh"
       }
