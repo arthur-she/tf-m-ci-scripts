@@ -9,7 +9,7 @@ from json import tool
 
 __copyright__ = """
 /*
- * Copyright (c) 2018-2024, Arm Limited. All rights reserved.
+ * Copyright (c) 2018-2025 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -79,17 +79,15 @@ class TFM_Build_Manager(structuredTask):
                 toolchain = "toolchain_GNUARM.cmake"
             elif "ARMCLANG" in compiler:
                 toolchain = "toolchain_ARMCLANG.cmake"
-            elif "CLANG" in compiler:
-                # IMPORTANT, this must be below ARMCLANG or it will select that
-                toolchain = "toolchain_CLANG.cmake"
+            elif "ATFE" in compiler:
+                toolchain = "toolchain_ATFE.cmake"
         else:
             if "GCC"in compiler:
                 toolchain = "toolchain_ns_GNUARM.cmake"
             elif "ARMCLANG" in compiler:
                 toolchain = "toolchain_ns_ARMCLANG.cmake"
-            elif "CLANG" in compiler:
-                # IMPORTANT, this must be below ARMCANG
-                toolchain = "toolchain_ns_CLANG.cmake"
+            elif "ATFE" in compiler:
+                toolchain = "toolchain_ns_ATFE.cmake"
 
         return toolchain
 
@@ -99,8 +97,8 @@ class TFM_Build_Manager(structuredTask):
             compiler_name = "arm-none-eabi-gcc"
         elif "ARMCLANG" in compiler:
             compiler_name = "armclang"
-        elif "CLANG" in compiler:
-            compiler_name = "clang"
+        elif "ATFE" in compiler:
+            compiler_name = "atfe"
 
         return compiler_name
 
