@@ -48,6 +48,7 @@ timestamps {
           env.TFM_TESTS_REFSPEC = env.GERRIT_REFSPEC
           env.GERRIT_REFSPEC    = 'refs/heads/main'
           env.GERRIT_BRANCH     = 'main'
+          env.GERRIT_PROJECT    = 'TF-M/trusted-firmware-m'
         }
         // Clone TF-M repositories so share folder can be reused by downstream jobs
         sh "./clone.sh"
