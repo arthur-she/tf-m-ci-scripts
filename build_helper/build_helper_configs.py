@@ -184,6 +184,24 @@ _common_tfm_builder_cfg = {
                                           "bin/tfm_s_signed.bin "
                                           "image_signing/scripts/tfm_ns_signed.bin ;"
                                           "popd"),
+                   "nxp/frdmmcxn947": ("echo 'frdmmcxn947 bo.ard post process\n';"
+                                           "mkdir -p %(codebase_root_dir)s/build/bin ;"
+                                           # Workaround for flash_JLink.py
+                                           "cp %(ci_build_root_dir)s/spe/bin/tfm_s.hex %(codebase_root_dir)s/build/bin ;"
+                                           "cp %(ci_build_root_dir)s/nspe/bin/tfm_ns.hex %(codebase_root_dir)s/build/bin ;"
+                                           "cd %(codebase_root_dir)s/build/bin; "
+                                           "rm -f flash.jlink; "
+                                           "echo r >> flash.jlink; "
+                                           "echo erase >> flash.jlink; "
+                                           "echo loadfile tfm_s.hex >> flash.jlink; "
+                                           "echo loadfile tfm_ns.hex >> flash.jlink; "
+                                           "echo r >> flash.jlink; "
+                                           "echo go >> flash.jlink; "
+                                           "echo exit >> flash.jlink; "
+                                           "BIN_FILES=$(grep loadfile flash.jlink | awk '{print $2}');"
+                                           "tar jcf frdmmcxn947-tfm.tar.bz2 flash.jlink ${BIN_FILES};"
+                                           "mv frdmmcxn947-tfm.tar.bz2 %(ci_build_root_dir)s/nspe/bin ;"
+                                           "BIN_FILES=$(grep loadfile flash.jlink | awk '{print $2}');"),
                    "nxp/lpcxpresso55s69": ("echo 'LPCXpresso55S69 bo.ard post process\n';"
                                            "mkdir -p %(codebase_root_dir)s/build/bin ;"
                                            # Workaround for flash_JLink.py
@@ -1362,6 +1380,21 @@ config_nucleo_l552ze_q = {"seed_params": {
                 "invalid": _common_tfm_invalid_configs + []
                 }
 
+config_frdmmcxn947 = {"seed_params": {
+                "tfm_platform":     ["nxp/frdmmcxn947"],
+                "compiler":         ["GCC_14_3"],
+                "isolation_level":  ["2"],
+                "test_regression":  ["RegS, RegNS"],
+                "test_psa_api":     ["OFF"],
+                "cmake_build_type": ["Relwithdebinfo"],
+                "with_bl2":         [False],
+                "profile":          ["profile_medium"],
+                "extra_params":     [""]
+                },
+                "common_params": _common_tfm_builder_cfg,
+                "invalid": _common_tfm_invalid_configs + []
+                }
+
 config_lpcxpresso55s69 = {"seed_params": {
                 "tfm_platform":     ["nxp/lpcxpresso55s69"],
                 "compiler":         ["GCC_14_3"],
@@ -1622,6 +1655,7 @@ _builtin_configs = {
                     "nightly_stm32l562e_dk": config_stm32l562e_dk,
                     "nightly_b_u585i_iot02a": config_b_u585i_iot02a,
                     "nightly_stm32h573i_dk": config_stm32h573i_dk,
+                    "nightly_frdmmcxn947": config_frdmmcxn947,
                     "nightly_lpcxpresso55s69": config_lpcxpresso55s69,
                     "nightly_rp2350": config_rp2350,
                     "nightly_all_plat": config_all_plat,

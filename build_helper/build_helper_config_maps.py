@@ -36,6 +36,7 @@ mapPlatform = {
     "nordic_nrf/nrf9160dk_nrf9160"       : "nrf9160dk",
     "nuvoton/m2351"                      : "M2351",
     "nuvoton/m2354"                      : "M2354",
+    "nxp/frdmmcxn947"                    : "frdmmcxn947",
     "nxp/lpcxpresso55s69"                : "lpcxpresso55s69",
     "stm/stm32l562e_dk"                  : "stm32l562e_dk",
     "stm/stm32wba65i_dk"                 : "stm32wba65i_dk",
