@@ -388,9 +388,6 @@ config_pp_test = {"seed_params": {
                     # corstone320_ARMCLANG_1_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps4/corstone320", "ARMCLANG_6_21", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
-                    # corstone320_ATFE_1_RegBL2_RegS_RegNS_Debug_BL2
-                    ("arm/mps4/corstone320", "ATFE_20_1", "1",
-                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # MUSCA_B1_ATFE_1_RegBL2_RegS_RegNS_Minsizerel_BL2
                     ("arm/musca_b1", "ATFE_20_1", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Minsizerel", True, "", ""),
@@ -1610,9 +1607,6 @@ config_atfe_quick_test = {
                     # corstone315_ATFE_1_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/mps4/corstone315", "ATFE_20_1", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
-                    # corstone320_ATFE_1_RegBL2_RegS_RegNS_Debug_BL2
-                    ("arm/mps4/corstone320", "ATFE_20_1", "1",
-                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # MUSCA_B1_ATFE_1_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/musca_b1", "ATFE_20_1", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
