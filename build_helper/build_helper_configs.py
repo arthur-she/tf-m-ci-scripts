@@ -1155,7 +1155,7 @@ config_rse_tc4 = {"seed_params": {
                 "cmake_build_type": ["Debug", "Release"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["ATTESTATION_SCHEME_DPE", "RSE_PROVISIONING_SYMMETRIC", "CM_DM_BL2_ECDSA_SIGNING"]
+                "extra_params":     ["", "ATTESTATION_SCHEME_DPE", "RSE_PROVISIONING_SYMMETRIC", "CM_DM_BL2_ECDSA_SIGNING"]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "invalid": _common_tfm_invalid_configs + [
