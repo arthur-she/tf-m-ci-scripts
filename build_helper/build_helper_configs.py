@@ -604,6 +604,9 @@ config_all_plat = {
                     # lpcxpresso55s69_GCC_2_RegS_RegNS_Relwithdebinfo_MEDIUM
                     ("nxp/lpcxpresso55s69", "GCC_14_3", "2",
                      "RegS, RegNS", "OFF", "Relwithdebinfo", False, "profile_medium", ""),
+                    # frdmmcxn947_GCC_2_RegS_RegNS_Relwithdebinfo_MEDIUM
+                    ("nxp/frdmmcxn947", "GCC_14_3", "2",
+                     "RegS, RegNS", "OFF", "Relwithdebinfo", False, "profile_medium", ""),
                     # rp2350_GCC_2_RegBL2_RegS_RegNS_RelWithDebInfo_BL2_MEDIUM
                     ("rpi/rp2350", "GCC_14_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Relwithdebinfo", True, "profile_medium", ""),

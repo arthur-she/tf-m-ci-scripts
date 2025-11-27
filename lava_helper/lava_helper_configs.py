@@ -569,6 +569,28 @@ lpcxpresso55s69 = {
     }
 }
 
+# NXP FRDM-MCXN947
+frdmmcxn947= {
+    "templ": "frdmmcxn947.jinja2",
+    "job_name": "frdmmcxn947",
+    "device_type": "frdmmcxn947",
+    "job_timeout": 24,
+    "notification_email": "tf-m-ci-notifications@lists.trustedfirmware.org",
+    "action_timeout": 15,
+    "monitor_timeout": 15,
+    "poweroff_timeout": 5,
+    "platforms": {"nxp/frdmmcxn947": ""},
+    "binaries": {
+        "tarball": {
+            "data": "nspe/bin/frdmmcxn947-tfm.tar.bz2"
+        }
+    },
+    "monitors": {
+        'no_reg_tests': no_reg_tests_monitors,
+        'reg_tests': reg_tests_monitors,
+    }
+}
+
 # Cypress PSoC64
 psoc64 = {
     "templ": "psoc64.jinja2",
@@ -617,6 +639,7 @@ lava_gen_config_map_bl2 = {
 lava_gen_config_map_nobl2 = {
     "lpcxpresso55s69": lpcxpresso55s69,
     "psoc64": psoc64,
+    "frdmmcxn947": frdmmcxn947,
 }
 
 lavagen_config_sort_order = [
