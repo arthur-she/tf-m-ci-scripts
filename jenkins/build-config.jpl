@@ -52,7 +52,7 @@ timestamps {
         try {
             stage("Build") {
                 if (env.CONFIG_NAME.contains("ARMCLANG")) {
-                    withCredentials([string(credentialsId: 'ARMCLANG_UBL_CODE', variable: 'ARMCLANG_UBL_CODE')]) {
+                    withCredentials([file(credentialsId: 'ARMCLANG_UBL_FILE', variable: 'ARMCLANG_UBL_FILE')]) {
                         sh "tf-m-ci-scripts/jenkins/armclang-ubl.sh"
                     }
                 }

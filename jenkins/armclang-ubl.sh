@@ -15,7 +15,7 @@ eval COMP_PATH=\$$varname
 success=0
 delay=5
 for i in $(seq 1 3); do
-    if ${COMP_PATH}/armlm activate --code ${ARMCLANG_UBL_CODE}; then
+    if ${COMP_PATH}/armlm import --file ${ARMCLANG_UBL_FILE}; then
         success=1
         break
     fi
