@@ -442,13 +442,13 @@ config_pp_test = {"seed_params": {
                     # RSE_TC4_GCC_3_RegS_RegNS_Release_BL2_CM_DM_BL2_ECDSA_SIGNING
                     ("arm/rse/tc/tc4", "GCC_14_3", "3",
                      "RegS, RegNS", "OFF", "Release", True, "", "CM_DM_BL2_ECDSA_SIGNING"),
-                    # RSE_TC4_GCC_2_Debug_BL2
+                    # RSE_TC4_GCC_2_Debug_BL2_WARNINGS_ARE_ERRORS
                     ("arm/rse/tc/tc4", "GCC_14_3", "2",
-                     "OFF", "OFF", "Debug", True, "", ""),
+                     "OFF", "OFF", "Debug", True, "", "WARNINGS_ARE_ERRORS"),
                     # RSE_TC4_GCC_2_RegBL1_1_Debug_BL2
                     ("arm/rse/tc/tc4", "GCC_14_3", "2",
                      "RegBL1_1", "OFF", "Debug", True, "", ""),
-                    # RSE_TC4_GCC_2_RegBL1_1_Debug_BL2
+                    # RSE_TC4_GCC_2_RegBL1_1_Debug_BL2_RSE_RUN_BL1_1_TESTS_IN_PCI
                     ("arm/rse/tc/tc4", "GCC_14_3", "2",
                      "RegBL1_1", "OFF", "Debug", True, "", "RSE_RUN_BL1_1_TESTS_IN_PCI"),
                     # RSE_TC4_GCC_2_Release_BL2_ATTESTATION_SCHEME_CCA

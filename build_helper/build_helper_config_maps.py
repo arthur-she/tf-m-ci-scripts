@@ -192,6 +192,9 @@ mapExtraParams = {
 
     # Reuse copy area as SP stacks
     "CONFIG_TFM_REUSE_COPY_AREA_FOR_SP_STACKS" : "-DCONFIG_TFM_REUSE_COPY_AREA_FOR_SP_STACKS=.. ",
+
+    # Enable -Werror to make all warnings into errors
+    "WARNINGS_ARE_ERRORS" : ("-DCONFIG_TFM_WARNINGS_ARE_ERRORS=ON")
 }
 
 mapTfmExtrasExamplePaths = {
