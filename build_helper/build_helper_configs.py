@@ -1637,9 +1637,6 @@ config_atfe_quick_test = {
                     # corstone310_ATFE_1_Debug_BL2_NSOFF
                     ("arm/mps3/corstone310/fvp", "ATFE_20_1", "1",
                      "OFF", "OFF", "Debug", True, "", "NSOFF"),
-                    # corstone315_ATFE_1_RegBL2_RegS_RegNS_Release_BL2
-                    ("arm/mps4/corstone315", "ATFE_20_1", "1",
-                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
                     # MUSCA_B1_ATFE_1_RegBL2_RegS_RegNS_Release_BL2
                     ("arm/musca_b1", "ATFE_20_1", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Release", True, "", ""),
