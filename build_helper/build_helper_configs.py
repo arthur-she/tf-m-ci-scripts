@@ -595,9 +595,9 @@ config_all_plat = {
                     ## nrf9160dk_GCC_1_Debug_BL2_NSOFF
                     #("nordic_nrf/nrf9160dk_nrf9160", "GCC_14_3", "1",
                     # "OFF", "OFF", "Release", True, "", "NSOFF"),
-                    ## M2351_GCC_1_Release_BL2_NSOFF
-                    #("nuvoton/m2351", "GCC_14_3", "1",
-                    # "OFF", "OFF", "Release", True, "", "NSOFF"),
+                    # M2351_GCC_1_Release_BL2_NSOFF
+                    ("nuvoton/m2351", "GCC_14_3", "1",
+                     "OFF", "OFF", "Release", True, "", "NSOFF"),
                     # M2354_GCC_1_Debug_BL2_NSOFF
                     ("nuvoton/m2354", "GCC_14_3", "1",
                      "OFF", "OFF", "Debug", True, "", "NSOFF"),
