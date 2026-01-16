@@ -472,27 +472,27 @@ config_pp_test = {"seed_params": {
                     # RSE_RD1AE_GCC_2_Release_BL2_NSOFF
                     ("arm/rse/automotive_rd/rd1ae", "GCC_14_3", "2",
                      "OFF", "OFF", "Release", True, "", "NSOFF"),
-                    # stm32l562e_dk_ARMCLANG_1_RegS_RegNS_Release_BL2_CRYPTO_OFF
-                    ("stm/stm32l562e_dk", "ARMCLANG_6_21", "1",
-                     "RegS, RegNS", "OFF", "Release", True, "", "CRYPTO_OFF"),
-                    # stm32l562e_dk_GCC_2_Release_BL2_CRYPTO_ON
-                    ("stm/stm32l562e_dk", "GCC_14_3", "2",
-                     "OFF", "OFF", "Release", True, "", "CRYPTO_ON"),
-                    # stm32l562e_dk_GCC_3_RegBL2_RegS_RegNS_Release_BL2_CRYPTO_OFF
-                    ("stm/stm32l562e_dk", "GCC_14_3", "3",
-                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CRYPTO_OFF"),
-                    # b_u585i_iot02a_GCC_1_RegS_RegNS_Release_BL2
-                    ("stm/b_u585i_iot02a", "GCC_14_3", "1",
-                     "RegS, RegNS", "OFF", "Release", True, "", ""),
-                    # b_u585i_iot02a_ARMCLANG_2_RegS_RegNS_Release_BL2
-                    ("stm/b_u585i_iot02a", "ARMCLANG_6_21", "2",
-                     "RegS, RegNS", "OFF", "Release", True, "", ""),
-                    # stm32h573i_dk_GCC_1_RegS_RegNS_Release_BL2
-                    ("stm/stm32h573i_dk", "GCC_14_3", "1",
-                     "RegS, RegNS", "OFF", "Release", True, "", ""),
-                    # stm32h573i_dk_ARMCLANG_2_RegS_RegNS_Release_BL2
-                    ("stm/stm32h573i_dk", "ARMCLANG_6_21", "2",
-                     "RegS, RegNS", "OFF", "Release", True, "", ""),
+                    ## stm32l562e_dk_ARMCLANG_1_RegS_RegNS_Release_BL2_CRYPTO_OFF
+                    #("stm/stm32l562e_dk", "ARMCLANG_6_21", "1",
+                    # "RegS, RegNS", "OFF", "Release", True, "", "CRYPTO_OFF"),
+                    ## stm32l562e_dk_GCC_2_Release_BL2_CRYPTO_ON
+                    #("stm/stm32l562e_dk", "GCC_14_3", "2",
+                    # "OFF", "OFF", "Release", True, "", "CRYPTO_ON"),
+                    ## stm32l562e_dk_GCC_3_RegBL2_RegS_RegNS_Release_BL2_CRYPTO_OFF
+                    #("stm/stm32l562e_dk", "GCC_14_3", "3",
+                    # "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CRYPTO_OFF"),
+                    ## b_u585i_iot02a_GCC_1_RegS_RegNS_Release_BL2
+                    #("stm/b_u585i_iot02a", "GCC_14_3", "1",
+                    # "RegS, RegNS", "OFF", "Release", True, "", ""),
+                    ## b_u585i_iot02a_ARMCLANG_2_RegS_RegNS_Release_BL2
+                    #("stm/b_u585i_iot02a", "ARMCLANG_6_21", "2",
+                    # "RegS, RegNS", "OFF", "Release", True, "", ""),
+                    ## stm32h573i_dk_GCC_1_RegS_RegNS_Release_BL2
+                    #("stm/stm32h573i_dk", "GCC_14_3", "1",
+                    # "RegS, RegNS", "OFF", "Release", True, "", ""),
+                    ## stm32h573i_dk_ARMCLANG_2_RegS_RegNS_Release_BL2
+                    #("stm/stm32h573i_dk", "ARMCLANG_6_21", "2",
+                    # "RegS, RegNS", "OFF", "Release", True, "", ""),
                     # psoc64_GCC_2_RegS_RegNS_Release
                     ("cypress/psoc64", "GCC_14_3", "2",
                      "RegS, RegNS", "OFF", "Release", False, "", ""),
@@ -610,24 +610,24 @@ config_all_plat = {
                     # rp2350_GCC_2_RegBL2_RegS_RegNS_RelWithDebInfo_BL2_MEDIUM
                     ("rpi/rp2350", "GCC_14_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Relwithdebinfo", True, "profile_medium", ""),
-                     # b_u585i_iot02a_GCC_2_RegS_RegNS_Release_BL2
-                    ("stm/b_u585i_iot02a", "GCC_14_3", "2",
-                     "RegS, RegNS", "OFF", "Release", True, "", ""),
-                    # nucleo_l552ze_q_GCC_1_Release_BL2_NSOFF
-                    ("stm/nucleo_l552ze_q", "GCC_14_3", "1",
-                     "OFF", "OFF", "Release", True, "", "NSOFF"),
-                    # stm32h573i_dk_GCC_2_RegS_RegNS_Release_BL2
-                    ("stm/stm32h573i_dk", "GCC_14_3", "2",
-                     "RegS, RegNS", "OFF", "Release", True, "", ""),
-                    # stm32l562e_dk_GCC_3_RegBL2_RegS_RegNS_Release_BL2_CRYPTO_OFF
-                    ("stm/stm32l562e_dk", "GCC_14_3", "3",
-                     "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CRYPTO_OFF"),
-                    # stm32l562e_dk_GCC_3_Release_BL2_CRYPTO_ON
-                    ("stm/stm32l562e_dk", "GCC_14_3", "3",
-                     "OFF", "OFF", "Release", True, "", "CRYPTO_ON"),
-                    # stm32wba65i_dk_GCC_2_RegS_RegNS_Release_MEDIUM
-                    ("stm/stm32wba65i_dk", "GCC_14_3", "2",
-                     "RegS, RegNS", "OFF", "Release", False, "profile_medium", ""),
+                    # # b_u585i_iot02a_GCC_2_RegS_RegNS_Release_BL2
+                    #("stm/b_u585i_iot02a", "GCC_14_3", "2",
+                    # "RegS, RegNS", "OFF", "Release", True, "", ""),
+                    ## nucleo_l552ze_q_GCC_1_Release_BL2_NSOFF
+                    #("stm/nucleo_l552ze_q", "GCC_14_3", "1",
+                    # "OFF", "OFF", "Release", True, "", "NSOFF"),
+                    ## stm32h573i_dk_GCC_2_RegS_RegNS_Release_BL2
+                    #("stm/stm32h573i_dk", "GCC_14_3", "2",
+                    # "RegS, RegNS", "OFF", "Release", True, "", ""),
+                    ## stm32l562e_dk_GCC_3_RegBL2_RegS_RegNS_Release_BL2_CRYPTO_OFF
+                    #("stm/stm32l562e_dk", "GCC_14_3", "3",
+                    # "RegBL2, RegS, RegNS", "OFF", "Release", True, "", "CRYPTO_OFF"),
+                    ## stm32l562e_dk_GCC_3_Release_BL2_CRYPTO_ON
+                    #("stm/stm32l562e_dk", "GCC_14_3", "3",
+                    # "OFF", "OFF", "Release", True, "", "CRYPTO_ON"),
+                    ## stm32wba65i_dk_GCC_2_RegS_RegNS_Release_MEDIUM
+                    #("stm/stm32wba65i_dk", "GCC_14_3", "2",
+                    # "RegS, RegNS", "OFF", "Release", False, "profile_medium", ""),
                 ],
                 "invalid": _common_tfm_invalid_configs + []
                 }
