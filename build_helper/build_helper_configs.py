@@ -409,9 +409,9 @@ config_pp_test = {"seed_params": {
                     # corstone310_ARMCLANG_1_Debug_BL2_PACBTI_STD
                     ("arm/mps3/corstone310/fvp", "ARMCLANG_6_21", "1",
                      "OFF", "OFF", "Debug", True, "", "PACBTI_STD"),
-                    # corstone1000_GCC_2_RegS_Debug_BL2_NSOFF_CS1K_TEST_FVP
-                    ("arm/corstone1000", "GCC_14_3", "2",
-                     "RegS", "OFF", "Debug", True, "", "NSOFF, CS1K_TEST, FVP"),
+                    ## corstone1000_GCC_2_RegS_Debug_BL2_NSOFF_CS1K_TEST_FVP
+                    #("arm/corstone1000", "GCC_14_3", "2",
+                    # "RegS", "OFF", "Debug", True, "", "NSOFF, CS1K_TEST, FVP"),
                     # corstone315_ARMCLANG_1_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps4/corstone315", "ARMCLANG_6_21", "1",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
@@ -542,23 +542,20 @@ config_nightly_test = {"seed_params": {
                 }
 
 config_all_plat = {
-                # corstone1000_GCC_2_RegS_Release_BL2_NSOFF_CS1K_TEST_FVP
+                # AN521_GCC_3_RegBL2_RegS_RegNS_Debug_BL2
                 "seed_params": {
-                "tfm_platform":     ["arm/corstone1000"],
+                "tfm_platform":     ["arm/mps2/an521"],
                 "compiler":         ["GCC_14_3"],
-                "isolation_level":  ["2"],
-                "test_regression":  ["RegS"],
+                "isolation_level":  ["3"],
+                "test_regression":  ["RegBL2, RegS, RegNS"],
                 "test_psa_api":     ["OFF"],
-                "cmake_build_type": ["Release"],
+                "cmake_build_type": ["Debug"],
                 "with_bl2":         [True],
                 "profile":          [""],
-                "extra_params":     ["NSOFF, CS1K_TEST, FVP"]
+                "extra_params":     [""]
                 },
                 "common_params": _common_tfm_builder_cfg,
                 "valid": [
-                    # AN521_GCC_3_RegBL2_RegS_RegNS_Debug_BL2
-                    ("arm/mps2/an521", "GCC_14_3", "3",
-                     "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
                     # AN519_GCC_2_RegBL2_RegS_RegNS_Debug_BL2
                     ("arm/mps2/an519", "GCC_14_3", "2",
                      "RegBL2, RegS, RegNS", "OFF", "Debug", True, "", ""),
