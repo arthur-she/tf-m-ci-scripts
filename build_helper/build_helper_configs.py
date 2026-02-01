@@ -202,6 +202,15 @@ _common_tfm_builder_cfg = {
                                           "bin/tfm_s_signed.bin "
                                           "image_signing/scripts/tfm_ns_signed.bin ;"
                                           "popd"),
+                   "stm/stm32wba65i_dk": ("echo 'STM32WBA65I-DK1 board post process';"
+                                          "%(ci_build_root_dir)s/spe/api_ns/postbuild.sh;"
+                                          "pushd %(ci_build_root_dir)s/spe/api_ns;"
+                                          "mkdir -p image_signing/scripts ;"
+                                          "cp %(ci_build_root_dir)s/nspe/bin/tfm_ns_signed.bin image_signing/scripts ;"
+                                          "tar jcf ./bin/stm32wba65i_dk1-tfm.tar.bz2 regression.sh TFM_UPDATE.sh "
+                                          "bin/tfm_s_signed.bin "
+                                          "image_signing/scripts/tfm_ns_signed.bin ;"
+                                          "popd"),
                    "nxp/frdmmcxn947": ("echo 'frdmmcxn947 bo.ard post process\n';"
                                            "mkdir -p %(codebase_root_dir)s/build/bin ;"
                                            # Workaround for flash_JLink.py
@@ -1682,6 +1691,7 @@ _builtin_configs = {
                     "nightly_stm32l562e_dk": config_stm32l562e_dk,
                     "nightly_b_u585i_iot02a": config_b_u585i_iot02a,
                     "nightly_stm32h573i_dk": config_stm32h573i_dk,
+                    "nightly_stm32wba65i_dk": config_stm32wba65i_dk,
                     "nightly_frdmmcxn947": config_frdmmcxn947,
                     "nightly_lpcxpresso55s69": config_lpcxpresso55s69,
                     "nightly_rp2350": config_rp2350,
@@ -1716,6 +1726,7 @@ _builtin_configs = {
                     "release_stm32l562e_dk": config_stm32l562e_dk,
                     "release_b_u585i_iot02a": config_b_u585i_iot02a,
                     "release_stm32h573i_dk": config_stm32h573i_dk,
+                    "release_stm32wba65i_dk": config_stm32wba65i_dk,
                     "release_frdmmcxn947" : config_frdmmcxn947,
                     "release_lpcxpresso55s69": config_lpcxpresso55s69,
                     "release_rp2350": config_rp2350,
